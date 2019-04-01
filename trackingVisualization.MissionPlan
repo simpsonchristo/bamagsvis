@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<FreeFlyerProjectFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timePrecisionMode="nanosecond" schemaVersion="7.4.0.9">
+  <ProjectInformation>
+    <Author />
+    <Source />
+    <FreeFlyerVersion>7.4.0.52224</FreeFlyerVersion>
+    <RevisionNumber />
+    <Title>User Interface - Script Example</Title>
+    <Subject />
+    <Category />
+    <Keywords />
+    <Comments>This Mission Plan demonstrates how to set up a UserInterface in FreeForm Script.</Comments>
+    <Notes />
+  </ProjectInformation>
+  <ProjectPreferences>
+    <General>
+      <LockProjectFromEditing>false</LockProjectFromEditing>
+    </General>
+    <OnOpen>
+      <ShowControlSequence>true</ShowControlSequence>
+      <ShowEmptyEnvironment>false</ShowEmptyEnvironment>
+      <ShowNotes>false</ShowNotes>
+      <ShowHome>false</ShowHome>
+      <ShowOutput>false</ShowOutput>
+      <CreateBackup>false</CreateBackup>
+      <BackupLocation></BackupLocation>
+    </OnOpen>
+    <OnRun>
+      <SaveMissionPlan>false</SaveMissionPlan>
+      <HideWarningMessages>false</HideWarningMessages>
+    </OnRun>
+  </ProjectPreferences>
+  <ProjectDataFiles>
+    <EarthOrientationFile useDefault="true"></EarthOrientationFile>
+    <ElectronDensityCoefficientFile useDefault="true"></ElectronDensityCoefficientFile>
+    <GeopotentialFile useDefault="true"></GeopotentialFile>
+    <HarrisPriesterDragFile useDefault="true"></HarrisPriesterDragFile>
+    <JacchiaAtmosphereModelFile useDefault="true"></JacchiaAtmosphereModelFile>
+    <LeapSecondFile useDefault="true"></LeapSecondFile>
+    <MagneticFieldFile useDefault="true"></MagneticFieldFile>
+    <PlanetaryFile useDefault="true"></PlanetaryFile>
+    <StationGeodeticsFile useDefault="true"></StationGeodeticsFile>
+    <SolidTideFile useDefault="true"></SolidTideFile>
+    <DSTFile useDefault="true"></DSTFile>
+    <StarFieldFile useDefault="true"></StarFieldFile>
+  </ProjectDataFiles>
+  <ProjectObjects>
+    <Object>
+      <SolarSystem name="FF_SolarSystem" isConstant="false" isGlobal="true">
+        <Name>FF_SolarSystem</Name>
+        <ComputePolarMotion>true</ComputePolarMotion>
+        <ApplyUT1Correction>true</ApplyUT1Correction>
+        <COUpdateInterval units="s" displayed_units="s">0</COUpdateInterval>
+        <NPUpdateInterval units="s" displayed_units="s">1800</NPUpdateInterval>
+        <IonosphereOptions>
+          <IonosphereOptions name="FF_SolarSystem_|ionoOptions|" isConstant="false" isGlobal="true">
+            <Name>FF_SolarSystem_|ionoOptions|</Name>
+            <MaximumHeight units="km" displayed_units="km">1000</MaximumHeight>
+            <MinimumHeight units="km" displayed_units="km">80</MinimumHeight>
+            <IntegrationStepSize units="km" displayed_units="km">25</IntegrationStepSize>
+            <ScaleFactor units="" displayed_units="">1</ScaleFactor>
+            <Model>0</Model>
+            <metadata dim="0" />
+          </IonosphereOptions>
+        </IonosphereOptions>
+        <NoradKeplerEqTolerance units="" displayed_units="">1e-012</NoradKeplerEqTolerance>
+        <metadata dim="0" />
+      </SolarSystem>
+    </Object>
+    <Object>
+      <ConsoleWindow name="Console" isConstant="false" isGlobal="true">
+        <Name>Console</Name>
+        <WindowTitle>Console</WindowTitle>
+        <WordWrap>false</WordWrap>
+        <CurrentTextColor>0</CurrentTextColor>
+        <BackColor>16777215</BackColor>
+        <Dimension units="" displayed_units="">10</Dimension>
+        <DockMode>1</DockMode>
+        <CurrentFontType>0</CurrentFontType>
+        <UseStdOut>false</UseStdOut>
+        <ShowOnRun>false</ShowOnRun>
+        <metadata dim="0" />
+      </ConsoleWindow>
+    </Object>
+  </ProjectObjects>
+  <ProjectMissionSequence>
+    <ProjectExternals />
+    <ProjectCommands>
+      <FreeForm enabled="true">
+        <Label>Mission Plan Description and Console Setup</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+// Mission Plan Description and Console Setup
+
+// This Mission Plan demonstrates how to set up a UserInterface in FreeForm Script.
+
+// The Mission Plan sets up a Ground Station in script and then opens a UserInterface that allows the user to 
+// configure the Ground Station as desired. The UserInterface has three pages. The first allows the user to edit
+// the location and name of the Ground Station, the second page allows the user to control the visualization properties
+// of the Ground Station and the third page allows the user to set some of the Ground Station Orbit Determination properties. 
+
+// For more information on creating UserInterface through FreeForm Script, see the Custom User Interfaces Guide in the Help.
+
+// Console Setup
+Console.DockMode = 3;
+Console.Dimension = 40;
+Console.WordWrap = 1;
+Console.BackColor = 0;
+Console.CurrentTextColor = ColorTools.Lime;
+Console.Show();
+
+Report "This Mission Plan demonstrates how to set up a UserInterface in FreeForm Script." to Console;
+Report "" to Console;
+
+Report "The Mission Plan sets up a Ground Station in script and then opens a UserInterface that allows the user to configure the Ground Station as desired. The UserInterface has three pages. The first allows the user to edit the location and name of the Ground Station, the second page allows the user to control the visualization properties of the Ground Station and the third page allows the user to set some of the Ground Station Orbit Determination properties.  " to Console;
+Report "" to Console;
+
+Report "For more information on creating UserInterface through FreeForm Script, see the Custom User Interfaces Guide in the Help." to Console;
+Report "" to Console;
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true" comment="Allow creation of all DSN/NEN stations">
+        <Label>Create Ground Station Objects</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Create Ground Station Objects
+
+// Create Ground Station
+GroundStation GS;
+GS.DisplayName = "Default Ground Station";
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Create Formation Objects</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Create Formation Objects
+Formation SC;
+
+//Default Visualization
+SC.ViewAsGroup = 1;
+
+//Celestrak Group Requested
+FileProperties tleFile;
+tleFile.Filename = 'satnogs.txt';
+TimeSpan tleEpoch;
+Variable i;
+Variable Flag;
+
+If(tleFile.Exists == 1);
+	SC.Count = GetNumberOfNoradStates(tleFile.Filename);
+	SC.LoadNoradTLE(tleFile.Filename);
+	tleEpoch = SC[0].Epoch;
+	For i=0 to SC.Count-1;
+		If(SC[i].Epoch > tleEpoch);
+			tleEpoch = SC[i].Epoch;
+		End;
+	End;
+	If(SystemTime()-tleEpoch > TIMESPAN(24 hours));
+		Report "TLE is older than 24 hours. A new data set needs to be loaded." to Console;
+		Flag = 1;
+	Else;
+		Report "TLE file loaded: "+SC.Count.ToString()+" satellites" to Console;
+		Flag = 0;
+	End;
+ElseIf(tleFile.Exists==0);
+	Report "TLE file does not exist in current directory." to Console;
+	Report "TLE file will be loaded from user's selection." to Console;
+	Flag = 1;
+End;
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true" comment="Default retreival of Celestrak TLEs">
+        <Label>Create Socket Object</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[Socket DownloadTLEs;
+DownloadTLEs.SocketType = "client";
+DownloadTLEs.IPAddress = "www.celestrak.com";//Default Value
+DownloadTLEs.PortNumber = 80;
+DownloadTLEs.SocketTimeout = 100;//sec
+DownloadTLEs.ErrorAction = "Abort";
+//Data Transfer Mode
+DownloadTLEs.SocketIsAscii = 1;
+DownloadTLEs.SepChars = "whitespace";
+DownloadTLEs.TermChars = "\r\n";
+
+////Space-Track.org
+//String usr = 'username';
+//String pwd = 'password';
+//String requestController = 'basicspacedata';
+//String requestAction = 'query/class';
+//String exampleQuery = 'https://www.space-track.org/'+requestController+'/'+requestAction+'/tle_latest/ORDINAL/1/]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Create/Show UserInterface</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+// UserInterface for custom Ground Station GUIChooseTLE
+
+UserInterface UIChooseTLE;
+UIChooseTLE.Title = "Choose TLE Data Set";
+
+// Add page to the UI for TLE Source Options
+UIChooseTLE.AddPage("TLE Source Options");
+UIChooseTLE.AddSeparator("TLE Sources - Celestrak or Space-Track", 1);
+Variable id;
+id = UIChooseTLE.AddMultiChoice("DownloadTLEs.IPAddress", "TLE Source", 'www.celestrak.com',1);
+UIChooseTLE.AddMultiChoiceItem(id, 'www.celestrak.com', 'Celestrak');
+UIChooseTLE.AddMultiChoiceItem(id, 'https://www.space-track.org/', 'Space-Track');
+//If Celestrak
+UIChooseTLE.AddSeparator('Pick Data Set',1);
+If(DownloadTLEs.IPAddress == 'www.celestrak.com');
+	id = UIChooseTLE.AddMultiChoice('tleFile.Filename', 'Satellite Group', 'satnogs.txt', 1);
+	UIChooseTLE.AddMultiChoiceItem(id, 'satnogs.txt', 'SatNOGS');
+	UIChooseTLE.AddMultiChoiceItem(id, 'amateur.txt', 'Amateur');
+	UIChooseTLE.AddMultiChoiceItem(id, 'gps-ops.txt', 'GPS');
+//ElseIf(DownloadTLEs.IPAddress == 'https://www.space-track.org/');
+//	UIChooseTLE.AddTextEntry(
+End;
+
+//Add page for Formation options
+//UIChooseTLE.AddPage('Visualization');
+// Add Visualization Section
+UIChooseTLE.AddSeparator("Visualization", 1);
+id = UIChooseTLE.AddMultiChoice("SC.ViewAsGroup", "Formation Vis", '1', 0);
+UIChooseTLE.AddMultiChoiceItem(id, '1', 'View as points');
+UIChooseTLE.AddMultiChoiceItem(id, '0', 'View all as .3ds');
+
+Show UIChooseTLE;
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Send/Receive data from socket</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Send/Receive data from socket
+
+Variable NumErrors;
+String RequestMessage;
+Variable status=0;
+String DataString;
+StringArray DataStringArray;
+String temp;
+ReportInterface TLEReportInterface;
+
+If(Flag==1);
+	//Open socket
+	Report 'Socket Address: '+ DownloadTLEs.IPAddress to Console;
+	Report 'Curated Group Selected: '+tleFile.Filename to Console;
+	Try sending ErrorCount to NumErrors;
+		Open DownloadTLEs;
+	End;
+
+	If(NumErrors > 0);
+		Console.CurrentTextColor = ColorTools.Pink;
+		Report "Error connecting to Celestrak server.  You may not have a live internet connection, or the server may be down." to Console;
+		Stop;
+	End;
+
+	//Send data request
+	RequestMessage = 'GET /NORAD/elements/'+tleFile.Filename+@" HTTP/1.0\n\n";
+	Send RequestMessage to DownloadTLEs;
+	DownloadTLEs.ErrorAction = "Ignore";
+
+	//Receive data
+	While(status==0);
+		Receive DataString from DownloadTLEs;
+		DataStringArray.PushBack(DataString);
+		status = DownloadTLEs.Status;
+	End;
+
+	Close DownloadTLEs;
+
+	//Remove HTTP headers
+	While (!DataStringArray[1].SubString(0,1).Compare("1"));
+		temp = DataStringArray.PopFront;
+	End;
+
+	//Generate output TLE file
+	TLEReportInterface.Filename = '.\'+tleFile.Filename;
+	For i=0 to (DataStringArray.Dimension-2);
+		Report DataStringArray[i] to TLEReportInterface without headers without pad;
+	End;
+	Close TLEReportInterface;
+End;]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label> View Ground Station</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+// View Ground Station
+
+// View the Ground Station after configuration has been chosen
+View GS;
+]]></FreeFormScript>
+      </FreeForm>
+    </ProjectCommands>
+  </ProjectMissionSequence>
+  <ProjectScript><![CDATA[
+// Mission Plan Description and Console Setup
+
+// This Mission Plan demonstrates how to set up a UserInterface in FreeForm Script.
+
+// The Mission Plan sets up a Ground Station in script and then opens a UserInterface that allows the user to 
+// configure the Ground Station as desired. The UserInterface has three pages. The first allows the user to edit
+// the location and name of the Ground Station, the second page allows the user to control the visualization properties
+// of the Ground Station and the third page allows the user to set some of the Ground Station Orbit Determination properties. 
+
+// For more information on creating UserInterface through FreeForm Script, see the Custom User Interfaces Guide in the Help.
+
+// Console Setup
+Console.DockMode = 3;
+Console.Dimension = 40;
+Console.WordWrap = 1;
+Console.BackColor = 0;
+Console.CurrentTextColor = ColorTools.Lime;
+Console.Show();
+
+Report "This Mission Plan demonstrates how to set up a UserInterface in FreeForm Script." to Console;
+Report "" to Console;
+
+Report "The Mission Plan sets up a Ground Station in script and then opens a UserInterface that allows the user to configure the Ground Station as desired. The UserInterface has three pages. The first allows the user to edit the location and name of the Ground Station, the second page allows the user to control the visualization properties of the Ground Station and the third page allows the user to set some of the Ground Station Orbit Determination properties.  " to Console;
+Report "" to Console;
+
+Report "For more information on creating UserInterface through FreeForm Script, see the Custom User Interfaces Guide in the Help." to Console;
+Report "" to Console;
+
+// Create Ground Station Objects
+
+// Create Ground Station
+GroundStation GS;
+GS.DisplayName = "Default Ground Station";
+
+// Create Formation Objects
+Formation SC;
+
+//Default Visualization
+SC.ViewAsGroup = 1;
+
+//Celestrak Group Requested
+FileProperties tleFile;
+tleFile.Filename = 'satnogs.txt';
+TimeSpan tleEpoch;
+Variable i;
+Variable Flag;
+
+If(tleFile.Exists == 1);
+	SC.Count = GetNumberOfNoradStates(tleFile.Filename);
+	SC.LoadNoradTLE(tleFile.Filename);
+	tleEpoch = SC[0].Epoch;
+	For i=0 to SC.Count-1;
+		If(SC[i].Epoch > tleEpoch);
+			tleEpoch = SC[i].Epoch;
+		End;
+	End;
+	If(SystemTime()-tleEpoch > TIMESPAN(24 hours));
+		Report "TLE is older than 24 hours. A new data set needs to be loaded." to Console;
+		Flag = 1;
+	Else;
+		Report "TLE file loaded: "+SC.Count.ToString()+" satellites" to Console;
+		Flag = 0;
+	End;
+ElseIf(tleFile.Exists==0);
+	Report "TLE file does not exist in current directory." to Console;
+	Report "TLE file will be loaded from user's selection." to Console;
+	Flag = 1;
+End;
+
+Socket DownloadTLEs;
+DownloadTLEs.SocketType = "client";
+DownloadTLEs.IPAddress = "www.celestrak.com";//Default Value
+DownloadTLEs.PortNumber = 80;
+DownloadTLEs.SocketTimeout = 100;//sec
+DownloadTLEs.ErrorAction = "Abort";
+//Data Transfer Mode
+DownloadTLEs.SocketIsAscii = 1;
+DownloadTLEs.SepChars = "whitespace";
+DownloadTLEs.TermChars = "\r\n";
+
+////Space-Track.org
+//String usr = 'username';
+//String pwd = 'password';
+//String requestController = 'basicspacedata';
+//String requestAction = 'query/class';
+//String exampleQuery = 'https://www.space-track.org/'+requestController+'/'+requestAction+'/tle_latest/ORDINAL/1/
+
+// UserInterface for custom Ground Station GUIChooseTLE
+
+UserInterface UIChooseTLE;
+UIChooseTLE.Title = "Choose TLE Data Set";
+
+// Add page to the UI for TLE Source Options
+UIChooseTLE.AddPage("TLE Source Options");
+UIChooseTLE.AddSeparator("TLE Sources - Celestrak or Space-Track", 1);
+Variable id;
+id = UIChooseTLE.AddMultiChoice("DownloadTLEs.IPAddress", "TLE Source", 'www.celestrak.com',1);
+UIChooseTLE.AddMultiChoiceItem(id, 'www.celestrak.com', 'Celestrak');
+UIChooseTLE.AddMultiChoiceItem(id, 'https://www.space-track.org/', 'Space-Track');
+//If Celestrak
+UIChooseTLE.AddSeparator('Pick Data Set',1);
+If(DownloadTLEs.IPAddress == 'www.celestrak.com');
+	id = UIChooseTLE.AddMultiChoice('tleFile.Filename', 'Satellite Group', 'satnogs.txt', 1);
+	UIChooseTLE.AddMultiChoiceItem(id, 'satnogs.txt', 'SatNOGS');
+	UIChooseTLE.AddMultiChoiceItem(id, 'amateur.txt', 'Amateur');
+	UIChooseTLE.AddMultiChoiceItem(id, 'gps-ops.txt', 'GPS');
+//ElseIf(DownloadTLEs.IPAddress == 'https://www.space-track.org/');
+//	UIChooseTLE.AddTextEntry(
+End;
+
+//Add page for Formation options
+//UIChooseTLE.AddPage('Visualization');
+// Add Visualization Section
+UIChooseTLE.AddSeparator("Visualization", 1);
+id = UIChooseTLE.AddMultiChoice("SC.ViewAsGroup", "Formation Vis", '1', 0);
+UIChooseTLE.AddMultiChoiceItem(id, '1', 'View as points');
+UIChooseTLE.AddMultiChoiceItem(id, '0', 'View all as .3ds');
+
+Show UIChooseTLE;
+
+// Send/Receive data from socket
+
+Variable NumErrors;
+String RequestMessage;
+Variable status=0;
+String DataString;
+StringArray DataStringArray;
+String temp;
+ReportInterface TLEReportInterface;
+
+If(Flag==1);
+	//Open socket
+	Report 'Socket Address: '+ DownloadTLEs.IPAddress to Console;
+	Report 'Curated Group Selected: '+tleFile.Filename to Console;
+	Try sending ErrorCount to NumErrors;
+		Open DownloadTLEs;
+	End;
+
+	If(NumErrors > 0);
+		Console.CurrentTextColor = ColorTools.Pink;
+		Report "Error connecting to Celestrak server.  You may not have a live internet connection, or the server may be down." to Console;
+		Stop;
+	End;
+
+	//Send data request
+	RequestMessage = 'GET /NORAD/elements/'+tleFile.Filename+@" HTTP/1.0\n\n";
+	Send RequestMessage to DownloadTLEs;
+	DownloadTLEs.ErrorAction = "Ignore";
+
+	//Receive data
+	While(status==0);
+		Receive DataString from DownloadTLEs;
+		DataStringArray.PushBack(DataString);
+		status = DownloadTLEs.Status;
+	End;
+
+	Close DownloadTLEs;
+
+	//Remove HTTP headers
+	While (!DataStringArray[1].SubString(0,1).Compare("1"));
+		temp = DataStringArray.PopFront;
+	End;
+
+	//Generate output TLE file
+	TLEReportInterface.Filename = '.\'+tleFile.Filename;
+	For i=0 to (DataStringArray.Dimension-2);
+		Report DataStringArray[i] to TLEReportInterface without headers without pad;
+	End;
+	Close TLEReportInterface;
+End;
+
+// View Ground Station
+
+// View the Ground Station after configuration has been chosen
+View GS;
+]]></ProjectScript>
+  <ProjectNotes></ProjectNotes>
+</FreeFlyerProjectFile>

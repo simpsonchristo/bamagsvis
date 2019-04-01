@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<FreeFlyerProjectFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timePrecisionMode="nanosecond" schemaVersion="7.4.0.9">
+  <ProjectInformation>
+    <Author />
+    <Source />
+    <FreeFlyerVersion>7.4.0.52224</FreeFlyerVersion>
+    <RevisionNumber />
+    <Title />
+    <Subject />
+    <Category />
+    <Keywords />
+    <Comments />
+    <Notes />
+  </ProjectInformation>
+  <ProjectPreferences>
+    <General>
+      <LockProjectFromEditing>false</LockProjectFromEditing>
+    </General>
+    <OnOpen>
+      <ShowControlSequence>true</ShowControlSequence>
+      <ShowEmptyEnvironment>false</ShowEmptyEnvironment>
+      <ShowNotes>false</ShowNotes>
+      <ShowHome>false</ShowHome>
+      <ShowOutput>false</ShowOutput>
+      <CreateBackup>false</CreateBackup>
+      <BackupLocation></BackupLocation>
+    </OnOpen>
+    <OnRun>
+      <SaveMissionPlan>false</SaveMissionPlan>
+      <HideWarningMessages>false</HideWarningMessages>
+    </OnRun>
+  </ProjectPreferences>
+  <ProjectDataFiles>
+    <EarthOrientationFile useDefault="true"></EarthOrientationFile>
+    <ElectronDensityCoefficientFile useDefault="true"></ElectronDensityCoefficientFile>
+    <GeopotentialFile useDefault="true"></GeopotentialFile>
+    <HarrisPriesterDragFile useDefault="true"></HarrisPriesterDragFile>
+    <JacchiaAtmosphereModelFile useDefault="true"></JacchiaAtmosphereModelFile>
+    <LeapSecondFile useDefault="true"></LeapSecondFile>
+    <MagneticFieldFile useDefault="true"></MagneticFieldFile>
+    <PlanetaryFile useDefault="true"></PlanetaryFile>
+    <StationGeodeticsFile useDefault="true"></StationGeodeticsFile>
+    <SolidTideFile useDefault="true"></SolidTideFile>
+    <DSTFile useDefault="true"></DSTFile>
+    <StarFieldFile useDefault="true"></StarFieldFile>
+  </ProjectDataFiles>
+  <ProjectObjects>
+    <Object>
+      <SolarSystem name="FF_SolarSystem" isConstant="false" isGlobal="true">
+        <Name>FF_SolarSystem</Name>
+        <ComputePolarMotion>true</ComputePolarMotion>
+        <ApplyUT1Correction>true</ApplyUT1Correction>
+        <COUpdateInterval units="s" displayed_units="s">0</COUpdateInterval>
+        <NPUpdateInterval units="s" displayed_units="s">1800</NPUpdateInterval>
+        <IonosphereOptions>
+          <IonosphereOptions name="FF_SolarSystem_|ionoOptions|" isConstant="false" isGlobal="true">
+            <Name>FF_SolarSystem_|ionoOptions|</Name>
+            <MaximumHeight units="km" displayed_units="km">1000</MaximumHeight>
+            <MinimumHeight units="km" displayed_units="km">80</MinimumHeight>
+            <IntegrationStepSize units="km" displayed_units="km">25</IntegrationStepSize>
+            <ScaleFactor units="" displayed_units="">1</ScaleFactor>
+            <Model>0</Model>
+            <metadata dim="0" />
+          </IonosphereOptions>
+        </IonosphereOptions>
+        <NoradKeplerEqTolerance units="" displayed_units="">1e-12</NoradKeplerEqTolerance>
+        <metadata dim="0" />
+      </SolarSystem>
+    </Object>
+    <Object>
+      <ConsoleWindow name="Console" isConstant="false" isGlobal="true">
+        <Name>Console</Name>
+        <WindowTitle>Console</WindowTitle>
+        <WordWrap>true</WordWrap>
+        <CurrentTextColor>0</CurrentTextColor>
+        <BackColor>16777215</BackColor>
+        <Dimension units="" displayed_units="">40</Dimension>
+        <DockMode>3</DockMode>
+        <CurrentFontType>0</CurrentFontType>
+        <UseStdOut>false</UseStdOut>
+        <ShowOnRun>true</ShowOnRun>
+        <metadata dim="0" />
+      </ConsoleWindow>
+    </Object>
+    <Object>
+      <Socket name="CelestrakSocket" isConstant="false" isGlobal="false">
+        <Name>CelestrakSocket</Name>
+        <TransportType>TCP</TransportType>
+        <SocketType>client</SocketType>
+        <IPAddress>www.celestrak.com</IPAddress>
+        <PortNumber units="" displayed_units="">80</PortNumber>
+        <SocketIsAscii>true</SocketIsAscii>
+        <SocketTimeout units="s" displayed_units="s">100</SocketTimeout>
+        <RecvTranslation>none</RecvTranslation>
+        <SendTranslation>none</SendTranslation>
+        <SepChars>whitespace</SepChars>
+        <TermChars>\r\n</TermChars>
+        <ErrorAction>Abort</ErrorAction>
+        <Status units="" displayed_units="">0</Status>
+        <StatusString></StatusString>
+        <metadata dim="0" />
+      </Socket>
+    </Object>
+    <Object>
+      <String name="File" isConstant="false" isGlobal="false">
+        <Name>File</Name>
+        <Value></Value>
+        <metadata dim="0" />
+      </String>
+    </Object>
+    <Object>
+      <StringArray name="Files" isConstant="false" isGlobal="false">
+        <Name>Files</Name>
+        <Dimension units="" displayed_units="">10</Dimension>
+        <Capacity units="" displayed_units="">0</Capacity>
+        <Element dim="10">
+          <value>geo.txt</value>
+          <value>weather.txt</value>
+          <value>resource.txt</value>
+          <value>orbcomm.txt</value>
+          <value>intelsat.txt</value>
+          <value>visual.txt</value>
+          <value>1999-025.txt</value>
+          <value>usa-193-debris.txt</value>
+          <value>stations.txt</value>
+          <value>satnogs.txt</value>
+        </Element>
+        <metadata dim="0" />
+      </StringArray>
+    </Object>
+    <Object>
+      <Variable name="Group" isConstant="false" isGlobal="false">
+        <Name>Group</Name>
+        <Value units="" displayed_units="">1</Value>
+        <metadata dim="0" />
+      </Variable>
+    </Object>
+    <Object>
+      <ReportInterface name="TLEReportInterface" isConstant="false" isGlobal="false">
+        <Name>TLEReportInterface</Name>
+        <Filename>C:\Users\simps\Documents\FreeFlyer\FreeFlyer 7.4.0.52224 (64-Bit)\satnogstles.txt</Filename>
+        <Append>false</Append>
+        <metadata dim="0" />
+      </ReportInterface>
+    </Object>
+    <Object>
+      <UserInterface name="UIChooseTLE" isConstant="false" isGlobal="false">
+        <Name>UIChooseTLE</Name>
+        <General>
+          <Title>Choose Data Set</Title>
+          <ContinueButtonLabel>&amp;Continue</ContinueButtonLabel>
+          <LabelColumnWidth units="pixel" displayed_units="pixel">200</LabelColumnWidth>
+          <DataColumnWidth units="pixel" displayed_units="pixel">400</DataColumnWidth>
+          <NavigationType>Random Access</NavigationType>
+          <Elements dim="3">
+            <value>
+              <UIPage name="UIChooseTLE_Page1" isConstant="false" isGlobal="false">
+                <Name>UIChooseTLE_Page1</Name>
+                <PageTitle>Data Sets</PageTitle>
+                <metadata dim="0" />
+              </UIPage>
+            </value>
+            <value>
+              <UIMultiChoice name="UIChooseTLE_DataFile" isConstant="false" isGlobal="false">
+                <Name>UIChooseTLE_DataFile</Name>
+                <ValueDestination>
+                  <ObjectParameter name="UIChooseTLE_DataFile_:ValueDestination" isConstant="false" isGlobal="false">
+                    <Name>UIChooseTLE_DataFile_:ValueDestination</Name>
+                    <BaseObject>File</BaseObject>
+                    <Parameter>Value</Parameter>
+                    <IndexType>NoIndices</IndexType>
+                    <IndexOptions>
+                      <NoIndices />
+                    </IndexOptions>
+                    <metadata dim="0" />
+                  </ObjectParameter>
+                </ValueDestination>
+                <Label>TLE Data Set</Label>
+                <Items dim="4">
+                  <value>
+                    <UIMultiChoiceItem name="UIChooseTLE_DataFile_Choice1" isConstant="false" isGlobal="false">
+                      <Name>UIChooseTLE_DataFile_Choice1</Name>
+                      <Label>Geostationary</Label>
+                      <Value>
+                        <ArrayElement name="UIChooseTLE_DataFile_Choice1_:Value" isConstant="false" isGlobal="false">
+                          <Name>UIChooseTLE_DataFile_Choice1_:Value</Name>
+                          <BaseObject>Files</BaseObject>
+                          <Index units="" displayed_units="" dim="(1)">
+                            <value>0</value>
+                          </Index>
+                          <metadata dim="0" />
+                        </ArrayElement>
+                      </Value>
+                      <metadata dim="0" />
+                    </UIMultiChoiceItem>
+                  </value>
+                  <value>
+                    <UIMultiChoiceItem name="UIChooseTLE_DataFile_Choice2" isConstant="false" isGlobal="false">
+                      <Name>UIChooseTLE_DataFile_Choice2</Name>
+                      <Label>Weather Satellites</Label>
+                      <Value>
+                        <ArrayElement name="UIChooseTLE_DataFile_Choice2_:Value" isConstant="false" isGlobal="false">
+                          <Name>UIChooseTLE_DataFile_Choice2_:Value</Name>
+                          <BaseObject>Files</BaseObject>
+                          <Index units="" displayed_units="" dim="1">
+                            <value>1</value>
+                          </Index>
+                          <metadata dim="0" />
+                        </ArrayElement>
+                      </Value>
+                      <metadata dim="0" />
+                    </UIMultiChoiceItem>
+                  </value>
+                  <value>
+                    <UIMultiChoiceItem name="UIChooseTLE_DataFile_Choice3" isConstant="false" isGlobal="false">
+                      <Name>UIChooseTLE_DataFile_Choice3</Name>
+                      <Label>Orbcomm Satellites</Label>
+                      <Value>
+                        <ArrayElement name="UIChooseTLE_DataFile_Choice3_:Value" isConstant="false" isGlobal="false">
+                          <Name>UIChooseTLE_DataFile_Choice3_:Value</Name>
+                          <BaseObject>Files</BaseObject>
+                          <Index units="" displayed_units="" dim="1">
+                            <value>3</value>
+                          </Index>
+                          <metadata dim="0" />
+                        </ArrayElement>
+                      </Value>
+                      <metadata dim="0" />
+                    </UIMultiChoiceItem>
+                  </value>
+                  <value>
+                    <UIMultiChoiceItem name="UIChooseTLE_DataFile_Choice4" isConstant="false" isGlobal="false">
+                      <Name>UIChooseTLE_DataFile_Choice4</Name>
+                      <Label>SatNOGs Satellites</Label>
+                      <Value>
+                        <ArrayElement name="UIChooseTLE_DataFile_Choice4_:Value" isConstant="false" isGlobal="false">
+                          <Name>UIChooseTLE_DataFile_Choice4_:Value</Name>
+                          <BaseObject>Files</BaseObject>
+                          <Index units="" displayed_units="" dim="1">
+                            <value>9</value>
+                          </Index>
+                          <metadata dim="0" />
+                        </ArrayElement>
+                      </Value>
+                      <metadata dim="0" />
+                    </UIMultiChoiceItem>
+                  </value>
+                </Items>
+                <DefaultValue>UIChooseTLE_DataFile_Choice4</DefaultValue>
+                <UseRadioButtons>false</UseRadioButtons>
+                <metadata dim="0" />
+              </UIMultiChoice>
+            </value>
+            <value>
+              <UIBooleanChoice name="UIChooseTLE_ViewGroup" isConstant="false" isGlobal="false">
+                <Name>UIChooseTLE_ViewGroup</Name>
+                <ValueDestination>
+                  <ObjectHolder name="UIChooseTLE_ViewGroup_:ValueDestination" isConstant="false" isGlobal="false">
+                    <Name>UIChooseTLE_ViewGroup_:ValueDestination</Name>
+                    <BaseObject>Group</BaseObject>
+                    <metadata dim="0" />
+                  </ObjectHolder>
+                </ValueDestination>
+                <Label>View as group?</Label>
+                <DefaultValue>Yes</DefaultValue>
+                <FalseLabel>No</FalseLabel>
+                <TrueLabel>Yes</TrueLabel>
+                <metadata dim="0" />
+              </UIBooleanChoice>
+            </value>
+          </Elements>
+        </General>
+        <metadata dim="0" />
+      </UserInterface>
+    </Object>
+    <Object>
+      <FileProperties name="FileProperties1" isConstant="false" isGlobal="false">
+        <Name>FileProperties1</Name>
+        <Filename></Filename>
+        <Exists>false</Exists>
+        <isDirectory>false</isDirectory>
+        <isReadOnly>false</isReadOnly>
+        <FileSize units="" displayed_units="">-1</FileSize>
+        <TimeLastModified>Undefined</TimeLastModified>
+        <TimeCreated>Undefined</TimeCreated>
+        <isXML>false</isXML>
+        <metadata dim="0" />
+      </FileProperties>
+    </Object>
+  </ProjectObjects>
+  <ProjectMissionSequence>
+    <ProjectExternals />
+    <ProjectCommands>
+      <FreeForm enabled="true">
+        <Label>Mission Plan Description and Console Setup</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Mission Plan Description and Console Setup
+
+//Using TLEs from Celestrak we show the current state of observed satellites  
+//on the SatNOGS network, Deep Space Network (DSN), and Near-Earth Network (NEN). 
+
+
+Console.BackColor = ColorTools.Black;
+Console.CurrentTextColor = ColorTools.RGB(1,0,0);
+Console.Dimension = 30;
+Console.WordWrap = 1;
+Console.DockMode = 3;
+Console.WindowTitle = "Mission Status and Information";
+Console.Show();
+Report "Using TLEs from Celestrak we show the current state of observed satellites on the SatNOGS network, Deep Space Network (DSN), and Near-Earth Network (NEN)." to Console;
+Report "" to Console;
+Report "Choose TLE data set" to Console;
+
+Console.CurrentTextColor = ColorTools.Magenta;]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Declare Objects</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Declare Objects and show UI
+
+String DataString;
+String MessageString;
+String temp;
+
+StringArray DataStringArray[0];
+
+Variable i;
+Variable Status;
+Variable NumErrors;
+
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Setup UI</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Setup UI
+//UIChooseTLE.Title = "Choose Data Set";
+//UIChooseTLE.NavigationType = "Random Access";
+//UIChooseTLE.AddPage('Choose Data Set and View');
+//UIChooseTLE.AddMultiChoice('DataSet','ChooseSets','SatNOGS',0);
+
+
+Show UIChooseTLE;]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Check for local TLE file</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// Check for local TLE file
+
+//Opens file, creates formation
+
+Formation SatFormation;
+
+SatFormation.ViewAsGroup = Group;
+
+// Set count of Formation and load TLE
+SatFormation.Count = GetNumberOfNoradStates(TLEReportInterface.Filename);
+SatFormation.LoadNoradTLE(TLEReportInterface.Filename);
+
+Report "TLE file loaded: " + SatFormation.Count.ToString + " objects" to Console;
+
+
+
+
+
+// Find maximum epoch
+
+TimeSpan MaxEpoch = SatFormation[0].Epoch;
+
+For i = 1 to SatFormation.Count-1;
+
+	SatFormation[i].SetPropagatorType(TypeOf(TwoBody));
+
+	If (SatFormation[i].Epoch > MaxEpoch);
+		MaxEpoch = SatFormation[i].Epoch;
+	End;
+
+End;
+
+// Synchronize TLEs by stepping all elements of the Formation to the max epoch
+For i = 0 to SatFormation.Count-1;
+
+	Step SatFormation[i] to (SatFormation[i].Epoch == MaxEpoch);
+	SatFormation[i].Propagator.StepSize = TIMESPAN (60 seconds);
+
+End;
+
+
+Report "TLE Epochs Synchronized: " + SatFormation[0].EpochText  to Console;
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Socket</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+If ((SystemTime() - MaxEpoch) > TIMESPAN(24 hours));
+	Report MaxEpoch to Console;
+	
+	Report "Socket Address: " + CelestrakSocket.IPAddress to Console;
+	Report "Socket Port: " + CelestrakSocket.PortNumber.ToString to Console;
+
+	Try sending ErrorCount to NumErrors;
+		Open CelestrakSocket;
+	End;
+
+	If (NumErrors > 0);
+		Console.CurrentTextColor = ColorTools.Red;
+		Report "Error connecting to CelesTrak" to Console;
+		Stop;
+	End;
+	
+	MessageString = "GET /NORAD/elements/" + File + @" HTTP/1.0\n\n";
+
+
+	Report "Request: ", MessageString to Console;
+
+
+	Send MessageString to CelestrakSocket;
+	Report "TLE file requested" to Console;
+
+	CelestrakSocket.ErrorAction = "Ignore";
+
+	While (Status == 0);
+
+		Receive DataString from CelestrakSocket;
+		DataStringArray.PushBack(DataString);
+		Status = CelestrakSocket.Status;
+
+	End;	
+
+	Close CelestrakSocket;
+
+	Report "TLE file received" to Console;
+	Report "Response: ", DataStringArray[0] to Console;
+	Report "" to Console;
+
+	// Remove HTTP Headers
+
+	While (!DataStringArray[1].SubString(0,1).Compare("1"));
+		temp = DataStringArray.PopFront;
+	End;
+
+
+	For i = 0 to (DataStringArray.Dimension-2);
+		Report DataStringArray[i] to TLEReportInterface without headers without pad;
+	End;
+
+	Close TLEReportInterface;
+
+	Report "TLE file saved" to Console;
+		
+End;]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Creating Formation</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+SatFormation.ViewAsGroup = Group;
+
+// Set count of Formation and load TLE
+SatFormation.Count = GetNumberOfNoradStates(TLEReportInterface.Filename);
+SatFormation.LoadNoradTLE(TLEReportInterface.Filename);
+
+Report "TLE file loaded: " + SatFormation.Count.ToString + " objects" to Console;
+
+
+// Create and Initialize ViewWindow
+ViewWindow VW({SatFormation});
+VW.CurrentViewpoint.ThreeDView.ReferenceFrame = "inertial";
+VW.CurrentViewpoint.ThreeDView.Radius = 100000;
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Synchronizing TLEs</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+// Find maximum epoch
+
+MaxEpoch = SatFormation[0].Epoch;
+
+For i = 1 to SatFormation.Count-1;
+
+	SatFormation[i].SetPropagatorType(TypeOf(TwoBody));
+
+	If (SatFormation[i].Epoch > MaxEpoch);
+		MaxEpoch = SatFormation[i].Epoch;
+	End;
+
+End;
+
+// Synchronize TLEs by stepping all elements of the Formation to the max epoch
+For i = 0 to SatFormation.Count-1;
+
+	Step SatFormation[i] to (SatFormation[i].Epoch == MaxEpoch);
+	SatFormation[i].Propagator.StepSize = TIMESPAN (60 seconds);
+
+End;
+
+
+Report "TLE Epochs Synchronized: " + SatFormation[0].EpochText  to Console;
+]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>Propagating Formation</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[
+While (SatFormation[0].ElapsedTime < TIMESPAN (1 days));
+
+	VW.Update();
+	Step SatFormation;
+
+End;
+]]></FreeFormScript>
+      </FreeForm>
+    </ProjectCommands>
+  </ProjectMissionSequence>
+  <ProjectScript><![CDATA[// Mission Plan Description and Console Setup
+
+//Using TLEs from Celestrak we show the current state of observed satellites  
+//on the SatNOGS network, Deep Space Network (DSN), and Near-Earth Network (NEN). 
+
+
+Console.BackColor = ColorTools.Black;
+Console.CurrentTextColor = ColorTools.RGB(1,0,0);
+Console.Dimension = 30;
+Console.WordWrap = 1;
+Console.DockMode = 3;
+Console.WindowTitle = "Mission Status and Information";
+Console.Show();
+Report "Using TLEs from Celestrak we show the current state of observed satellites on the SatNOGS network, Deep Space Network (DSN), and Near-Earth Network (NEN)." to Console;
+Report "" to Console;
+Report "Choose TLE data set" to Console;
+
+Console.CurrentTextColor = ColorTools.Magenta;
+// Declare Objects and show UI
+
+String DataString;
+String MessageString;
+String temp;
+
+StringArray DataStringArray[0];
+
+Variable i;
+Variable Status;
+Variable NumErrors;
+
+
+// Setup UI
+//UIChooseTLE.Title = "Choose Data Set";
+//UIChooseTLE.NavigationType = "Random Access";
+//UIChooseTLE.AddPage('Choose Data Set and View');
+//UIChooseTLE.AddMultiChoice('DataSet','ChooseSets','SatNOGS',0);
+
+
+Show UIChooseTLE;
+// Check for local TLE file
+
+//Opens file, creates formation
+
+Formation SatFormation;
+
+SatFormation.ViewAsGroup = Group;
+
+// Set count of Formation and load TLE
+SatFormation.Count = GetNumberOfNoradStates(TLEReportInterface.Filename);
+SatFormation.LoadNoradTLE(TLEReportInterface.Filename);
+
+Report "TLE file loaded: " + SatFormation.Count.ToString + " objects" to Console;
+
+
+
+
+
+// Find maximum epoch
+
+TimeSpan MaxEpoch = SatFormation[0].Epoch;
+
+For i = 1 to SatFormation.Count-1;
+
+	SatFormation[i].SetPropagatorType(TypeOf(TwoBody));
+
+	If (SatFormation[i].Epoch > MaxEpoch);
+		MaxEpoch = SatFormation[i].Epoch;
+	End;
+
+End;
+
+// Synchronize TLEs by stepping all elements of the Formation to the max epoch
+For i = 0 to SatFormation.Count-1;
+
+	Step SatFormation[i] to (SatFormation[i].Epoch == MaxEpoch);
+	SatFormation[i].Propagator.StepSize = TIMESPAN (60 seconds);
+
+End;
+
+
+Report "TLE Epochs Synchronized: " + SatFormation[0].EpochText  to Console;
+
+
+If ((SystemTime() - MaxEpoch) > TIMESPAN(24 hours));
+	Report MaxEpoch to Console;
+	
+	Report "Socket Address: " + CelestrakSocket.IPAddress to Console;
+	Report "Socket Port: " + CelestrakSocket.PortNumber.ToString to Console;
+
+	Try sending ErrorCount to NumErrors;
+		Open CelestrakSocket;
+	End;
+
+	If (NumErrors > 0);
+		Console.CurrentTextColor = ColorTools.Red;
+		Report "Error connecting to CelesTrak" to Console;
+		Stop;
+	End;
+	
+	MessageString = "GET /NORAD/elements/" + File + @" HTTP/1.0\n\n";
+
+
+	Report "Request: ", MessageString to Console;
+
+
+	Send MessageString to CelestrakSocket;
+	Report "TLE file requested" to Console;
+
+	CelestrakSocket.ErrorAction = "Ignore";
+
+	While (Status == 0);
+
+		Receive DataString from CelestrakSocket;
+		DataStringArray.PushBack(DataString);
+		Status = CelestrakSocket.Status;
+
+	End;	
+
+	Close CelestrakSocket;
+
+	Report "TLE file received" to Console;
+	Report "Response: ", DataStringArray[0] to Console;
+	Report "" to Console;
+
+	// Remove HTTP Headers
+
+	While (!DataStringArray[1].SubString(0,1).Compare("1"));
+		temp = DataStringArray.PopFront;
+	End;
+
+
+	For i = 0 to (DataStringArray.Dimension-2);
+		Report DataStringArray[i] to TLEReportInterface without headers without pad;
+	End;
+
+	Close TLEReportInterface;
+
+	Report "TLE file saved" to Console;
+		
+End;
+
+SatFormation.ViewAsGroup = Group;
+
+// Set count of Formation and load TLE
+SatFormation.Count = GetNumberOfNoradStates(TLEReportInterface.Filename);
+SatFormation.LoadNoradTLE(TLEReportInterface.Filename);
+
+Report "TLE file loaded: " + SatFormation.Count.ToString + " objects" to Console;
+
+
+// Create and Initialize ViewWindow
+ViewWindow VW({SatFormation});
+VW.CurrentViewpoint.ThreeDView.ReferenceFrame = "inertial";
+VW.CurrentViewpoint.ThreeDView.Radius = 100000;
+
+
+// Find maximum epoch
+
+MaxEpoch = SatFormation[0].Epoch;
+
+For i = 1 to SatFormation.Count-1;
+
+	SatFormation[i].SetPropagatorType(TypeOf(TwoBody));
+
+	If (SatFormation[i].Epoch > MaxEpoch);
+		MaxEpoch = SatFormation[i].Epoch;
+	End;
+
+End;
+
+// Synchronize TLEs by stepping all elements of the Formation to the max epoch
+For i = 0 to SatFormation.Count-1;
+
+	Step SatFormation[i] to (SatFormation[i].Epoch == MaxEpoch);
+	SatFormation[i].Propagator.StepSize = TIMESPAN (60 seconds);
+
+End;
+
+
+Report "TLE Epochs Synchronized: " + SatFormation[0].EpochText  to Console;
+
+
+While (SatFormation[0].ElapsedTime < TIMESPAN (1 days));
+
+	VW.Update();
+	Step SatFormation;
+
+End;
+]]></ProjectScript>
+  <ProjectNotes></ProjectNotes>
+</FreeFlyerProjectFile>
