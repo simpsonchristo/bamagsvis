@@ -1954,14 +1954,25 @@ For i = 0 to TreeGroups.Dimension - 1;
 	Report TreeGroups[i] to Console;
 End;
 
+//0 - /_root
+//1 - /azimuth
+//2 - /base
+//3 - /dish
+//4 - /dish_center
+//5 - /elevation
+//6 - /quad
+//7 - /truss_dish
+
 StringArray AntEl; //antenna elevation movement
 AntEl.PushBack(TreeGroups[3]);
 AntEl.PushBack(TreeGroups[4]);
 AntEl.PushBack(TreeGroups[5]);
+AntEl.PushBack(TreeGroups[6]);
 AntEl.PushBack(TreeGroups[7]);
 StringArray AntAz; //antenna azimuth movement
+AntAz.PushBack(TreeGroups[0]);
 AntAz.PushBack(TreeGroups[1]);
-AntAz.PushBack(TreeGroups[6]);
+AntAz.PushBack(TreeGroups[2]);
 //Move Groups
 dsn.AddGroup('DishAnt');
 dsn.MoveGroup('DishAnt',AntEl);
@@ -1996,6 +2007,9 @@ ObservedOrbit.AddObject(gsmodel);
 Viewpoint sc2gs;
 sc2gs.ThreeDView.Source = Truth.ObjectId;
 sc2gs.ThreeDView.Target = Truth.ObjectId;
+sc2gs.ThreeDView.RightAscension = 0;
+sc2gs.ThreeDView.Declination = -120;
+sc2gs.ThreeDView.Radius = 1000;
 sc2gs.ViewpointName = 'Truth View';
 ObservedOrbit.AddViewpoint(sc2gs);
 ObservedOrbit.ActivateViewpoint('Truth View');
@@ -2011,6 +2025,9 @@ gs.AddObject(gsmodel);
 Viewpoint gsonly;
 gsonly.ThreeDView.Source = equatorStation.ObjectId;
 gsonly.ThreeDView.Target = equatorStation.ObjectId;
+gsonly.ThreeDView.RightAscension = 270;
+gsonly.ThreeDView.Declination = 20;
+gsonly.ThreeDView.Radius = 25;
 gsonly.ViewpointName    = 'equatorStation View';
 gs.AddViewpoint(gsonly);
 gs.ActivateViewpoint('equatorStation View');
@@ -2053,14 +2070,23 @@ While(Truth.ElapsedTime() < TIMESPAN(6 hours));
 		el = equatorStation.Elevation(Truth);
 		az = equatorStation.Azimuth(Truth);
 		//set azimuth
-		GSM_CS.SetEulerAngles(az,0,0,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,0,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
 		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
 		//set elevation
-		GSM_CS.SetEulerAngles(az,0,el,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,el-90,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
 		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 		//EndBlock
+	Else;
+		//set azimuth
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
+		//set elevation
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 	End;
 	
 	
@@ -2166,14 +2192,25 @@ For i = 0 to TreeGroups.Dimension - 1;
 	Report TreeGroups[i] to Console;
 End;
 
+//0 - /_root
+//1 - /azimuth
+//2 - /base
+//3 - /dish
+//4 - /dish_center
+//5 - /elevation
+//6 - /quad
+//7 - /truss_dish
+
 StringArray AntEl; //antenna elevation movement
 AntEl.PushBack(TreeGroups[3]);
 AntEl.PushBack(TreeGroups[4]);
 AntEl.PushBack(TreeGroups[5]);
+AntEl.PushBack(TreeGroups[6]);
 AntEl.PushBack(TreeGroups[7]);
 StringArray AntAz; //antenna azimuth movement
+AntAz.PushBack(TreeGroups[0]);
 AntAz.PushBack(TreeGroups[1]);
-AntAz.PushBack(TreeGroups[6]);
+AntAz.PushBack(TreeGroups[2]);
 //Move Groups
 dsn.AddGroup('DishAnt');
 dsn.MoveGroup('DishAnt',AntEl);
@@ -2203,6 +2240,9 @@ ObservedOrbit.AddObject(gsmodel);
 Viewpoint sc2gs;
 sc2gs.ThreeDView.Source = Truth.ObjectId;
 sc2gs.ThreeDView.Target = Truth.ObjectId;
+sc2gs.ThreeDView.RightAscension = 0;
+sc2gs.ThreeDView.Declination = -120;
+sc2gs.ThreeDView.Radius = 1000;
 sc2gs.ViewpointName = 'Truth View';
 ObservedOrbit.AddViewpoint(sc2gs);
 ObservedOrbit.ActivateViewpoint('Truth View');
@@ -2218,6 +2258,9 @@ gs.AddObject(gsmodel);
 Viewpoint gsonly;
 gsonly.ThreeDView.Source = equatorStation.ObjectId;
 gsonly.ThreeDView.Target = equatorStation.ObjectId;
+gsonly.ThreeDView.RightAscension = 270;
+gsonly.ThreeDView.Declination = 20;
+gsonly.ThreeDView.Radius = 25;
 gsonly.ViewpointName    = 'equatorStation View';
 gs.AddViewpoint(gsonly);
 gs.ActivateViewpoint('equatorStation View');
@@ -2250,14 +2293,23 @@ While(Truth.ElapsedTime() < TIMESPAN(6 hours));
 		el = equatorStation.Elevation(Truth);
 		az = equatorStation.Azimuth(Truth);
 		//set azimuth
-		GSM_CS.SetEulerAngles(az,0,0,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,0,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
 		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
 		//set elevation
-		GSM_CS.SetEulerAngles(az,0,el,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,el-90,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
 		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 		//EndBlock
+	Else;
+		//set azimuth
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
+		//set elevation
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 	End;
 	
 	
