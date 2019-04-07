@@ -664,587 +664,6 @@
       </Spacecraft>
     </Object>
     <Object>
-      <Spacecraft name="Guess" isConstant="false" isGlobal="false">
-        <Name>Guess</Name>
-        <EpochDetails>
-          <EpochSystem>UTC</EpochSystem>
-          <EpochTimeZone>UTC +/- 00:00</EpochTimeZone>
-          <EpochFormat>Calendar</EpochFormat>
-          <EpochType>Absolute</EpochType>
-          <EpochTypeInfo />
-        </EpochDetails>
-        <Epoch>Jan 01 2020 00:00:00.000000000</Epoch>
-        <ReferenceFrame>Mean of J2000 Earth Equator</ReferenceFrame>
-        <CentralBody>Earth</CentralBody>
-        <ElementType>Cartesian</ElementType>
-        <OrbitState>
-          <Cartesian>
-            <X units="km" displayed_units="km">-3410.673</X>
-            <Y units="km" displayed_units="km">5950.957</Y>
-            <Z units="km" displayed_units="km">-1788.627</Z>
-            <VX units="km/s" displayed_units="km/s">1.893006</VX>
-            <VY units="km/s" displayed_units="km/s">-1.071993</VY>
-            <VZ units="km/s" displayed_units="km/s">-7.176346</VZ>
-          </Cartesian>
-        </OrbitState>
-        <Orientation>
-          <AttitudeCoordinateSystem />
-          <AttitudeRefFrame>LVLH</AttitudeRefFrame>
-          <AttitudeSystem>EulerAngles</AttitudeSystem>
-          <AttitudeState>
-            <EulerAngles>
-              <EulerAngles units="deg" displayed_units="deg" dim="(3)">
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-              </EulerAngles>
-              <EulerRates units="deg/s" displayed_units="deg/s" dim="(3)">
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-              </EulerRates>
-              <EulerSequence units="" displayed_units="" dim="(3)">
-                <value>3</value>
-                <value>1</value>
-                <value>2</value>
-              </EulerSequence>
-            </EulerAngles>
-          </AttitudeState>
-        </Orientation>
-        <PhysicalProperties>
-          <DragCoeffType>0</DragCoeffType>
-          <DragCoefficientTypes>
-            <UseCd>
-              <Cd units="" displayed_units="">2.2</Cd>
-            </UseCd>
-          </DragCoefficientTypes>
-          <Cr units="" displayed_units="">1.4</Cr>
-          <Cl units="" displayed_units="">1.2</Cl>
-          <DragArea units="m^2" displayed_units="m^2">1.0</DragArea>
-          <LiftArea units="m^2" displayed_units="m^2">1.0</LiftArea>
-          <SRPArea units="m^2" displayed_units="m^2">1.0</SRPArea>
-          <SatelliteId>1</SatelliteId>
-        </PhysicalProperties>
-        <Visualization>
-          <Color>255</Color>
-          <BodyScale units="" displayed_units="">100000</BodyScale>
-          <TailLength units="" displayed_units="">100</TailLength>
-          <HistoryMode>0</HistoryMode>
-          <TickType>None</TickType>
-          <Annotation></Annotation>
-          <ModelDefinitionType>0</ModelDefinitionType>
-          <ModelDefinition>
-            <ThreeDModelFilename>
-              <ThreeDModelFile>Internal::iss</ThreeDModelFile>
-            </ThreeDModelFilename>
-          </ModelDefinition>
-        </Visualization>
-        <LaunchCoordinates>
-          <LCSEpochDetails>
-            <LCSEpochSystem>UTC</LCSEpochSystem>
-            <LCSEpochTimeZone>UTC +/- 00:00</LCSEpochTimeZone>
-            <LCSEpochFormat>Calendar</LCSEpochFormat>
-            <LCSEpochType>Absolute</LCSEpochType>
-            <LCSEpochTypeInfo />
-          </LCSEpochDetails>
-          <LCSEpoch>Jan 01 2020 00:00:00.000000000</LCSEpoch>
-          <LCSLongitude units="deg" displayed_units="deg">0.0</LCSLongitude>
-          <LCSLatitude units="deg" displayed_units="deg">0.0</LCSLatitude>
-        </LaunchCoordinates>
-        <InertialData>
-          <VehicleDryMass units="kg" displayed_units="kg">1000.0</VehicleDryMass>
-          <VehicleDryMOI units="kg m^2" displayed_units="kg m^2" dim="3,3">
-            <value>1200</value>
-            <value>0</value>
-            <value>0</value>
-            <value>0</value>
-            <value>1200</value>
-            <value>0</value>
-            <value>0</value>
-            <value>0</value>
-            <value>1200</value>
-          </VehicleDryMOI>
-          <MassTotal units="kg" displayed_units="kg">1990.18</MassTotal>
-          <VehicleDryCenterOfGravity units="m" displayed_units="m" dim="(3)">
-            <value>0</value>
-            <value>0</value>
-            <value>0</value>
-          </VehicleDryCenterOfGravity>
-        </InertialData>
-        <OrbitNumberCumulative units="" displayed_units="">1</OrbitNumberCumulative>
-        <OrbitNumberBounded units="" displayed_units="">1</OrbitNumberBounded>
-        <OrbitNumberResetNumber units="" displayed_units="">0</OrbitNumberResetNumber>
-        <OrbitNumberDaily units="" displayed_units="">1</OrbitNumberDaily>
-        <OrbitNumberResetLongitude units="" displayed_units="">20</OrbitNumberResetLongitude>
-        <StateAdvancerType>PropFM</StateAdvancerType>
-        <StateAdvancer>
-          <PropFM>
-            <Prop>
-              <RK89 name="Guess_Propagator" isConstant="false" isGlobal="false">
-                <Name>Guess_Propagator</Name>
-                <StepSize units="s" displayed_units="s">300</StepSize>
-                <StepJustTaken units="s" displayed_units="s">300.0</StepJustTaken>
-                <StepToTake units="s" displayed_units="s">300.0</StepToTake>
-                <LargeCurvature units="" displayed_units="">0</LargeCurvature>
-                <FixedStep>1</FixedStep>
-                <Tolerance units="" displayed_units="">1e-9</Tolerance>
-                <AllowErrorViolation>false</AllowErrorViolation>
-                <CalculateSTM>false</CalculateSTM>
-                <STMCalculationMethod>2</STMCalculationMethod>
-                <FM>
-                  <ForceModel name="Guess_ForceModel" isConstant="false" isGlobal="false">
-                    <Name>Guess_ForceModel</Name>
-                    <GravitatingBodies>
-                      <CelestialObjects dim="11">
-                        <value>Mercury</value>
-                        <value>Venus</value>
-                        <value>Earth</value>
-                        <value>Mars</value>
-                        <value>Jupiter</value>
-                        <value>Saturn</value>
-                        <value>Uranus</value>
-                        <value>Neptune</value>
-                        <value>Pluto</value>
-                        <value>Moon</value>
-                        <value>Sun</value>
-                      </CelestialObjects>
-                      <UseBodyForce dim="(11)">
-                        <value>false</value>
-                        <value>false</value>
-                        <value>true</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>true</value>
-                        <value>true</value>
-                      </UseBodyForce>
-                      <PlanetFieldType units="" displayed_units="" dim="(11)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>2</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </PlanetFieldType>
-                      <PlanetFieldDegree units="" displayed_units="" dim="(11)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>4</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </PlanetFieldDegree>
-                      <PlanetFieldOrder units="" displayed_units="" dim="(11)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>4</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </PlanetFieldOrder>
-                      <PlanetoPotentialFilename dim="(11)">
-                        <value></value>
-                        <value></value>
-                        <value>DEFAULT</value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                      </PlanetoPotentialFilename>
-                      <SolidTideFilename dim="(11)">
-                        <value></value>
-                        <value></value>
-                        <value>DEFAULT</value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                        <value></value>
-                      </SolidTideFilename>
-                      <UseZeroTideModel dim="(11)">
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                        <value>false</value>
-                      </UseZeroTideModel>
-                      <SolidTideDegree units="" displayed_units="" dim="(11)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>2</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </SolidTideDegree>
-                      <SolidTideOrder units="" displayed_units="" dim="(11)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>2</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </SolidTideOrder>
-                    </GravitatingBodies>
-                    <SRP>false</SRP>
-                    <Atmospheric>
-                      <Drag>true</Drag>
-                      <DragType>1</DragType>
-                      <DragSource>0</DragSource>
-                      <DragDataFile>DEFAULT</DragDataFile>
-                      <HPFlux>65</HPFlux>
-                      <Lift>false</Lift>
-                      <Rho1 units="" displayed_units="">0.0</Rho1>
-                      <HPDragFile>DEFAULT</HPDragFile>
-                    </Atmospheric>
-                    <OtherAccelerations>
-                      <UseOtherAcceleration>false</UseOtherAcceleration>
-                      <OtherAccelerations units="km/s^2" displayed_units="km/s^2" dim="(3)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </OtherAccelerations>
-                      <OtherAccelerationsRate units="km/s^3" displayed_units="km/s^3" dim="(3)">
-                        <value>0</value>
-                        <value>0</value>
-                        <value>0</value>
-                      </OtherAccelerationsRate>
-                    </OtherAccelerations>
-                    <metadata dim="0" />
-                  </ForceModel>
-                </FM>
-                <ToleranceMode>1</ToleranceMode>
-                <RelativeErrorThreshold units="" displayed_units="">0.1</RelativeErrorThreshold>
-                <metadata dim="0" />
-              </RK89>
-            </Prop>
-          </PropFM>
-        </StateAdvancer>
-        <AHFParms>
-          <AHF xsi:nil="true" />
-          <AHFFilename></AHFFilename>
-          <AHFFiletype>FreeFlyer Ephemeris V1</AHFFiletype>
-        </AHFParms>
-        <Hardware>
-          <Sensors dim="0" />
-          <Tanks dim="0" />
-          <Thrusters dim="0" />
-          <ProximityZones dim="0" />
-          <Receivers dim="0" />
-          <Transponders dim="0" />
-        </Hardware>
-        <OD>
-          <SpacecraftODProperties name="Guess_|SpacecraftODProperties|" isConstant="false" isGlobal="false">
-            <Name>Guess_|SpacecraftODProperties|</Name>
-            <ElementSetToProcess>Cartesian</ElementSetToProcess>
-            <Cartesian>
-              <CartesianOrbitStateEstimablePropertyContainer name="Guess_|SpacecraftODProperties|_|Cartesian|" isConstant="false" isGlobal="false">
-                <Name>Guess_|SpacecraftODProperties|_|Cartesian|</Name>
-                <X>
-                  <EstimablePosition name="Guess_|SpacecraftODProperties|_|Cartesian|_|X|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Cartesian|_|X|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km" displayed_units="km">0.05</Sigma>
-                    <ProcessNoise units="km^2" displayed_units="km^2">1e-14</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePosition>
-                </X>
-                <Y>
-                  <EstimablePosition name="Guess_|SpacecraftODProperties|_|Cartesian|_|Y|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Cartesian|_|Y|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km" displayed_units="km">0.05</Sigma>
-                    <ProcessNoise units="km^2" displayed_units="km^2">1e-14</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePosition>
-                </Y>
-                <Z>
-                  <EstimablePosition name="Guess_|SpacecraftODProperties|_|Cartesian|_|Z|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Cartesian|_|Z|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km" displayed_units="km">0.05</Sigma>
-                    <ProcessNoise units="km^2" displayed_units="km^2">1e-14</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePosition>
-                </Z>
-                <VX>
-                  <EstimableVelocity name="Guess_|SpacecraftODProperties|_|Cartesian|_|VX|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Cartesian|_|VX|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km/s" displayed_units="km/s">2e-5</Sigma>
-                    <ProcessNoise units="km^2/s^2" displayed_units="km^2/s^2">1e-17</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableVelocity>
-                </VX>
-                <VY>
-                  <EstimableVelocity name="Guess_|SpacecraftODProperties|_|Cartesian|_|VY|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Cartesian|_|VY|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km/s" displayed_units="km/s">2e-5</Sigma>
-                    <ProcessNoise units="km^2/s^2" displayed_units="km^2/s^2">1e-17</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableVelocity>
-                </VY>
-                <VZ>
-                  <EstimableVelocity name="Guess_|SpacecraftODProperties|_|Cartesian|_|VZ|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Cartesian|_|VZ|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km/s" displayed_units="km/s">2e-5</Sigma>
-                    <ProcessNoise units="km^2/s^2" displayed_units="km^2/s^2">1e-17</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableVelocity>
-                </VZ>
-                <metadata dim="0" />
-              </CartesianOrbitStateEstimablePropertyContainer>
-            </Cartesian>
-            <Equinoctial>
-              <EquinoctialOrbitStateEstimablePropertyContainer name="Guess_|SpacecraftODProperties|_|Equinoctial|" isConstant="false" isGlobal="false">
-                <Name>Guess_|SpacecraftODProperties|_|Equinoctial|</Name>
-                <A>
-                  <EstimableEquinoctialA name="Guess_|SpacecraftODProperties|_|Equinoctial|_|A|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Equinoctial|_|A|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="km" displayed_units="km">0.05</Sigma>
-                    <ProcessNoise units="km^2" displayed_units="km^2">1e-14</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableEquinoctialA>
-                </A>
-                <H>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Equinoctial|_|H|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Equinoctial|_|H|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </H>
-                <K>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Equinoctial|_|K|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Equinoctial|_|K|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </K>
-                <P>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Equinoctial|_|P|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Equinoctial|_|P|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </P>
-                <Q>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Equinoctial|_|Q|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Equinoctial|_|Q|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </Q>
-                <Longitude>
-                  <EstimableEquinoctialLongitude name="Guess_|SpacecraftODProperties|_|Equinoctial|_|Longitude|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Equinoctial|_|Longitude|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="deg" displayed_units="deg">1e-3</Sigma>
-                    <ProcessNoise units="deg^2" displayed_units="deg^2">1e-15</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableEquinoctialLongitude>
-                </Longitude>
-                <metadata dim="0" />
-              </EquinoctialOrbitStateEstimablePropertyContainer>
-            </Equinoctial>
-            <Norad>
-              <NoradOrbitStateEstimablePropertyContainer name="Guess_|SpacecraftODProperties|_|Norad|" isConstant="false" isGlobal="false">
-                <Name>Guess_|SpacecraftODProperties|_|Norad|</Name>
-                <H>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Norad|_|H|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Norad|_|H|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </H>
-                <K>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Norad|_|K|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Norad|_|K|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </K>
-                <P>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Norad|_|P|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Norad|_|P|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </P>
-                <Q>
-                  <EstimablePositionComponent name="Guess_|SpacecraftODProperties|_|Norad|_|Q|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Norad|_|Q|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="" displayed_units="">1e-5</Sigma>
-                    <ProcessNoise units="" displayed_units="">1e-19</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimablePositionComponent>
-                </Q>
-                <Longitude>
-                  <EstimableEquinoctialLongitude name="Guess_|SpacecraftODProperties|_|Norad|_|Longitude|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Norad|_|Longitude|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="deg" displayed_units="deg">1e-3</Sigma>
-                    <ProcessNoise units="deg^2" displayed_units="deg^2">1e-15</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableEquinoctialLongitude>
-                </Longitude>
-                <MeanMotion>
-                  <EstimableMeanMotion name="Guess_|SpacecraftODProperties|_|Norad|_|MeanMotion|" isConstant="false" isGlobal="false">
-                    <Name>Guess_|SpacecraftODProperties|_|Norad|_|MeanMotion|</Name>
-                    <ProcessAction>1</ProcessAction>
-                    <Sigma units="orbits/day" displayed_units="orbits/day">1e-6</Sigma>
-                    <ProcessNoise units="(orbits/day)^2" displayed_units="(orbits/day)^2">1e-16</ProcessNoise>
-                    <metadata dim="0" />
-                  </EstimableMeanMotion>
-                </MeanMotion>
-                <metadata dim="0" />
-              </NoradOrbitStateEstimablePropertyContainer>
-            </Norad>
-            <Cd>
-              <EstimableCoefficient name="Guess_|OD_Cd|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_Cd|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="" displayed_units="">0.05</Sigma>
-                <ProcessNoise units="" displayed_units="">1e-9</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableCoefficient>
-            </Cd>
-            <Rho1>
-              <EstimableCoefficient name="Guess_|OD_Rho1|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_Rho1|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="" displayed_units="">0.05</Sigma>
-                <ProcessNoise units="" displayed_units="">1e-9</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableCoefficient>
-            </Rho1>
-            <BStar>
-              <EstimableBStar name="Guess_|OD_BStar|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_BStar|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="er^-1" displayed_units="er^-1">1e-5</Sigma>
-                <ProcessNoise units="er^-2" displayed_units="er^-2">1e-12</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableBStar>
-            </BStar>
-            <DragEstimateOption>0</DragEstimateOption>
-            <Cr>
-              <EstimableCoefficient name="Guess_|OD_Cr|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_Cr|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="" displayed_units="">0.05</Sigma>
-                <ProcessNoise units="" displayed_units="">1e-9</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableCoefficient>
-            </Cr>
-            <OtherAccelerationsX>
-              <EstimableAcceleration name="Guess_|OD_UX|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_UX|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="km/s^2" displayed_units="km/s^2">1e-6</Sigma>
-                <ProcessNoise units="km^2/s^4" displayed_units="km^2/s^4">1e-15</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableAcceleration>
-            </OtherAccelerationsX>
-            <OtherAccelerationsY>
-              <EstimableAcceleration name="Guess_|OD_UY|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_UY|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="km/s^2" displayed_units="km/s^2">1e-6</Sigma>
-                <ProcessNoise units="km^2/s^4" displayed_units="km^2/s^4">1e-15</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableAcceleration>
-            </OtherAccelerationsY>
-            <OtherAccelerationsZ>
-              <EstimableAcceleration name="Guess_|OD_UZ|" isConstant="false" isGlobal="false">
-                <Name>Guess_|OD_UZ|</Name>
-                <ProcessAction>0</ProcessAction>
-                <Sigma units="km/s^2" displayed_units="km/s^2">1e-6</Sigma>
-                <ProcessNoise units="km^2/s^4" displayed_units="km^2/s^4">1e-15</ProcessNoise>
-                <metadata dim="0" />
-              </EstimableAcceleration>
-            </OtherAccelerationsZ>
-            <PropagateCovariance>false</PropagateCovariance>
-            <CovariancePropagationModel>0</CovariancePropagationModel>
-            <Covariance>
-              <SpacecraftCovariance name="Guess_|Covariance|" isConstant="false" isGlobal="false">
-                <Name>Guess_|Covariance|</Name>
-                <Matrix units="" displayed_units="" dim="0,0" />
-                <metadata dim="0" />
-              </SpacecraftCovariance>
-            </Covariance>
-            <metadata dim="0" />
-          </SpacecraftODProperties>
-        </OD>
-        <RefFrameEpochDetails>
-          <RefFrameEpochSystem>UTC</RefFrameEpochSystem>
-          <RefFrameEpochTimeZone>UTC +/- 00:00</RefFrameEpochTimeZone>
-          <RefFrameEpochFormat>Calendar</RefFrameEpochFormat>
-          <RefFrameEpochType>Absolute</RefFrameEpochType>
-          <RefFrameEpochTypeInfo />
-        </RefFrameEpochDetails>
-        <RefFrameEpoch>Jan 01 2020 00:00:00.000000000</RefFrameEpoch>
-        <metadata dim="0" />
-      </Spacecraft>
-    </Object>
-    <Object>
       <GroundStation name="equatorStation" isConstant="false" isGlobal="false">
         <Name>equatorStation</Name>
         <CentralBody>Earth</CentralBody>
@@ -2421,475 +1840,17 @@
         <metadata dim="0" />
       </ViewWindow>
     </Object>
-    <Object>
-      <PlotWindow name="TwoWayRanging" isConstant="false" isGlobal="false">
-        <Name>TwoWayRanging</Name>
-        <WindowTitle>TwoWayRanging</WindowTitle>
-        <PlotType>XYPlot</PlotType>
-        <ConfigureFonts>true</ConfigureFonts>
-        <UseMonitorMode>false</UseMonitorMode>
-        <Items>
-          <XYPlot>
-            <XAxisItem>
-              <EventCall name="TwoWayRanging_:XAxisItem" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_:XAxisItem</Name>
-                <BaseObject>Truth</BaseObject>
-                <EventName>ElapsedTime</EventName>
-                <Parameters dim="0" />
-                <metadata dim="0" />
-              </EventCall>
-            </XAxisItem>
-            <YAxisItems dim="1">
-              <value>
-                <EventCall name="TwoWayRanging_:YAxisItems1" isConstant="false" isGlobal="false">
-                  <Name>TwoWayRanging_:YAxisItems1</Name>
-                  <BaseObject>equatorStation</BaseObject>
-                  <EventName>Range</EventName>
-                  <Parameters dim="1">
-                    <value>
-                      <ObjectHolder name="TwoWayRanging_:YAxisItems1_:Parameters1" isConstant="false" isGlobal="false">
-                        <Name>TwoWayRanging_:YAxisItems1_:Parameters1</Name>
-                        <BaseObject>Truth</BaseObject>
-                        <metadata dim="0" />
-                      </ObjectHolder>
-                    </value>
-                  </Parameters>
-                  <metadata dim="0" />
-                </EventCall>
-              </value>
-            </YAxisItems>
-          </XYPlot>
-        </Items>
-        <BackgroundColor>16777215</BackgroundColor>
-        <HighQualityRendering>false</HighQualityRendering>
-        <InterlacedColor>15128749</InterlacedColor>
-        <InterlacedDirection>0</InterlacedDirection>
-        <Legend>
-          <PlotLegend name="TwoWayRanging_|PlotLegend|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|PlotLegend|</Name>
-            <BorderVisible>false</BorderVisible>
-            <Font>
-              <PlotFont name="TwoWayRanging_|PlotLegend|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|PlotLegend|_|PlotFont|</Name>
-                <Bold>false</Bold>
-                <BoldDefault>false</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">9</Size>
-                <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Verdana</Typeface>
-                <TypefaceDefault>Verdana</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </Font>
-            <Location>3</Location>
-            <TextColor>0</TextColor>
-            <BackgroundColor>16777215</BackgroundColor>
-            <BorderColor>16777215</BorderColor>
-            <Title>
-              <PlotTitle name="TwoWayRanging_|PlotLegend|_|PlotTitle|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|PlotLegend|_|PlotTitle|</Name>
-                <Color>0</Color>
-                <Font>
-                  <PlotFont name="TwoWayRanging_|PlotLegend|_|PlotTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                    <Name>TwoWayRanging_|PlotLegend|_|PlotTitle|_|PlotFont|</Name>
-                    <Bold>false</Bold>
-                    <BoldDefault>false</BoldDefault>
-                    <Italic>false</Italic>
-                    <Size units="points" displayed_units="points">9</Size>
-                    <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                    <Strikeout>false</Strikeout>
-                    <Typeface>Verdana</Typeface>
-                    <TypefaceDefault>Verdana</TypefaceDefault>
-                    <Underline>false</Underline>
-                    <metadata dim="0" />
-                  </PlotFont>
-                </Font>
-                <Text></Text>
-                <TextDefault></TextDefault>
-                <Visible>true</Visible>
-                <metadata dim="0" />
-              </PlotTitle>
-            </Title>
-            <Visible>true</Visible>
-            <metadata dim="0" />
-          </PlotLegend>
-        </Legend>
-        <PlotAreaColor>16777215</PlotAreaColor>
-        <PlotSubTitle>
-          <PlotTitle name="TwoWayRanging_|PlotSubTitle|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|PlotSubTitle|</Name>
-            <Color>0</Color>
-            <Font>
-              <PlotFont name="TwoWayRanging_|PlotSubTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|PlotSubTitle|_|PlotFont|</Name>
-                <Bold>false</Bold>
-                <BoldDefault>false</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">10</Size>
-                <SizeDefault units="points" displayed_units="points">10</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Segoe UI</Typeface>
-                <TypefaceDefault>Segoe UI</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </Font>
-            <Text>03/22/2019</Text>
-            <TextDefault>03/22/2019</TextDefault>
-            <Visible>true</Visible>
-            <metadata dim="0" />
-          </PlotTitle>
-        </PlotSubTitle>
-        <PlotTitle>
-          <PlotTitle name="TwoWayRanging_|PlotTitle|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|PlotTitle|</Name>
-            <Color>0</Color>
-            <Font>
-              <PlotFont name="TwoWayRanging_|PlotTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|PlotTitle|_|PlotFont|</Name>
-                <Bold>true</Bold>
-                <BoldDefault>true</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">13</Size>
-                <SizeDefault units="points" displayed_units="points">13</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Verdana</Typeface>
-                <TypefaceDefault>Verdana</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </Font>
-            <Text>FreeFlyer Plot</Text>
-            <TextDefault>FreeFlyer Plot</TextDefault>
-            <Visible>true</Visible>
-            <metadata dim="0" />
-          </PlotTitle>
-        </PlotTitle>
-        <RAxis>
-          <PlotAxis name="TwoWayRanging_|RAxis|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|RAxis|</Name>
-            <Direction>0</Direction>
-            <GridColor>13420739</GridColor>
-            <GridLineStyle>2</GridLineStyle>
-            <GridLineStyleDefault>2</GridLineStyleDefault>
-            <GridLineWidth units="" displayed_units="">1</GridLineWidth>
-            <GridVisible>true</GridVisible>
-            <LabelsArrangement>0</LabelsArrangement>
-            <LabelsColor>0</LabelsColor>
-            <LabelsFont>
-              <PlotFont name="TwoWayRanging_|RAxis|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|RAxis|_|PlotFont|</Name>
-                <Bold>false</Bold>
-                <BoldDefault>false</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">9</Size>
-                <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Verdana</Typeface>
-                <TypefaceDefault>Verdana</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </LabelsFont>
-            <LabelsFormat>0.000</LabelsFormat>
-            <LabelsSpacing units="" displayed_units="">0</LabelsSpacing>
-            <Location>0</Location>
-            <MaximumValue units="" displayed_units="">0</MaximumValue>
-            <MinimumValue units="" displayed_units="">0</MinimumValue>
-            <Scaling>0</Scaling>
-            <Title>
-              <PlotTitle name="TwoWayRanging_|RAxis|_|PlotTitle|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|RAxis|_|PlotTitle|</Name>
-                <Color>0</Color>
-                <Font>
-                  <PlotFont name="TwoWayRanging_|RAxis|_|PlotTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                    <Name>TwoWayRanging_|RAxis|_|PlotTitle|_|PlotFont|</Name>
-                    <Bold>false</Bold>
-                    <BoldDefault>false</BoldDefault>
-                    <Italic>false</Italic>
-                    <Size units="points" displayed_units="points">9</Size>
-                    <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                    <Strikeout>false</Strikeout>
-                    <Typeface>Verdana</Typeface>
-                    <TypefaceDefault>Verdana</TypefaceDefault>
-                    <Underline>false</Underline>
-                    <metadata dim="0" />
-                  </PlotFont>
-                </Font>
-                <Text></Text>
-                <TextDefault></TextDefault>
-                <Visible>true</Visible>
-                <metadata dim="0" />
-              </PlotTitle>
-            </Title>
-            <UseAutoMaximum>true</UseAutoMaximum>
-            <UseAutoMinimum>true</UseAutoMinimum>
-            <UseDateTimeFormatting>false</UseDateTimeFormatting>
-            <UseDateTimeFormattingDefault>false</UseDateTimeFormattingDefault>
-            <metadata dim="0" />
-          </PlotAxis>
-        </RAxis>
-        <OwnedSeries dim="1">
-          <value>
-            <PlotScatterSeries name="TwoWayRanging_PlotScatterSeries1" isConstant="false" isGlobal="false">
-              <Name>TwoWayRanging_PlotScatterSeries1</Name>
-              <DataLabelsFont>
-                <PlotFont name="TwoWayRanging_PlotScatterSeries1_|PlotFont|" isConstant="false" isGlobal="false">
-                  <Name>TwoWayRanging_PlotScatterSeries1_|PlotFont|</Name>
-                  <Bold>false</Bold>
-                  <BoldDefault>false</BoldDefault>
-                  <Italic>false</Italic>
-                  <Size units="points" displayed_units="points">9</Size>
-                  <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                  <Strikeout>false</Strikeout>
-                  <Typeface>Verdana</Typeface>
-                  <TypefaceDefault>Verdana</TypefaceDefault>
-                  <Underline>false</Underline>
-                  <metadata dim="0" />
-                </PlotFont>
-              </DataLabelsFont>
-              <DataLabelsTextColor>0</DataLabelsTextColor>
-              <DataLabelsBackgroundColor>14745599</DataLabelsBackgroundColor>
-              <DataLabelsBackgroundVisible>false</DataLabelsBackgroundVisible>
-              <DataLabelsStyle>2</DataLabelsStyle>
-              <DataLabelsVisible>false</DataLabelsVisible>
-              <Label>equatorStation.Range(Truth)</Label>
-              <LabelDefault>equatorStation.Range(Truth)</LabelDefault>
-              <LineColor>12674086</LineColor>
-              <LineStyle>0</LineStyle>
-              <LineVisible>true</LineVisible>
-              <LineWidth units="" displayed_units="">1</LineWidth>
-              <MarkersColor>12674086</MarkersColor>
-              <MarkersSize units="" displayed_units="">1</MarkersSize>
-              <MarkersStyle>0</MarkersStyle>
-              <MarkersVisible>false</MarkersVisible>
-              <ShowInLegend>true</ShowInLegend>
-              <EnableDataCulling>true</EnableDataCulling>
-              <FullDataLabels dim="0" />
-              <FullData units="" displayed_units="" dim="0,2" />
-              <metadata dim="0" />
-            </PlotScatterSeries>
-          </value>
-        </OwnedSeries>
-        <ThetaAxis>
-          <PlotAxis name="TwoWayRanging_|ThetaAxis|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|ThetaAxis|</Name>
-            <Direction>0</Direction>
-            <GridColor>13420739</GridColor>
-            <GridLineStyle>2</GridLineStyle>
-            <GridLineStyleDefault>2</GridLineStyleDefault>
-            <GridLineWidth units="" displayed_units="">1</GridLineWidth>
-            <GridVisible>true</GridVisible>
-            <LabelsArrangement>0</LabelsArrangement>
-            <LabelsColor>0</LabelsColor>
-            <LabelsFont>
-              <PlotFont name="TwoWayRanging_|ThetaAxis|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|ThetaAxis|_|PlotFont|</Name>
-                <Bold>false</Bold>
-                <BoldDefault>false</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">9</Size>
-                <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Verdana</Typeface>
-                <TypefaceDefault>Verdana</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </LabelsFont>
-            <LabelsFormat>0.000</LabelsFormat>
-            <LabelsSpacing units="" displayed_units="">0</LabelsSpacing>
-            <Location>0</Location>
-            <MaximumValue units="" displayed_units="">0</MaximumValue>
-            <MinimumValue units="" displayed_units="">0</MinimumValue>
-            <Scaling>0</Scaling>
-            <Title>
-              <PlotTitle name="TwoWayRanging_|ThetaAxis|_|PlotTitle|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|ThetaAxis|_|PlotTitle|</Name>
-                <Color>0</Color>
-                <Font>
-                  <PlotFont name="TwoWayRanging_|ThetaAxis|_|PlotTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                    <Name>TwoWayRanging_|ThetaAxis|_|PlotTitle|_|PlotFont|</Name>
-                    <Bold>false</Bold>
-                    <BoldDefault>false</BoldDefault>
-                    <Italic>false</Italic>
-                    <Size units="points" displayed_units="points">9</Size>
-                    <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                    <Strikeout>false</Strikeout>
-                    <Typeface>Verdana</Typeface>
-                    <TypefaceDefault>Verdana</TypefaceDefault>
-                    <Underline>false</Underline>
-                    <metadata dim="0" />
-                  </PlotFont>
-                </Font>
-                <Text></Text>
-                <TextDefault></TextDefault>
-                <Visible>true</Visible>
-                <metadata dim="0" />
-              </PlotTitle>
-            </Title>
-            <UseAutoMaximum>true</UseAutoMaximum>
-            <UseAutoMinimum>true</UseAutoMinimum>
-            <UseDateTimeFormatting>false</UseDateTimeFormatting>
-            <UseDateTimeFormattingDefault>false</UseDateTimeFormattingDefault>
-            <metadata dim="0" />
-          </PlotAxis>
-        </ThetaAxis>
-        <XAxis>
-          <PlotAxis name="TwoWayRanging_|XAxis|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|XAxis|</Name>
-            <Direction>0</Direction>
-            <GridColor>13420739</GridColor>
-            <GridLineStyle>2</GridLineStyle>
-            <GridLineStyleDefault>2</GridLineStyleDefault>
-            <GridLineWidth units="" displayed_units="">1</GridLineWidth>
-            <GridVisible>true</GridVisible>
-            <LabelsArrangement>0</LabelsArrangement>
-            <LabelsColor>0</LabelsColor>
-            <LabelsFont>
-              <PlotFont name="TwoWayRanging_|XAxis|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|XAxis|_|PlotFont|</Name>
-                <Bold>false</Bold>
-                <BoldDefault>false</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">9</Size>
-                <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Verdana</Typeface>
-                <TypefaceDefault>Verdana</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </LabelsFont>
-            <LabelsFormat>0.000</LabelsFormat>
-            <LabelsSpacing units="" displayed_units="">0</LabelsSpacing>
-            <Location>0</Location>
-            <MaximumValue units="" displayed_units="">44</MaximumValue>
-            <MinimumValue units="" displayed_units="">0</MinimumValue>
-            <Scaling>0</Scaling>
-            <Title>
-              <PlotTitle name="TwoWayRanging_|XAxis|_|PlotTitle|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|XAxis|_|PlotTitle|</Name>
-                <Color>0</Color>
-                <Font>
-                  <PlotFont name="TwoWayRanging_|XAxis|_|PlotTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                    <Name>TwoWayRanging_|XAxis|_|PlotTitle|_|PlotFont|</Name>
-                    <Bold>false</Bold>
-                    <BoldDefault>false</BoldDefault>
-                    <Italic>false</Italic>
-                    <Size units="points" displayed_units="points">9</Size>
-                    <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                    <Strikeout>false</Strikeout>
-                    <Typeface>Verdana</Typeface>
-                    <TypefaceDefault>Verdana</TypefaceDefault>
-                    <Underline>false</Underline>
-                    <metadata dim="0" />
-                  </PlotFont>
-                </Font>
-                <Text>Truth.ElapsedTime (day)</Text>
-                <TextDefault>Truth.ElapsedTime (day)</TextDefault>
-                <Visible>true</Visible>
-                <metadata dim="0" />
-              </PlotTitle>
-            </Title>
-            <UseAutoMaximum>true</UseAutoMaximum>
-            <UseAutoMinimum>true</UseAutoMinimum>
-            <UseDateTimeFormatting>false</UseDateTimeFormatting>
-            <UseDateTimeFormattingDefault>false</UseDateTimeFormattingDefault>
-            <metadata dim="0" />
-          </PlotAxis>
-        </XAxis>
-        <YAxis>
-          <PlotAxis name="TwoWayRanging_|YAxis|" isConstant="false" isGlobal="false">
-            <Name>TwoWayRanging_|YAxis|</Name>
-            <Direction>0</Direction>
-            <GridColor>13420739</GridColor>
-            <GridLineStyle>2</GridLineStyle>
-            <GridLineStyleDefault>2</GridLineStyleDefault>
-            <GridLineWidth units="" displayed_units="">1</GridLineWidth>
-            <GridVisible>true</GridVisible>
-            <LabelsArrangement>0</LabelsArrangement>
-            <LabelsColor>0</LabelsColor>
-            <LabelsFont>
-              <PlotFont name="TwoWayRanging_|YAxis|_|PlotFont|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|YAxis|_|PlotFont|</Name>
-                <Bold>false</Bold>
-                <BoldDefault>false</BoldDefault>
-                <Italic>false</Italic>
-                <Size units="points" displayed_units="points">9</Size>
-                <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                <Strikeout>false</Strikeout>
-                <Typeface>Verdana</Typeface>
-                <TypefaceDefault>Verdana</TypefaceDefault>
-                <Underline>false</Underline>
-                <metadata dim="0" />
-              </PlotFont>
-            </LabelsFont>
-            <LabelsFormat>0.000</LabelsFormat>
-            <LabelsSpacing units="" displayed_units="">0</LabelsSpacing>
-            <Location>0</Location>
-            <MaximumValue units="" displayed_units="">1.9993908270191</MaximumValue>
-            <MinimumValue units="" displayed_units="">0.000609172980904238</MinimumValue>
-            <Scaling>0</Scaling>
-            <Title>
-              <PlotTitle name="TwoWayRanging_|YAxis|_|PlotTitle|" isConstant="false" isGlobal="false">
-                <Name>TwoWayRanging_|YAxis|_|PlotTitle|</Name>
-                <Color>0</Color>
-                <Font>
-                  <PlotFont name="TwoWayRanging_|YAxis|_|PlotTitle|_|PlotFont|" isConstant="false" isGlobal="false">
-                    <Name>TwoWayRanging_|YAxis|_|PlotTitle|_|PlotFont|</Name>
-                    <Bold>false</Bold>
-                    <BoldDefault>false</BoldDefault>
-                    <Italic>false</Italic>
-                    <Size units="points" displayed_units="points">9</Size>
-                    <SizeDefault units="points" displayed_units="points">9</SizeDefault>
-                    <Strikeout>false</Strikeout>
-                    <Typeface>Verdana</Typeface>
-                    <TypefaceDefault>Verdana</TypefaceDefault>
-                    <Underline>false</Underline>
-                    <metadata dim="0" />
-                  </PlotFont>
-                </Font>
-                <Text>equatorStation.Range(Truth) (km)</Text>
-                <TextDefault>equatorStation.Range(Truth) (km)</TextDefault>
-                <Visible>true</Visible>
-                <metadata dim="0" />
-              </PlotTitle>
-            </Title>
-            <UseAutoMaximum>true</UseAutoMaximum>
-            <UseAutoMinimum>true</UseAutoMinimum>
-            <UseDateTimeFormatting>false</UseDateTimeFormatting>
-            <UseDateTimeFormattingDefault>false</UseDateTimeFormattingDefault>
-            <metadata dim="0" />
-          </PlotAxis>
-        </YAxis>
-        <metadata dim="0" />
-      </PlotWindow>
-    </Object>
   </ProjectObjects>
   <ProjectMissionSequence>
     <ProjectExternals />
     <ProjectCommands>
-      <FreeForm enabled="true" comment="Need to make console larger">
+      <FreeForm enabled="true" comment="Show Mission Statement">
         <Label>Mission Plan Description and Console Setup</Label>
         <Bookmarks />
         <Breakpoints />
         <FreeFormScript><![CDATA[// Mission Plan Description and Console Setup
 
-//Using the built-in OD functions we will replicate the example for the OD lecture 10.
-//Example for Lecture 10:
-//Two-way ranging (p. 106)
-//Consider satellite in equatorial posigrade circular orbit with an 
-//altitude of 600 km above a spherical Earth. Assume satellite is 20°
-//in true anomaly past the zenith direction of a two-way ranging 
-//station, which places the satellite at 4.3° elevation w/r to the 
-//station. Assume a signal is transmitted from the station at 𝑡=0. 
-//
-//Range rate
-//Consider the same satellite with a transmitter beacon. Assume the 
-//transmitter is operating in the Ka-band at 24.25 GHz. 
+//Using pre-built NASA Deep Space Network (DSN) models of stations an example of animating the station is created. 
 
 
 Console.BackColor = ColorTools.Black;
@@ -2901,11 +1862,9 @@ Console.WindowTitle = "Mission Status and Information";
 Console.Show();
 
 //Update user through Console
-Report "Ground station BRAVO transmits a signal to satellite ALPHA at time TANGO." to Console;
+Report "Using pre-built NASA Deep Space Network (DSN) models of stations an example of animating the station is created." to Console;
 Report "" to Console;
-
-Report "Range is determined using a two-way ranging system and Doppler effect." to Console;
-Report "" to Console;]]></FreeFormScript>
+]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true">
         <Label>Spacecraft Setup</Label>
@@ -2928,22 +1887,7 @@ While(equatorStation.Elevation(Truth)<4.2 and equatorStation.Elevation(Truth)>4.
 	Step Truth;
 End;
 
-//Observed spacecraft
-Guess.Epoch = Truth.Epoch;
-Guess.SetPropagatorType("TwoBody");
-(Guess.Propagator AsType TwoBody).StepSize = TIMESPAN(1 seconds);
-Guess.A    = Truth.A   ;//km
-Guess.E    = Truth.E   ;
-Guess.I    = Truth.I   ;//deg
-Guess.RAAN = Truth.RAAN;//deg
-Guess.W    = Truth.W   ;//deg
-Guess.TA   = Truth.TA  ;//deg
-//introduce error in position
-Guess.X = Guess.X + 1/1000;
-Guess.Y = Guess.Y + 2/1000;
-Guess.Z = Guess.Z + 3/1000;
-
-Report "Initial State of ALPHA:" to Console;
+Report "Initial State of Satellite:" to Console;
 Report "" to Console;
 Report Truth.A,     " km"  to Console;
 Report Truth.E,     "    " to Console;
@@ -2954,16 +1898,7 @@ Report Truth.TA,    " deg" to Console;
 Report Truth.Epoch, " days, TAI" to Console;
 Report "" to Console;
 
-//Observed Transponder (Transmitter Beacon)
-//Guess.AddTransponder('Beacon');
-//Guess.Transponders[0].OD.TransponderDelay.ProcessAction = 0;
-//Guess.Transponders[0].Attach(Guess.Sensors[0]);
-//Guess.Transponders[0].TransmitFrequency = 24.25e+9;//Hz
-//
-//Truth.AddTransponder('Beacon');
-//Truth.Transponders[0].OD.TransponderDelay.ProcessAction = 0;
-//Truth.Transponders[0].Attach(Guess.Sensors[0]);
-//Truth.Transponders[0].TransmitFrequency = 24.25e+9;//Hz]]></FreeFormScript>
+]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true">
         <Label>Groundstation Setup</Label>
@@ -2975,10 +1910,8 @@ Report "" to Console;
 equatorStation.Latitude  = 0;
 equatorStation.Longitude = 0;
 equatorStation.Height    = 0;
-equatorStation.Antenna.LimbLimit = 0;//deg
-equatorStation.Antenna.ReceiveFrequency = 24.25e+9;//Hz
 
-Report "Initial State of BRAVO:" to Console;
+Report "Initial State of Ground Station:" to Console;
 Report "" to Console;
 Report equatorStation.Latitude,          " deg" to Console;
 Report equatorStation.Longitude,         " deg" to Console;
@@ -2989,48 +1922,66 @@ Report "" to Console;
 
 ]]></FreeFormScript>
       </FreeForm>
-      <FreeForm enabled="true">
+      <FreeForm enabled="true" comment="Setup Ground Station DSN Model">
         <Label>GroundStation ThreeDModel Setup</Label>
         <Bookmarks />
-        <Breakpoints>
-          <Breakpoint line="12" enabled="true" />
-        </Breakpoints>
+        <Breakpoints />
         <FreeFormScript><![CDATA[// GroundStation ThreeDModel
 
 //setup spacecraft at gs location for ground station model
-Spacecraft groundstationmodel;
-//groundstationmodel.ThreeDModelFile = '34M_17.stl';
-//groundstationmodel.BodyScale = 1000;
-groundstationmodel.Latitude = equatorStation.Latitude;
-groundstationmodel.Longitude = equatorStation.Longitude;
-groundstationmodel.A = Earth.Radius + 100;
+Spacecraft gsmodel;
+gsmodel.Latitude = equatorStation.Latitude;
+gsmodel.Longitude = equatorStation.Longitude;
+gsmodel.A = Earth.Radius;
+gsmodel.EulerAngles = {0, 180, 0};
 
 //ThreeDModel
 ThreeDModel dsn;
 dsn.ModelFilename = '.\Models\DSN 34\34M_17.3ds';
-groundstationmodel.SetThreeDModel(dsn);
+gsmodel.SetThreeDModel(dsn);// set model for sc
+dsn.Scale = 100;
 
-//Add groups
-dsn.AddGroup("Dish");
-dsn.AddGroup("Dish","azimuth");
-dsn.AddGroup("Dish","elevation");
+//Find groups
+StringArray TreeGroups;
+dsn.ReportGroupTree(TreeGroups);
+TreeGroups.SortAscending();
 
-//Add bounding box 
+Variable i;
 
-//move dish and wheel for elevation to group
-dsn.MoveGroup("/Dish/elevation","EW Symmetric.001");
-dsn.MoveGroup("/Dish/elevation","Cube.003");
-dsn.MoveGroup("/Dish/elevation","Cube.001");
-dsn.MoveGroup("/Dish/elevation","Cube.028");
+Report "The imported DSN model has various ungrouped parts to it, they are listed as follows:" to Console;
+Report "" to Console;
+For i = 0 to TreeGroups.Dimension - 1;
+	Report TreeGroups[i] to Console;
+End;
 
-//move ground rotator for azimuth to group
-dsn.MoveGroup("/Dish/azimuth","Cylinder.006");
-dsn.MoveGroup("/Dish/azimuth","New Base");
+//0 - /_root
+//1 - /azimuth
+//2 - /base
+//3 - /dish
+//4 - /dish_center
+//5 - /elevation
+//6 - /quad
+//7 - /truss_dish
+
+StringArray AntEl; //antenna elevation movement
+AntEl.PushBack(TreeGroups[3]);
+AntEl.PushBack(TreeGroups[4]);
+AntEl.PushBack(TreeGroups[5]);
+AntEl.PushBack(TreeGroups[6]);
+AntEl.PushBack(TreeGroups[7]);
+StringArray AntAz; //antenna azimuth movement
+AntAz.PushBack(TreeGroups[0]);
+AntAz.PushBack(TreeGroups[1]);
+AntAz.PushBack(TreeGroups[2]);
+//Move Groups
+dsn.AddGroup('DishAnt');
+dsn.MoveGroup('DishAnt',AntEl);
+dsn.AddGroup('DishSupport');
+dsn.MoveGroup('DishSupport',AntAz);
 
 //Set the position of the pivot point
-dsn.SetGroupPivotPosition("Dish",-0.067,0.000, 15.13);
-dsn.SetGroupPivotPosition("/Dish/elevation",-0.067,0.000, 15.13);
-dsn.SetGroupPivotPosition("/Dish/azimuth",-0.067,0.000,0.000);
+dsn.SetGroupPivotPosition('DishAnt',-0.067,0.000, 15.13);
+dsn.SetGroupPivotPosition('DishSupport',-0.067,0.000,0.000);
 
 ]]></FreeFormScript>
       </FreeForm>
@@ -3042,47 +1993,46 @@ dsn.SetGroupPivotPosition("/Dish/azimuth",-0.067,0.000,0.000);
 
 //View Vector Setup
 Vector gs2sc;
-gs2sc.BuildVector(9,equatorStation,Guess);
+gs2sc.BuildVector(9,equatorStation,Truth);
 gs2sc.Color = ColorTools.Yellow;
 gs2sc.Active = 1;
 
 //Setup ViewWindow ObservedOrbit
 ObservedOrbit.WindowTitle = 'Observed Orbit';
 ObservedOrbit.AddObject(gs2sc);
-ObservedOrbit.AddObject(Guess);
+ObservedOrbit.AddObject(Truth);
 ObservedOrbit.AddObject(equatorStation);
+ObservedOrbit.AddObject(gsmodel);
 //Setup Viewpoint and activate
 Viewpoint sc2gs;
-sc2gs.ThreeDView.Source = Guess.ObjectId;
-sc2gs.ThreeDView.Target = Guess.ObjectId;
-sc2gs.ViewpointName = 'Guess View';
+sc2gs.ThreeDView.Source = Truth.ObjectId;
+sc2gs.ThreeDView.Target = Truth.ObjectId;
+sc2gs.ThreeDView.RightAscension = 0;
+sc2gs.ThreeDView.Declination = -120;
+sc2gs.ThreeDView.Radius = 1000;
+sc2gs.ViewpointName = 'Truth View';
 ObservedOrbit.AddViewpoint(sc2gs);
-ObservedOrbit.ActivateViewpoint('Guess View');
+ObservedOrbit.ActivateViewpoint('Truth View');
 
 //Setup ViewWindow ObservedGroundStation
 Alias gs = ObservedGroundStation;
 gs.WindowTitle = 'Ground Station';
 gs.AddObject(gs2sc);
-gs.AddObject(Guess);
+gs.AddObject(Truth);
 gs.AddObject(equatorStation);
-gs.AddObject(groundstationmodel);
+gs.AddObject(gsmodel);
 //Setup Viewpoint and activate
 Viewpoint gsonly;
 gsonly.ThreeDView.Source = equatorStation.ObjectId;
 gsonly.ThreeDView.Target = equatorStation.ObjectId;
+gsonly.ThreeDView.RightAscension = 270;
+gsonly.ThreeDView.Declination = 20;
+gsonly.ThreeDView.Radius = 25;
 gsonly.ViewpointName    = 'equatorStation View';
 gs.AddViewpoint(gsonly);
 gs.ActivateViewpoint('equatorStation View');
 
-//Setup Plot Window
-//Add CalculatedRange to plot
-PlotScatterSeries CalculatedRange;
-TwoWayRanging.AddSeries(CalculatedRange);
-
-TwoWayRanging.PlotTitle.Text = 'Two Body Range';
-TwoWayRanging.PlotSubTitle.Text = 'Calculated and FreeFlyer';
-TwoWayRanging.XAxis.Title.Text = 'Time (s)';
-TwoWayRanging.YAxis.Title.Text = 'Range (km)';]]></FreeFormScript>
+]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true">
         <Label>Output Layout Manager</Label>
@@ -3093,81 +2043,67 @@ TwoWayRanging.YAxis.Title.Text = 'Range (km)';]]></FreeFormScript>
 //Extend visibility of output layout
 OutputLayout.ConfigureOutputPropertiesTab(0, 1);
 OutputLayout.ArrangeWindows(2);
-OutputLayout.SetWindowFrameVisibility({ObservedOrbit.ID, ObservedGroundStation.ID, TwoWayRanging.ID}, 0);
+OutputLayout.SetWindowFrameVisibility({ObservedOrbit.ID, ObservedGroundStation.ID}, 0);
 OutputLayout.SetWorkspaceFullScreenMode(1);
 
 //Wait to apply update until hidden console window
-Pause 5;
-Console.Hide();
 OutputLayout.ApplyUpdates();]]></FreeFormScript>
       </FreeForm>
-      <FreeForm enabled="true">
+      <FreeForm enabled="true" comment="Move DSN Model - Quaternions are currently incorrect">
         <Label>Step Spacecraft</Label>
         <Bookmarks />
         <Breakpoints />
         <FreeFormScript><![CDATA[// Step Spacecraft
 
 Variable c = 299792.458; //km/s speed of light
-TimeSpan T0 = Guess.Epoch;
-TimeSpan Ta = TimeSpan.FromSeconds(equatorStation.Range(Guess)/c) + T0;
+TimeSpan T0 = Truth.Epoch;
+TimeSpan Ta = TimeSpan.FromSeconds(equatorStation.Range(Truth)/c) + T0;
 Variable estrange; Variable calrange;
 Variable el; Variable az;
 CoordinateSystem GSM_CS; Array GSM_Quats[4];
 
 While(Truth.ElapsedTime() < TIMESPAN(6 hours));
 	gs2sc.Active = 0;
-	If(equatorStation.Elevation(Guess)>0);
-		//Calculate Two Way Range
-		Save Guess as "G0";
-		estrange = equatorStation.Range(Guess);
-		Step Guess to (Guess.Epoch == Ta);
-		calrange = equatorStation.Range(Guess);
-		Restore Guess from "G0";
-		//Add the residuals to the plot series
-		CalculatedRange.AddPoints(Truth.ElapsedTime(), calrange-estrange);
+	If(equatorStation.Elevation(Truth)>0);
 		//Block - GroundStation Az/El Calculation
 		gs2sc.Active = 1;
-		el = equatorStation.Elevation(Guess);
-		az = equatorStation.Azimuth(Guess);
+		el = equatorStation.Elevation(Truth);
+		az = equatorStation.Azimuth(Truth);
 		//set azimuth
-		GSM_CS.SetEulerAngles(az,0,0,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,0,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
-		dsn.SetGroupOrientation("/Dish/azimuth", GSM_Quats);
+		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
 		//set elevation
-		GSM_CS.SetEulerAngles(az,0,el,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,el-90,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
-		dsn.SetGroupOrientation("/Dish/elevation", GSM_Quats);
+		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 		//EndBlock
+	Else;
+		//set azimuth
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
+		//set elevation
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 	End;
 	
 	
-	Update TwoWayRanging;
 	Update ObservedOrbit;
 	Update ObservedGroundStation;
 	
 	Step Truth;
-	Step Guess to (Truth.Epoch==Guess.Epoch);
-	groundstationmodel.Epoch = Truth.Epoch;
-	groundstationmodel.Latitude = equatorStation.Latitude;
-	groundstationmodel.Longitude = equatorStation.Longitude;
+	gsmodel.Epoch = Truth.Epoch;
+	gsmodel.Latitude = equatorStation.Latitude;
+	gsmodel.Longitude = equatorStation.Longitude;
 End;]]></FreeFormScript>
       </FreeForm>
     </ProjectCommands>
   </ProjectMissionSequence>
   <ProjectScript><![CDATA[// Mission Plan Description and Console Setup
 
-//Using the built-in OD functions we will replicate the example for the OD lecture 10.
-//Example for Lecture 10:
-//Two-way ranging (p. 106)
-//Consider satellite in equatorial posigrade circular orbit with an 
-//altitude of 600 km above a spherical Earth. Assume satellite is 20°
-//in true anomaly past the zenith direction of a two-way ranging 
-//station, which places the satellite at 4.3° elevation w/r to the 
-//station. Assume a signal is transmitted from the station at 𝑡=0. 
-//
-//Range rate
-//Consider the same satellite with a transmitter beacon. Assume the 
-//transmitter is operating in the Ka-band at 24.25 GHz. 
+//Using pre-built NASA Deep Space Network (DSN) models of stations an example of animating the station is created. 
 
 
 Console.BackColor = ColorTools.Black;
@@ -3179,11 +2115,9 @@ Console.WindowTitle = "Mission Status and Information";
 Console.Show();
 
 //Update user through Console
-Report "Ground station BRAVO transmits a signal to satellite ALPHA at time TANGO." to Console;
+Report "Using pre-built NASA Deep Space Network (DSN) models of stations an example of animating the station is created." to Console;
 Report "" to Console;
 
-Report "Range is determined using a two-way ranging system and Doppler effect." to Console;
-Report "" to Console;
 // Spacecraft Setup
 
 //Truth "Real" spacecraft
@@ -3201,22 +2135,7 @@ While(equatorStation.Elevation(Truth)<4.2 and equatorStation.Elevation(Truth)>4.
 	Step Truth;
 End;
 
-//Observed spacecraft
-Guess.Epoch = Truth.Epoch;
-Guess.SetPropagatorType("TwoBody");
-(Guess.Propagator AsType TwoBody).StepSize = TIMESPAN(1 seconds);
-Guess.A    = Truth.A   ;//km
-Guess.E    = Truth.E   ;
-Guess.I    = Truth.I   ;//deg
-Guess.RAAN = Truth.RAAN;//deg
-Guess.W    = Truth.W   ;//deg
-Guess.TA   = Truth.TA  ;//deg
-//introduce error in position
-Guess.X = Guess.X + 1/1000;
-Guess.Y = Guess.Y + 2/1000;
-Guess.Z = Guess.Z + 3/1000;
-
-Report "Initial State of ALPHA:" to Console;
+Report "Initial State of Satellite:" to Console;
 Report "" to Console;
 Report Truth.A,     " km"  to Console;
 Report Truth.E,     "    " to Console;
@@ -3227,26 +2146,15 @@ Report Truth.TA,    " deg" to Console;
 Report Truth.Epoch, " days, TAI" to Console;
 Report "" to Console;
 
-//Observed Transponder (Transmitter Beacon)
-//Guess.AddTransponder('Beacon');
-//Guess.Transponders[0].OD.TransponderDelay.ProcessAction = 0;
-//Guess.Transponders[0].Attach(Guess.Sensors[0]);
-//Guess.Transponders[0].TransmitFrequency = 24.25e+9;//Hz
-//
-//Truth.AddTransponder('Beacon');
-//Truth.Transponders[0].OD.TransponderDelay.ProcessAction = 0;
-//Truth.Transponders[0].Attach(Guess.Sensors[0]);
-//Truth.Transponders[0].TransmitFrequency = 24.25e+9;//Hz
+
 // Groundstation Setup
 
 //Confirm location setup and report starting characteristics
 equatorStation.Latitude  = 0;
 equatorStation.Longitude = 0;
 equatorStation.Height    = 0;
-equatorStation.Antenna.LimbLimit = 0;//deg
-equatorStation.Antenna.ReceiveFrequency = 24.25e+9;//Hz
 
-Report "Initial State of BRAVO:" to Console;
+Report "Initial State of Ground Station:" to Console;
 Report "" to Console;
 Report equatorStation.Latitude,          " deg" to Console;
 Report equatorStation.Longitude,         " deg" to Console;
@@ -3259,143 +2167,159 @@ Report "" to Console;
 // GroundStation ThreeDModel
 
 //setup spacecraft at gs location for ground station model
-Spacecraft groundstationmodel;
-//groundstationmodel.ThreeDModelFile = '34M_17.stl';
-//groundstationmodel.BodyScale = 1000;
-groundstationmodel.Latitude = equatorStation.Latitude;
-groundstationmodel.Longitude = equatorStation.Longitude;
-groundstationmodel.A = Earth.Radius + 100;
+Spacecraft gsmodel;
+gsmodel.Latitude = equatorStation.Latitude;
+gsmodel.Longitude = equatorStation.Longitude;
+gsmodel.A = Earth.Radius;
+gsmodel.EulerAngles = {0, 180, 0};
 
 //ThreeDModel
 ThreeDModel dsn;
 dsn.ModelFilename = '.\Models\DSN 34\34M_17.3ds';
-groundstationmodel.SetThreeDModel(dsn);
+gsmodel.SetThreeDModel(dsn);// set model for sc
+dsn.Scale = 100;
 
-//Add groups
-dsn.AddGroup("Dish");
-dsn.AddGroup("Dish","azimuth");
-dsn.AddGroup("Dish","elevation");
+//Find groups
+StringArray TreeGroups;
+dsn.ReportGroupTree(TreeGroups);
+TreeGroups.SortAscending();
 
-//Add bounding box 
+Variable i;
 
-//move dish and wheel for elevation to group
-dsn.MoveGroup("/Dish/elevation","EW Symmetric.001");
-dsn.MoveGroup("/Dish/elevation","Cube.003");
-dsn.MoveGroup("/Dish/elevation","Cube.001");
-dsn.MoveGroup("/Dish/elevation","Cube.028");
+Report "The imported DSN model has various ungrouped parts to it, they are listed as follows:" to Console;
+Report "" to Console;
+For i = 0 to TreeGroups.Dimension - 1;
+	Report TreeGroups[i] to Console;
+End;
 
-//move ground rotator for azimuth to group
-dsn.MoveGroup("/Dish/azimuth","Cylinder.006");
-dsn.MoveGroup("/Dish/azimuth","New Base");
+//0 - /_root
+//1 - /azimuth
+//2 - /base
+//3 - /dish
+//4 - /dish_center
+//5 - /elevation
+//6 - /quad
+//7 - /truss_dish
+
+StringArray AntEl; //antenna elevation movement
+AntEl.PushBack(TreeGroups[3]);
+AntEl.PushBack(TreeGroups[4]);
+AntEl.PushBack(TreeGroups[5]);
+AntEl.PushBack(TreeGroups[6]);
+AntEl.PushBack(TreeGroups[7]);
+StringArray AntAz; //antenna azimuth movement
+AntAz.PushBack(TreeGroups[0]);
+AntAz.PushBack(TreeGroups[1]);
+AntAz.PushBack(TreeGroups[2]);
+//Move Groups
+dsn.AddGroup('DishAnt');
+dsn.MoveGroup('DishAnt',AntEl);
+dsn.AddGroup('DishSupport');
+dsn.MoveGroup('DishSupport',AntAz);
 
 //Set the position of the pivot point
-dsn.SetGroupPivotPosition("Dish",-0.067,0.000, 15.13);
-dsn.SetGroupPivotPosition("/Dish/elevation",-0.067,0.000, 15.13);
-dsn.SetGroupPivotPosition("/Dish/azimuth",-0.067,0.000,0.000);
+dsn.SetGroupPivotPosition('DishAnt',-0.067,0.000, 15.13);
+dsn.SetGroupPivotPosition('DishSupport',-0.067,0.000,0.000);
 
 
 // Window Setup
 
 //View Vector Setup
 Vector gs2sc;
-gs2sc.BuildVector(9,equatorStation,Guess);
+gs2sc.BuildVector(9,equatorStation,Truth);
 gs2sc.Color = ColorTools.Yellow;
 gs2sc.Active = 1;
 
 //Setup ViewWindow ObservedOrbit
 ObservedOrbit.WindowTitle = 'Observed Orbit';
 ObservedOrbit.AddObject(gs2sc);
-ObservedOrbit.AddObject(Guess);
+ObservedOrbit.AddObject(Truth);
 ObservedOrbit.AddObject(equatorStation);
+ObservedOrbit.AddObject(gsmodel);
 //Setup Viewpoint and activate
 Viewpoint sc2gs;
-sc2gs.ThreeDView.Source = Guess.ObjectId;
-sc2gs.ThreeDView.Target = Guess.ObjectId;
-sc2gs.ViewpointName = 'Guess View';
+sc2gs.ThreeDView.Source = Truth.ObjectId;
+sc2gs.ThreeDView.Target = Truth.ObjectId;
+sc2gs.ThreeDView.RightAscension = 0;
+sc2gs.ThreeDView.Declination = -120;
+sc2gs.ThreeDView.Radius = 1000;
+sc2gs.ViewpointName = 'Truth View';
 ObservedOrbit.AddViewpoint(sc2gs);
-ObservedOrbit.ActivateViewpoint('Guess View');
+ObservedOrbit.ActivateViewpoint('Truth View');
 
 //Setup ViewWindow ObservedGroundStation
 Alias gs = ObservedGroundStation;
 gs.WindowTitle = 'Ground Station';
 gs.AddObject(gs2sc);
-gs.AddObject(Guess);
+gs.AddObject(Truth);
 gs.AddObject(equatorStation);
-gs.AddObject(groundstationmodel);
+gs.AddObject(gsmodel);
 //Setup Viewpoint and activate
 Viewpoint gsonly;
 gsonly.ThreeDView.Source = equatorStation.ObjectId;
 gsonly.ThreeDView.Target = equatorStation.ObjectId;
+gsonly.ThreeDView.RightAscension = 270;
+gsonly.ThreeDView.Declination = 20;
+gsonly.ThreeDView.Radius = 25;
 gsonly.ViewpointName    = 'equatorStation View';
 gs.AddViewpoint(gsonly);
 gs.ActivateViewpoint('equatorStation View');
 
-//Setup Plot Window
-//Add CalculatedRange to plot
-PlotScatterSeries CalculatedRange;
-TwoWayRanging.AddSeries(CalculatedRange);
 
-TwoWayRanging.PlotTitle.Text = 'Two Body Range';
-TwoWayRanging.PlotSubTitle.Text = 'Calculated and FreeFlyer';
-TwoWayRanging.XAxis.Title.Text = 'Time (s)';
-TwoWayRanging.YAxis.Title.Text = 'Range (km)';
 // Output Layout Manager
 
 //Extend visibility of output layout
 OutputLayout.ConfigureOutputPropertiesTab(0, 1);
 OutputLayout.ArrangeWindows(2);
-OutputLayout.SetWindowFrameVisibility({ObservedOrbit.ID, ObservedGroundStation.ID, TwoWayRanging.ID}, 0);
+OutputLayout.SetWindowFrameVisibility({ObservedOrbit.ID, ObservedGroundStation.ID}, 0);
 OutputLayout.SetWorkspaceFullScreenMode(1);
 
 //Wait to apply update until hidden console window
-Pause 5;
-Console.Hide();
 OutputLayout.ApplyUpdates();
 // Step Spacecraft
 
 Variable c = 299792.458; //km/s speed of light
-TimeSpan T0 = Guess.Epoch;
-TimeSpan Ta = TimeSpan.FromSeconds(equatorStation.Range(Guess)/c) + T0;
+TimeSpan T0 = Truth.Epoch;
+TimeSpan Ta = TimeSpan.FromSeconds(equatorStation.Range(Truth)/c) + T0;
 Variable estrange; Variable calrange;
 Variable el; Variable az;
 CoordinateSystem GSM_CS; Array GSM_Quats[4];
 
 While(Truth.ElapsedTime() < TIMESPAN(6 hours));
 	gs2sc.Active = 0;
-	If(equatorStation.Elevation(Guess)>0);
-		//Calculate Two Way Range
-		Save Guess as "G0";
-		estrange = equatorStation.Range(Guess);
-		Step Guess to (Guess.Epoch == Ta);
-		calrange = equatorStation.Range(Guess);
-		Restore Guess from "G0";
-		//Add the residuals to the plot series
-		CalculatedRange.AddPoints(Truth.ElapsedTime(), calrange-estrange);
+	If(equatorStation.Elevation(Truth)>0);
 		//Block - GroundStation Az/El Calculation
 		gs2sc.Active = 1;
-		el = equatorStation.Elevation(Guess);
-		az = equatorStation.Azimuth(Guess);
+		el = equatorStation.Elevation(Truth);
+		az = equatorStation.Azimuth(Truth);
 		//set azimuth
-		GSM_CS.SetEulerAngles(az,0,0,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,0,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
-		dsn.SetGroupOrientation("/Dish/azimuth", GSM_Quats);
+		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
 		//set elevation
-		GSM_CS.SetEulerAngles(az,0,el,'3-1-2');
+		GSM_CS.SetEulerAngles(az-90,el-90,0,'3-1-2');
 		GSM_Quats = GSM_CS.GetQuaternion;
-		dsn.SetGroupOrientation("/Dish/elevation", GSM_Quats);
+		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 		//EndBlock
+	Else;
+		//set azimuth
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishSupport', GSM_Quats);
+		//set elevation
+		GSM_CS.SetEulerAngles(0,0,0,'3-1-2');
+		GSM_Quats = GSM_CS.GetQuaternion;
+		dsn.SetGroupOrientation('DishAnt', GSM_Quats);
 	End;
 	
 	
-	Update TwoWayRanging;
 	Update ObservedOrbit;
 	Update ObservedGroundStation;
 	
 	Step Truth;
-	Step Guess to (Truth.Epoch==Guess.Epoch);
-	groundstationmodel.Epoch = Truth.Epoch;
-	groundstationmodel.Latitude = equatorStation.Latitude;
-	groundstationmodel.Longitude = equatorStation.Longitude;
+	gsmodel.Epoch = Truth.Epoch;
+	gsmodel.Latitude = equatorStation.Latitude;
+	gsmodel.Longitude = equatorStation.Longitude;
 End;]]></ProjectScript>
   <ProjectNotes></ProjectNotes>
 </FreeFlyerProjectFile>
