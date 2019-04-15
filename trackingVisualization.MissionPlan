@@ -2197,11 +2197,11 @@ End;
 
 
 
-//3D Ground Station
-GroundStation ThreeD;
-ThreeD.Latitude = 0;
-ThreeD.Longitude = 0;
-ThreeD.Height = 0;]]></FreeFormScript>
+////3D Ground Station
+//GroundStation ThreeD;
+//ThreeD.Latitude = 0;
+//ThreeD.Longitude = 0;
+//ThreeD.Height = 0;]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true">
         <Label>3D Ground Station Model</Label>
@@ -2212,13 +2212,13 @@ ThreeD.Height = 0;]]></FreeFormScript>
 //setup spacecraft at gs location for ground station model
 Spacecraft gsmodel;
 
-gsmodel.Latitude = ThreeD.Latitude;
-gsmodel.Longitude = ThreeD.Longitude;
+//gsmodel.Latitude = ThreeD.Latitude;
+//gsmodel.Longitude = ThreeD.Longitude;
 
 //gsmodel.Latitude = GS[5].Latitude;
 //gsmodel.Longitude = GS[5].Longitude;
-//gsmodel.A = 6370;
-gsmodel.A = Earth.Radius;
+gsmodel.A = 6372;
+//gsmodel.A = Earth.Radius;
 gsmodel.EulerAngles = {0, 180, 0};
 
 //ThreeDModel
@@ -2312,8 +2312,8 @@ SC.ViewAsGroup = 1;
 
 Variable j;
 
-List<Vector> gs2sc;
-gs2sc.Count = SC.Count;
+//List<Vector> gs2sc;
+//gs2sc.Count = SC.Count;
 
 List<Vector> Vect1;
 List<Vector> Vect2;
@@ -2561,7 +2561,7 @@ Report "Currently observing "+ SC.Count.ToString()+" satellites." to Console;
 For i=0 to GS.Count-1;
 	GS[i].DrawMethod = 0;
 End;
-ThreeD.DrawMethod = 0;
+//ThreeD.DrawMethod = 0;
 
 
 //Setup ViewWindow ObservedGroundStation
@@ -2569,25 +2569,25 @@ Alias gs = ObservedGroundStation;
 gs.WindowTitle = 'Ground Station';
 ObservedGroundStation.OverrideDefaultProperties = 1;
 ObservedGroundStation.ShowStatusText = 0;
-gs.AddObject(ThreeD);
-gs.AddObject(gs2sc);
+//gs.AddObject(ThreeD);
+//gs.AddObject(gs2sc);
 //gs.AddObject(Vect6);
-//gs.AddObject(GS[5]);
+gs.AddObject(GS[5]);
 //gs.AddObject(SC);
 gs.AddObject(gsmodel);
 //Setup Viewpoint and activate
 Viewpoint gsonly;
 
-//gsonly.ThreeDView.Source = GS[5].ObjectId;
-//gsonly.ThreeDView.Target = GS[5].ObjectId;
-gsonly.ThreeDView.Source = ThreeD.ObjectId;
-gsonly.ThreeDView.Target = ThreeD.ObjectId;
+gsonly.ThreeDView.Source = GS[5].ObjectId;
+gsonly.ThreeDView.Target = GS[5].ObjectId;
+//gsonly.ThreeDView.Source = ThreeD.ObjectId;
+//gsonly.ThreeDView.Target = ThreeD.ObjectId;
 gsonly.ThreeDView.RightAscension = 270;
 gsonly.ThreeDView.Declination = 20;
 gsonly.ThreeDView.Radius = 20;
-gsonly.ViewpointName    = 'GS[5] View';
+gsonly.ViewpointName    = 'White Sands Ground Station View';
 gs.AddViewpoint(gsonly);
-gs.ActivateViewpoint('GS[5] View');
+gs.ActivateViewpoint('White Sands Ground Station View');
 
 
 
@@ -2767,19 +2767,19 @@ OutputLayout.SetWindowSize(GroundTrack.ID, 1,0.75,1,0.5);
 //OutputLayout.SendWindowToBack(GroundTrack.ID);
 OutputLayout.ApplyUpdates();
 //Sat Details view
-OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, -0.5);
+OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, 0.5);
 OutputLayout.SetWindowSize(SatDetails.ID, 1,0.4,1,0.5);
 //OutputLayout.SendWindowToBack(SatDetails.ID);
 OutputLayout.ApplyUpdates();
 
 //GS Details view
-OutputLayout.SetWindowPosition(GSDetails.ID, 1, 0.4, 1, -0.5);
+OutputLayout.SetWindowPosition(GSDetails.ID, 1, 0.4, 1, 0.5);
 OutputLayout.SetWindowSize(GSDetails.ID, 1,0.4,1,0.5);
 OutputLayout.ApplyUpdates();
 
 
 //3D Ground Station view
-OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.8, 1, -0.5);
+OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.8, 1, 0.5);
 OutputLayout.SetWindowSize(ObservedGroundStation.ID,1,0.2,1,0.5);
 OutputLayout.BringWindowToFront(ObservedGroundStation.ID);
 OutputLayout.ApplyUpdates();
@@ -2834,13 +2834,13 @@ While (SC[0].ElapsedTime < TIMESPAN(6 days));
 	For i=0 to SC.Count-1;
 		
 		
-		If (SC[i].Contact(ThreeD) ==1);
-			gs2sc[i].BuildVector(9,ThreeD,SC[i]);
-			gs2sc[i].Color = ColorTools.Yellow;
-			gs2sc[i].Active = 1;
-		Else;
-			gs2sc[i].Active = 0;
-		End;
+//		If (SC[i].Contact(ThreeD) ==1);
+//			gs2sc[i].BuildVector(9,ThreeD,SC[i]);
+//			gs2sc[i].Color = ColorTools.Yellow;
+//			gs2sc[i].Active = 1;
+//		Else;
+//			gs2sc[i].Active = 0;
+//		End;
 		
 		If (SC[i].Contact(GS[0]) == 1);
 			Vect1[i].BuildVector(9, GS[0], SC[i]);
@@ -2952,13 +2952,15 @@ While (SC[0].ElapsedTime < TIMESPAN(6 days));
 
 	End; 
 		
-	
 	Update GroundTrack;
 	Update ObservedOrbit;
 	Update GSMap;
 	Update ObservedGroundStation;
 	
 	Step SC;
+	gsmodel.Latitude = GS[5].Latitude;
+	gsmodel.Longitude = GS[5].Longitude;
+	gsmodel.Epoch = SC[0].Epoch;
 
 End;
 
@@ -3132,23 +3134,23 @@ End;
 
 
 
-//3D Ground Station
-GroundStation ThreeD;
-ThreeD.Latitude = 0;
-ThreeD.Longitude = 0;
-ThreeD.Height = 0;
+////3D Ground Station
+//GroundStation ThreeD;
+//ThreeD.Latitude = 0;
+//ThreeD.Longitude = 0;
+//ThreeD.Height = 0;
 // GroundStation ThreeDModel
 
 //setup spacecraft at gs location for ground station model
 Spacecraft gsmodel;
 
-gsmodel.Latitude = ThreeD.Latitude;
-gsmodel.Longitude = ThreeD.Longitude;
+//gsmodel.Latitude = ThreeD.Latitude;
+//gsmodel.Longitude = ThreeD.Longitude;
 
 //gsmodel.Latitude = GS[5].Latitude;
 //gsmodel.Longitude = GS[5].Longitude;
-//gsmodel.A = 6370;
-gsmodel.A = Earth.Radius;
+gsmodel.A = 6372;
+//gsmodel.A = Earth.Radius;
 gsmodel.EulerAngles = {0, 180, 0};
 
 //ThreeDModel
@@ -3237,8 +3239,8 @@ SC.ViewAsGroup = 1;
 
 Variable j;
 
-List<Vector> gs2sc;
-gs2sc.Count = SC.Count;
+//List<Vector> gs2sc;
+//gs2sc.Count = SC.Count;
 
 List<Vector> Vect1;
 List<Vector> Vect2;
@@ -3466,7 +3468,7 @@ Report "Currently observing "+ SC.Count.ToString()+" satellites." to Console;
 For i=0 to GS.Count-1;
 	GS[i].DrawMethod = 0;
 End;
-ThreeD.DrawMethod = 0;
+//ThreeD.DrawMethod = 0;
 
 
 //Setup ViewWindow ObservedGroundStation
@@ -3474,25 +3476,25 @@ Alias gs = ObservedGroundStation;
 gs.WindowTitle = 'Ground Station';
 ObservedGroundStation.OverrideDefaultProperties = 1;
 ObservedGroundStation.ShowStatusText = 0;
-gs.AddObject(ThreeD);
-gs.AddObject(gs2sc);
+//gs.AddObject(ThreeD);
+//gs.AddObject(gs2sc);
 //gs.AddObject(Vect6);
-//gs.AddObject(GS[5]);
+gs.AddObject(GS[5]);
 //gs.AddObject(SC);
 gs.AddObject(gsmodel);
 //Setup Viewpoint and activate
 Viewpoint gsonly;
 
-//gsonly.ThreeDView.Source = GS[5].ObjectId;
-//gsonly.ThreeDView.Target = GS[5].ObjectId;
-gsonly.ThreeDView.Source = ThreeD.ObjectId;
-gsonly.ThreeDView.Target = ThreeD.ObjectId;
+gsonly.ThreeDView.Source = GS[5].ObjectId;
+gsonly.ThreeDView.Target = GS[5].ObjectId;
+//gsonly.ThreeDView.Source = ThreeD.ObjectId;
+//gsonly.ThreeDView.Target = ThreeD.ObjectId;
 gsonly.ThreeDView.RightAscension = 270;
 gsonly.ThreeDView.Declination = 20;
 gsonly.ThreeDView.Radius = 20;
-gsonly.ViewpointName    = 'GS[5] View';
+gsonly.ViewpointName    = 'White Sands Ground Station View';
 gs.AddViewpoint(gsonly);
-gs.ActivateViewpoint('GS[5] View');
+gs.ActivateViewpoint('White Sands Ground Station View');
 
 
 
@@ -3667,19 +3669,19 @@ OutputLayout.SetWindowSize(GroundTrack.ID, 1,0.75,1,0.5);
 //OutputLayout.SendWindowToBack(GroundTrack.ID);
 OutputLayout.ApplyUpdates();
 //Sat Details view
-OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, -0.5);
+OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, 0.5);
 OutputLayout.SetWindowSize(SatDetails.ID, 1,0.4,1,0.5);
 //OutputLayout.SendWindowToBack(SatDetails.ID);
 OutputLayout.ApplyUpdates();
 
 //GS Details view
-OutputLayout.SetWindowPosition(GSDetails.ID, 1, 0.4, 1, -0.5);
+OutputLayout.SetWindowPosition(GSDetails.ID, 1, 0.4, 1, 0.5);
 OutputLayout.SetWindowSize(GSDetails.ID, 1,0.4,1,0.5);
 OutputLayout.ApplyUpdates();
 
 
 //3D Ground Station view
-OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.8, 1, -0.5);
+OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.8, 1, 0.5);
 OutputLayout.SetWindowSize(ObservedGroundStation.ID,1,0.2,1,0.5);
 OutputLayout.BringWindowToFront(ObservedGroundStation.ID);
 OutputLayout.ApplyUpdates();
@@ -3729,13 +3731,13 @@ While (SC[0].ElapsedTime < TIMESPAN(6 days));
 	For i=0 to SC.Count-1;
 		
 		
-		If (SC[i].Contact(ThreeD) ==1);
-			gs2sc[i].BuildVector(9,ThreeD,SC[i]);
-			gs2sc[i].Color = ColorTools.Yellow;
-			gs2sc[i].Active = 1;
-		Else;
-			gs2sc[i].Active = 0;
-		End;
+//		If (SC[i].Contact(ThreeD) ==1);
+//			gs2sc[i].BuildVector(9,ThreeD,SC[i]);
+//			gs2sc[i].Color = ColorTools.Yellow;
+//			gs2sc[i].Active = 1;
+//		Else;
+//			gs2sc[i].Active = 0;
+//		End;
 		
 		If (SC[i].Contact(GS[0]) == 1);
 			Vect1[i].BuildVector(9, GS[0], SC[i]);
@@ -3847,13 +3849,15 @@ While (SC[0].ElapsedTime < TIMESPAN(6 days));
 
 	End; 
 		
-	
 	Update GroundTrack;
 	Update ObservedOrbit;
 	Update GSMap;
 	Update ObservedGroundStation;
 	
 	Step SC;
+	gsmodel.Latitude = GS[5].Latitude;
+	gsmodel.Longitude = GS[5].Longitude;
+	gsmodel.Epoch = SC[0].Epoch;
 
 End;
 
