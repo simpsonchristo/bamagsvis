@@ -2713,18 +2713,18 @@ OutputLayout.ApplyUpdates();
 
 
 //orbit view
-OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0, 1, -1);
+OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0, 1, 0);
 OutputLayout.SetWindowSize(ObservedOrbit.ID, 1, 0.25,1,0.5);
 OutputLayout.ApplyUpdates();
 //map view
-OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0.25, 1, -1);
+OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0.25, 1, 0);
 OutputLayout.SetWindowSize(GroundTrack.ID, 1,0.75,1,0.5);
+OutputLayout.BringWindowToFront(GroundTrack.ID);
 //OutputLayout.SendWindowToBack(GroundTrack.ID);
 OutputLayout.ApplyUpdates();
 //Sat Details view
 OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, 0.5);
 OutputLayout.SetWindowSize(SatDetails.ID, 1,0.4,1,0.5);
-//OutputLayout.SendWindowToBack(SatDetails.ID);
 OutputLayout.ApplyUpdates();
 
 //GS Details view
@@ -2774,9 +2774,10 @@ OutputLayout.ApplyUpdates();
         <FreeFormScript><![CDATA[// Step Spacecraft
 For i=0 to SC.Count-1;
 	Step SC[i] to (SC[i].Epoch == tleEpoch);
+	Step SC[i] to (SC[i].Epoch == SystemTime());
 End;
 For i=0 to SC.Count-1;
-	(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(0.1 seconds);
+	(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(0.16434 seconds);
 End;
 
 
@@ -3570,18 +3571,18 @@ OutputLayout.ApplyUpdates();
 
 
 //orbit view
-OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0, 1, -1);
+OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0, 1, 0);
 OutputLayout.SetWindowSize(ObservedOrbit.ID, 1, 0.25,1,0.5);
 OutputLayout.ApplyUpdates();
 //map view
-OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0.25, 1, -1);
+OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0.25, 1, 0);
 OutputLayout.SetWindowSize(GroundTrack.ID, 1,0.75,1,0.5);
+OutputLayout.BringWindowToFront(GroundTrack.ID);
 //OutputLayout.SendWindowToBack(GroundTrack.ID);
 OutputLayout.ApplyUpdates();
 //Sat Details view
 OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, 0.5);
 OutputLayout.SetWindowSize(SatDetails.ID, 1,0.4,1,0.5);
-//OutputLayout.SendWindowToBack(SatDetails.ID);
 OutputLayout.ApplyUpdates();
 
 //GS Details view
@@ -3626,9 +3627,10 @@ OutputLayout.ApplyUpdates();
 // Step Spacecraft
 For i=0 to SC.Count-1;
 	Step SC[i] to (SC[i].Epoch == tleEpoch);
+	Step SC[i] to (SC[i].Epoch == SystemTime());
 End;
 For i=0 to SC.Count-1;
-	(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(0.1 seconds);
+	(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(0.16434 seconds);
 End;
 
 
