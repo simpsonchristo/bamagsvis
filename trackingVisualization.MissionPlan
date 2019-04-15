@@ -868,6 +868,1185 @@
         <metadata dim="0" />
       </ViewWindow>
     </Object>
+    <Object>
+      <ViewWindow name="GSViz" isConstant="false" isGlobal="false">
+        <Name>GSViz</Name>
+        <WindowTitle></WindowTitle>
+        <Viewpoints dim="1">
+          <value>
+            <Viewpoint name="GSViz_Default" isConstant="false" isGlobal="false">
+              <Name>GSViz_Default</Name>
+              <ViewpointName>Default</ViewpointName>
+              <ViewpointType>view</ViewpointType>
+              <ViewpointParameters>
+                <view>
+                  <ThreeDView>
+                    <ThreeDViewpointOptions name="GSViz_Default_|ThreeDView|" isConstant="false" isGlobal="false">
+                      <Name>GSViz_Default_|ThreeDView|</Name>
+                      <Source>Earth</Source>
+                      <Target>Earth</Target>
+                      <TailReference>Earth</TailReference>
+                      <ReferenceFrame>body fixed</ReferenceFrame>
+                      <Declination units="deg" displayed_units="deg">20.0</Declination>
+                      <FieldOfView units="deg" displayed_units="deg">45.0</FieldOfView>
+                      <Radius units="km" displayed_units="km">30000.0</Radius>
+                      <RightAscension units="deg" displayed_units="deg">270.0</RightAscension>
+                      <metadata dim="0" />
+                    </ThreeDViewpointOptions>
+                  </ThreeDView>
+                </view>
+              </ViewpointParameters>
+              <metadata dim="0" />
+            </Viewpoint>
+          </value>
+        </Viewpoints>
+        <OverrideDefaultProperties>false</OverrideDefaultProperties>
+        <UseLighting>true</UseLighting>
+        <UseTextures>true</UseTextures>
+        <ShowLogo>true</ShowLogo>
+        <LogoTextureFilename></LogoTextureFilename>
+        <ShowStatusText>true</ShowStatusText>
+        <ShowTextBackdrops>true</ShowTextBackdrops>
+        <AmbientColor>6710886</AmbientColor>
+        <StatusTextColor>16777215</StatusTextColor>
+        <BackgroundColor>0</BackgroundColor>
+        <ObjectShadowing>0</ObjectShadowing>
+        <StatusTextFont>
+          <ViewFont name="GSViz_|StatusTextFont|" isConstant="false" isGlobal="false">
+            <Name>GSViz_|StatusTextFont|</Name>
+            <Bold>false</Bold>
+            <Italic>false</Italic>
+            <Size units="" displayed_units="">20.0</Size>
+            <Strikeout>false</Strikeout>
+            <Typeface>Tahoma</Typeface>
+            <Underline>false</Underline>
+            <metadata dim="0" />
+          </ViewFont>
+        </StatusTextFont>
+        <DefaultObjectLabelFont>
+          <ViewFont name="GSViz_|DefaultObjectLabelFont|" isConstant="false" isGlobal="false">
+            <Name>GSViz_|DefaultObjectLabelFont|</Name>
+            <Bold>false</Bold>
+            <Italic>false</Italic>
+            <Size units="" displayed_units="">20.0</Size>
+            <Strikeout>false</Strikeout>
+            <Typeface>Tahoma</Typeface>
+            <Underline>false</Underline>
+            <metadata dim="0" />
+          </ViewFont>
+        </DefaultObjectLabelFont>
+        <Objects dim="12">
+          <value>Mercury</value>
+          <value>Venus</value>
+          <value>Earth</value>
+          <value>Moon</value>
+          <value>Mars</value>
+          <value>Jupiter</value>
+          <value>Saturn</value>
+          <value>Uranus</value>
+          <value>Neptune</value>
+          <value>Pluto</value>
+          <value>Sun</value>
+          <value>Stars</value>
+        </Objects>
+        <ProjectionHeights units="km" displayed_units="km" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </ProjectionHeights>
+        <ShowObject dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+        </ShowObject>
+        <ShowBody dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+        </ShowBody>
+        <ShowName dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>false</value>
+        </ShowName>
+        <ShowGrid dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowGrid>
+        <ShowAxes dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowAxes>
+        <ShowHistory dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowHistory>
+        <ShowIcon dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowIcon>
+        <IconImageFilename dim="(12)">
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+        </IconImageFilename>
+        <IconSize units="pixel" displayed_units="pixel" dim="(12)">
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+        </IconSize>
+        <IconDrawingMode dim="12">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </IconDrawingMode>
+        <IconColor dim="(12)">
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+        </IconColor>
+        <StoreVelocity dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </StoreVelocity>
+        <AxesScaleMode dim="12">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </AxesScaleMode>
+        <AxesSize units="km" displayed_units="km" dim="(12)">
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+        </AxesSize>
+        <AxesScale units="" displayed_units="" dim="(12)">
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+        </AxesScale>
+        <TailLength units="" displayed_units="" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </TailLength>
+        <HistoryMode units="" displayed_units="" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </HistoryMode>
+        <CurrentTailState units="" displayed_units="" dim="(12)">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </CurrentTailState>
+        <LineWidthUnits units="" displayed_units="" dim="(12)">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </LineWidthUnits>
+        <LineWidths units="" displayed_units="" dim="(12)">
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+        </LineWidths>
+        <LabelFonts dim="12">
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+        </LabelFonts>
+        <MouseInteractionEnabled>true</MouseInteractionEnabled>
+        <metadata dim="0" />
+      </ViewWindow>
+    </Object>
+    <Object>
+      <ViewWindow name="GSMap" isConstant="false" isGlobal="false">
+        <Name>GSMap</Name>
+        <WindowTitle></WindowTitle>
+        <Viewpoints dim="1">
+          <value>
+            <Viewpoint name="GSMap_Default" isConstant="false" isGlobal="false">
+              <Name>GSMap_Default</Name>
+              <ViewpointName>Default</ViewpointName>
+              <ViewpointType>view</ViewpointType>
+              <ViewpointParameters>
+                <view>
+                  <ThreeDView>
+                    <ThreeDViewpointOptions name="GSMap_Default_|ThreeDView|" isConstant="false" isGlobal="false">
+                      <Name>GSMap_Default_|ThreeDView|</Name>
+                      <Source>Earth</Source>
+                      <Target>Earth</Target>
+                      <TailReference>Earth</TailReference>
+                      <ReferenceFrame>body fixed</ReferenceFrame>
+                      <Declination units="deg" displayed_units="deg">20.0</Declination>
+                      <FieldOfView units="deg" displayed_units="deg">45.0</FieldOfView>
+                      <Radius units="km" displayed_units="km">30000.0</Radius>
+                      <RightAscension units="deg" displayed_units="deg">270.0</RightAscension>
+                      <metadata dim="0" />
+                    </ThreeDViewpointOptions>
+                  </ThreeDView>
+                </view>
+              </ViewpointParameters>
+              <metadata dim="0" />
+            </Viewpoint>
+          </value>
+        </Viewpoints>
+        <OverrideDefaultProperties>false</OverrideDefaultProperties>
+        <UseLighting>true</UseLighting>
+        <UseTextures>true</UseTextures>
+        <ShowLogo>true</ShowLogo>
+        <LogoTextureFilename></LogoTextureFilename>
+        <ShowStatusText>true</ShowStatusText>
+        <ShowTextBackdrops>true</ShowTextBackdrops>
+        <AmbientColor>6710886</AmbientColor>
+        <StatusTextColor>16777215</StatusTextColor>
+        <BackgroundColor>0</BackgroundColor>
+        <ObjectShadowing>0</ObjectShadowing>
+        <StatusTextFont>
+          <ViewFont name="GSMap_|StatusTextFont|" isConstant="false" isGlobal="false">
+            <Name>GSMap_|StatusTextFont|</Name>
+            <Bold>false</Bold>
+            <Italic>false</Italic>
+            <Size units="" displayed_units="">20.0</Size>
+            <Strikeout>false</Strikeout>
+            <Typeface>Tahoma</Typeface>
+            <Underline>false</Underline>
+            <metadata dim="0" />
+          </ViewFont>
+        </StatusTextFont>
+        <DefaultObjectLabelFont>
+          <ViewFont name="GSMap_|DefaultObjectLabelFont|" isConstant="false" isGlobal="false">
+            <Name>GSMap_|DefaultObjectLabelFont|</Name>
+            <Bold>false</Bold>
+            <Italic>false</Italic>
+            <Size units="" displayed_units="">20.0</Size>
+            <Strikeout>false</Strikeout>
+            <Typeface>Tahoma</Typeface>
+            <Underline>false</Underline>
+            <metadata dim="0" />
+          </ViewFont>
+        </DefaultObjectLabelFont>
+        <Objects dim="12">
+          <value>Mercury</value>
+          <value>Venus</value>
+          <value>Earth</value>
+          <value>Moon</value>
+          <value>Mars</value>
+          <value>Jupiter</value>
+          <value>Saturn</value>
+          <value>Uranus</value>
+          <value>Neptune</value>
+          <value>Pluto</value>
+          <value>Sun</value>
+          <value>Stars</value>
+        </Objects>
+        <ProjectionHeights units="km" displayed_units="km" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </ProjectionHeights>
+        <ShowObject dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+        </ShowObject>
+        <ShowBody dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+        </ShowBody>
+        <ShowName dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>false</value>
+        </ShowName>
+        <ShowGrid dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowGrid>
+        <ShowAxes dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowAxes>
+        <ShowHistory dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowHistory>
+        <ShowIcon dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowIcon>
+        <IconImageFilename dim="(12)">
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+        </IconImageFilename>
+        <IconSize units="pixel" displayed_units="pixel" dim="(12)">
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+        </IconSize>
+        <IconDrawingMode dim="12">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </IconDrawingMode>
+        <IconColor dim="(12)">
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+        </IconColor>
+        <StoreVelocity dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </StoreVelocity>
+        <AxesScaleMode dim="12">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </AxesScaleMode>
+        <AxesSize units="km" displayed_units="km" dim="(12)">
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+        </AxesSize>
+        <AxesScale units="" displayed_units="" dim="(12)">
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+        </AxesScale>
+        <TailLength units="" displayed_units="" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </TailLength>
+        <HistoryMode units="" displayed_units="" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </HistoryMode>
+        <CurrentTailState units="" displayed_units="" dim="(12)">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </CurrentTailState>
+        <LineWidthUnits units="" displayed_units="" dim="(12)">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </LineWidthUnits>
+        <LineWidths units="" displayed_units="" dim="(12)">
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+        </LineWidths>
+        <LabelFonts dim="12">
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+        </LabelFonts>
+        <MouseInteractionEnabled>true</MouseInteractionEnabled>
+        <metadata dim="0" />
+      </ViewWindow>
+    </Object>
+    <Object>
+      <ViewWindow name="ObservedGroundStation" isConstant="false" isGlobal="false">
+        <Name>ObservedGroundStation</Name>
+        <WindowTitle></WindowTitle>
+        <Viewpoints dim="1">
+          <value>
+            <Viewpoint name="ObservedGroundStation_Default" isConstant="false" isGlobal="false">
+              <Name>ObservedGroundStation_Default</Name>
+              <ViewpointName>Default</ViewpointName>
+              <ViewpointType>view</ViewpointType>
+              <ViewpointParameters>
+                <view>
+                  <ThreeDView>
+                    <ThreeDViewpointOptions name="ObservedGroundStation_Default_|ThreeDView|" isConstant="false" isGlobal="false">
+                      <Name>ObservedGroundStation_Default_|ThreeDView|</Name>
+                      <Source>Earth</Source>
+                      <Target>Earth</Target>
+                      <TailReference>Earth</TailReference>
+                      <ReferenceFrame>body fixed</ReferenceFrame>
+                      <Declination units="deg" displayed_units="deg">20.0</Declination>
+                      <FieldOfView units="deg" displayed_units="deg">45.0</FieldOfView>
+                      <Radius units="km" displayed_units="km">30000.0</Radius>
+                      <RightAscension units="deg" displayed_units="deg">270.0</RightAscension>
+                      <metadata dim="0" />
+                    </ThreeDViewpointOptions>
+                  </ThreeDView>
+                </view>
+              </ViewpointParameters>
+              <metadata dim="0" />
+            </Viewpoint>
+          </value>
+        </Viewpoints>
+        <OverrideDefaultProperties>false</OverrideDefaultProperties>
+        <UseLighting>true</UseLighting>
+        <UseTextures>true</UseTextures>
+        <ShowLogo>true</ShowLogo>
+        <LogoTextureFilename></LogoTextureFilename>
+        <ShowStatusText>true</ShowStatusText>
+        <ShowTextBackdrops>true</ShowTextBackdrops>
+        <AmbientColor>6710886</AmbientColor>
+        <StatusTextColor>16777215</StatusTextColor>
+        <BackgroundColor>0</BackgroundColor>
+        <ObjectShadowing>0</ObjectShadowing>
+        <StatusTextFont>
+          <ViewFont name="ObservedGroundStation_|StatusTextFont|" isConstant="false" isGlobal="false">
+            <Name>ObservedGroundStation_|StatusTextFont|</Name>
+            <Bold>false</Bold>
+            <Italic>false</Italic>
+            <Size units="" displayed_units="">20.0</Size>
+            <Strikeout>false</Strikeout>
+            <Typeface>Tahoma</Typeface>
+            <Underline>false</Underline>
+            <metadata dim="0" />
+          </ViewFont>
+        </StatusTextFont>
+        <DefaultObjectLabelFont>
+          <ViewFont name="ObservedGroundStation_|DefaultObjectLabelFont|" isConstant="false" isGlobal="false">
+            <Name>ObservedGroundStation_|DefaultObjectLabelFont|</Name>
+            <Bold>false</Bold>
+            <Italic>false</Italic>
+            <Size units="" displayed_units="">20.0</Size>
+            <Strikeout>false</Strikeout>
+            <Typeface>Tahoma</Typeface>
+            <Underline>false</Underline>
+            <metadata dim="0" />
+          </ViewFont>
+        </DefaultObjectLabelFont>
+        <Objects dim="12">
+          <value>Mercury</value>
+          <value>Venus</value>
+          <value>Earth</value>
+          <value>Moon</value>
+          <value>Mars</value>
+          <value>Jupiter</value>
+          <value>Saturn</value>
+          <value>Uranus</value>
+          <value>Neptune</value>
+          <value>Pluto</value>
+          <value>Sun</value>
+          <value>Stars</value>
+        </Objects>
+        <ProjectionHeights units="km" displayed_units="km" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </ProjectionHeights>
+        <ShowObject dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+        </ShowObject>
+        <ShowBody dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+        </ShowBody>
+        <ShowName dim="(12)">
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>true</value>
+          <value>false</value>
+        </ShowName>
+        <ShowGrid dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowGrid>
+        <ShowAxes dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowAxes>
+        <ShowHistory dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowHistory>
+        <ShowIcon dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </ShowIcon>
+        <IconImageFilename dim="(12)">
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+          <value></value>
+        </IconImageFilename>
+        <IconSize units="pixel" displayed_units="pixel" dim="(12)">
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+          <value>30.0</value>
+        </IconSize>
+        <IconDrawingMode dim="12">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </IconDrawingMode>
+        <IconColor dim="(12)">
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+          <value>16777215</value>
+        </IconColor>
+        <StoreVelocity dim="(12)">
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+          <value>false</value>
+        </StoreVelocity>
+        <AxesScaleMode dim="12">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </AxesScaleMode>
+        <AxesSize units="km" displayed_units="km" dim="(12)">
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+        </AxesSize>
+        <AxesScale units="" displayed_units="" dim="(12)">
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+          <value>1.3</value>
+        </AxesScale>
+        <TailLength units="" displayed_units="" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </TailLength>
+        <HistoryMode units="" displayed_units="" dim="(12)">
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+          <value>0</value>
+        </HistoryMode>
+        <CurrentTailState units="" displayed_units="" dim="(12)">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </CurrentTailState>
+        <LineWidthUnits units="" displayed_units="" dim="(12)">
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+          <value>1</value>
+        </LineWidthUnits>
+        <LineWidths units="" displayed_units="" dim="(12)">
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+          <value>1.0</value>
+        </LineWidths>
+        <LabelFonts dim="12">
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+          <value xsi:nil="true" />
+        </LabelFonts>
+        <MouseInteractionEnabled>true</MouseInteractionEnabled>
+        <metadata dim="0" />
+      </ViewWindow>
+    </Object>
   </ProjectObjects>
   <ProjectMissionSequence>
     <ProjectExternals />
@@ -910,11 +2089,185 @@ Report "" to Console;
         <Label>Create Ground Station Objects</Label>
         <Bookmarks />
         <Breakpoints />
-        <FreeFormScript><![CDATA[// Create Ground Station Objects
+        <FreeFormScript><![CDATA[Variable i;
+// Create Ground Station Objects
+GroundStation Goldstone;
+GroundStation Madrid;
+GroundStation Canberra;
+GroundStation Wallops;
+GroundStation SouthPoint;
+GroundStation WhiteSands;
+GroundStation Santiago;
+GroundStation TrollSat;
+GroundStation Dongara;
+GroundStation Singapore;
+GroundStation Kiruna;
+GroundStation Svalbard;
+GroundStation NorthPole;
+GroundStation GilmoreCreek;
+GroundStation FairBanks;
+GroundStation Hartebeesthoek;
 
 // Create Ground Station
-GroundStation GS;
-GS.DisplayName = "Default Ground Station";
+List<GroundStation> GS;
+GS.Count= 16;
+GS[0]:=Goldstone;
+GS[0].DisplayName="Goldstone";
+GS[0].Latitude=35.42667;
+GS[0].Longitude=-116.89;
+
+GS[1]:=Madrid;
+GS[1].DisplayName="Madrid";
+GS[1].Latitude=40.429167;
+GS[1].Longitude= -4.249167;
+
+GS[2]:=Canberra;
+GS[2].DisplayName="Canberra";
+GS[2].Latitude=-35.401389;
+GS[2].Longitude=148.981667;
+
+GS[3]:=Wallops;
+GS[3].DisplayName="Wallops";
+GS[3].Latitude=37.924944;
+GS[3].Longitude=-75.476528;
+
+GS[4]:=SouthPoint;
+GS[4].DisplayName="South Point";
+GS[4].Latitude=19.014000;
+GS[4].Longitude=-155.663306;
+
+GS[5]:=WhiteSands;
+GS[5].DisplayName="White Sands";
+GS[5].Latitude=32.540750;
+GS[5].Longitude=-106.612083;
+
+GS[6]:=Santiago;
+GS[6].DisplayName="Santiago";
+GS[6].Latitude=-33.45694;
+GS[6].Longitude= -70.64827;
+
+GS[7]:=TrollSat;
+GS[7].DisplayName="TrollSat"; 
+GS[7].Latitude=-72.0166666;
+GS[7].Longitude=2.5333312;
+
+GS[8]:=Dongara;
+GS[8].DisplayName="Dongara";
+GS[8].Latitude=-29.045694;
+GS[8].Longitude=115.348694;
+
+GS[9]:=Singapore;
+GS[9].DisplayName="Singapore";
+GS[9].Latitude=1.396194;
+GS[9].Longitude=103.834306;
+
+GS[10]:=Kiruna;
+GS[10].DisplayName="Kiruna";
+GS[10].Latitude=67.889611;
+GS[10].Longitude=21.065694;
+
+GS[11]:=Svalbard;
+GS[11].DisplayName="Svalbard";
+GS[11].Latitude=78.229750;
+GS[11].Longitude=15.397750;
+
+GS[12]:=NorthPole;
+GS[12].DisplayName="North Pole";
+GS[12].Latitude=64.9737000;
+GS[12].Longitude=-147.5019000; 
+
+GS[13]:=GilmoreCreek;
+GS[13].DisplayName="Gilmore Creek";
+GS[13].Latitude=64.9737000;
+GS[13].Longitude=-147.5019000;
+
+GS[14]:=FairBanks;
+GS[14].DisplayName="FairBanks";
+GS[14].Latitude=64.9737000;
+GS[14].Longitude=-147.5019000;
+
+GS[15]:=Hartebeesthoek;
+GS[15].DisplayName="Hartebeesthoek";
+GS[15].Latitude=-25.885663124;
+GS[15].Longitude= 27.68416393;
+
+For i=0 to GS.Count-1;
+	GS[i].Height = 0;
+End;
+
+
+
+//3D Ground Station
+GroundStation ThreeD;
+ThreeD.Latitude = 0;
+ThreeD.Longitude = 0;
+ThreeD.Height = 0;]]></FreeFormScript>
+      </FreeForm>
+      <FreeForm enabled="true">
+        <Label>3D Ground Station Model</Label>
+        <Bookmarks />
+        <Breakpoints />
+        <FreeFormScript><![CDATA[// GroundStation ThreeDModel
+
+//setup spacecraft at gs location for ground station model
+Spacecraft gsmodel;
+
+gsmodel.Latitude = ThreeD.Latitude;
+gsmodel.Longitude = ThreeD.Longitude;
+
+//gsmodel.Latitude = GS[5].Latitude;
+//gsmodel.Longitude = GS[5].Longitude;
+//gsmodel.A = 6370;
+gsmodel.A = Earth.Radius;
+gsmodel.EulerAngles = {0, 180, 0};
+
+//ThreeDModel
+ThreeDModel dsn;
+dsn.ModelFilename = '.\Models\DSN 34\34M_17.3ds';
+gsmodel.SetThreeDModel(dsn);// set model for sc
+dsn.Scale = 100;
+
+//Find groups
+StringArray TreeGroups;
+dsn.ReportGroupTree(TreeGroups);
+TreeGroups.SortAscending();
+
+
+Report "The imported DSN model has various ungrouped parts to it, they are listed as follows:" to Console;
+Report "" to Console;
+For i = 0 to TreeGroups.Dimension - 1;
+	Report TreeGroups[i] to Console;
+End;
+
+//0 - /_root
+//1 - /azimuth
+//2 - /base
+//3 - /dish
+//4 - /dish_center
+//5 - /elevation
+//6 - /quad
+//7 - /truss_dish
+
+StringArray AntEl; //antenna elevation movement
+AntEl.PushBack(TreeGroups[3]);
+AntEl.PushBack(TreeGroups[4]);
+AntEl.PushBack(TreeGroups[5]);
+AntEl.PushBack(TreeGroups[6]);
+AntEl.PushBack(TreeGroups[7]);
+StringArray AntAz; //antenna azimuth movement
+AntAz.PushBack(TreeGroups[0]);
+AntAz.PushBack(TreeGroups[1]);
+AntAz.PushBack(TreeGroups[2]);
+//Move Groups
+dsn.AddGroup('DishAnt');
+dsn.MoveGroup('DishAnt',AntEl);
+dsn.AddGroup('DishSupport');
+dsn.MoveGroup('DishSupport',AntAz);
+
+//Set the position of the pivot point
+dsn.SetGroupPivotPosition('DishAnt',-0.067,0.000, 15.13);
+dsn.SetGroupPivotPosition('DishSupport',-0.067,0.000,0.000);
+
 ]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true">
@@ -923,7 +2276,7 @@ GS.DisplayName = "Default Ground Station";
         <Breakpoints />
         <FreeFormScript><![CDATA[// Create Formation Objects
 Formation SC;
-Variable i;
+
 
 //Celestrak Group Requested
 FileProperties tleFile;
@@ -956,14 +2309,69 @@ End;
 
 //Default Visualization
 SC.ViewAsGroup = 1;
-//View Vector Setup
+
+Variable j;
+
 List<Vector> gs2sc;
 gs2sc.Count = SC.Count;
-For i=0 to gs2sc.Count-1;
-	gs2sc[i].BuildVector(9,GS,SC[i]);
-	gs2sc[i].Color = ColorTools.Yellow;
-	gs2sc[i].Active = 1;
-End;
+
+List<Vector> Vect1;
+List<Vector> Vect2;
+List<Vector> Vect3;
+List<Vector> Vect4;
+List<Vector> Vect5;
+List<Vector> Vect6;
+List<Vector> Vect7;
+List<Vector> Vect8;
+List<Vector> Vect9;
+List<Vector> Vect10;
+List<Vector> Vect11;
+List<Vector> Vect12;
+List<Vector> Vect13;
+List<Vector> Vect14;
+List<Vector> Vect15;
+List<Vector> Vect16;
+Vect1.Count= SC.Count; 
+Vect2.Count= SC.Count;
+Vect3.Count= SC.Count;
+Vect4.Count= SC.Count; 
+Vect5.Count= SC.Count;
+Vect6.Count= SC.Count;
+Vect7.Count= SC.Count;
+Vect8.Count= SC.Count;
+Vect9.Count= SC.Count;
+Vect10.Count= SC.Count;
+Vect11.Count= SC.Count; 
+Vect12.Count= SC.Count;
+Vect13.Count= SC.Count;
+Vect14.Count= SC.Count; 
+Vect15.Count= SC.Count;
+Vect16.Count= SC.Count;
+////Vector Setup
+//List<Vector> gs2sc1;
+//gs2sc1.Count = SC.Count;
+//For i=0 to gs2sc1.Count-1;
+//	gs2sc1[i].BuildVector(9,GS[0],SC[i]);
+//	gs2sc1[i].Color = ColorTools.Yellow;
+//	gs2sc1[i].Active = 1;
+//End;
+//
+//List<Vector> gs2sc2;
+//gs2sc2.Count = SC.Count;
+//For i=0 to gs2sc2.Count-1;
+//	gs2sc2[i].BuildVector(9,GS[1],SC[i]);
+//	gs2sc2[i].Color = ColorTools.Yellow;
+//	gs2sc2[i].Active = 1;
+//End;
+//
+//List<Vector> gs2sc3;
+//gs2sc3.Count = SC.Count;
+//For i=0 to gs2sc3.Count-1;
+//	gs2sc3[i].BuildVector(9,GS[2],SC[i]);
+//	gs2sc3[i].Color = ColorTools.Yellow;
+//	gs2sc3[i].Active = 1;
+//End;
+
 ]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true" comment="Default retreival of Celestrak TLEs">
@@ -1087,9 +2495,6 @@ If(Flag==1);
 		End;
 		SC[i].SetPropagatorType("Norad");
 		(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(1 seconds);
-		If(SC[i].Height<300);
-			SC.RemoveAt(i);
-		End;
 	End;
 	If(SystemTime()-tleEpoch > TIMESPAN(24 hours));
 		Report "TLE is older than 24 hours. A new data set needs to be loaded." to Console;
@@ -1114,10 +2519,28 @@ For i=0 to SC.Count-1;
 	End;
 	
 End;
-Variable j;
+
 For i=0 to RemoveSC.Dimension-1;
 	SC.RemoveAt(RemoveSC[i]);
-	gs2sc.RemoveAt(RemoveSC[i]);
+//	gs2sc1.RemoveAt(RemoveSC[i]);
+//	gs2sc2.RemoveAt(RemoveSC[i]);
+//	gs2sc3.RemoveAt(RemoveSC[i]);
+	Vect1.RemoveAt(RemoveSC[i]);
+	Vect2.RemoveAt(RemoveSC[i]);
+	Vect3.RemoveAt(RemoveSC[i]);
+	Vect4.RemoveAt(RemoveSC[i]);
+	Vect5.RemoveAt(RemoveSC[i]);
+	Vect6.RemoveAt(RemoveSC[i]);
+	Vect7.RemoveAt(RemoveSC[i]);
+	Vect8.RemoveAt(RemoveSC[i]);
+	Vect9.RemoveAt(RemoveSC[i]);
+	Vect10.RemoveAt(RemoveSC[i]);
+	Vect11.RemoveAt(RemoveSC[i]);
+	Vect12.RemoveAt(RemoveSC[i]);
+	Vect13.RemoveAt(RemoveSC[i]);
+	Vect14.RemoveAt(RemoveSC[i]);
+	Vect15.RemoveAt(RemoveSC[i]);
+	Vect16.RemoveAt(RemoveSC[i]);
 	For j=i to RemoveSC.Dimension-1;
 		RemoveSC[j] = RemoveSC[j] - 1;
 	End;
@@ -1134,12 +2557,62 @@ Report "Currently observing "+ SC.Count.ToString()+" satellites." to Console;
         <Breakpoints />
         <FreeFormScript><![CDATA[// Window Setup
 
+////Remove Elevation Mask
+For i=0 to GS.Count-1;
+	GS[i].DrawMethod = 0;
+End;
+ThreeD.DrawMethod = 0;
+
+
+//Setup ViewWindow ObservedGroundStation
+Alias gs = ObservedGroundStation;
+gs.WindowTitle = 'Ground Station';
+ObservedGroundStation.OverrideDefaultProperties = 1;
+ObservedGroundStation.ShowStatusText = 0;
+gs.AddObject(ThreeD);
+gs.AddObject(gs2sc);
+//gs.AddObject(Vect6);
+//gs.AddObject(GS[5]);
+//gs.AddObject(SC);
+gs.AddObject(gsmodel);
+//Setup Viewpoint and activate
+Viewpoint gsonly;
+
+//gsonly.ThreeDView.Source = GS[5].ObjectId;
+//gsonly.ThreeDView.Target = GS[5].ObjectId;
+gsonly.ThreeDView.Source = ThreeD.ObjectId;
+gsonly.ThreeDView.Target = ThreeD.ObjectId;
+gsonly.ThreeDView.RightAscension = 270;
+gsonly.ThreeDView.Declination = 20;
+gsonly.ThreeDView.Radius = 20;
+gsonly.ViewpointName    = 'GS[5] View';
+gs.AddViewpoint(gsonly);
+gs.ActivateViewpoint('GS[5] View');
+
+
+
+
 //Setup ViewWindow ObservedOrbit
 ObservedOrbit.WindowTitle = 'Observed Orbit';
 ObservedOrbit.OverrideDefaultProperties = 1;
 ObservedOrbit.AddObject(SC);
 ObservedOrbit.AddObject(GS);
-ObservedOrbit.AddObject(gs2sc);
+ObservedOrbit.AddObject(Vect1);
+ObservedOrbit.AddObject(Vect2);
+ObservedOrbit.AddObject(Vect3);
+ObservedOrbit.AddObject(Vect4);
+ObservedOrbit.AddObject(Vect5);
+ObservedOrbit.AddObject(Vect6);
+ObservedOrbit.AddObject(Vect7);
+ObservedOrbit.AddObject(Vect8);
+ObservedOrbit.AddObject(Vect9);
+ObservedOrbit.AddObject(Vect10);
+ObservedOrbit.AddObject(Vect11);
+ObservedOrbit.AddObject(Vect12);
+ObservedOrbit.AddObject(Vect13);
+ObservedOrbit.AddObject(Vect14);
+ObservedOrbit.AddObject(Vect15);
+ObservedOrbit.AddObject(Vect16);
 ObservedOrbit.ShowStatusText = 0;
 //Setup Viewpoint and activate
 Viewpoint orbitviewpoint;
@@ -1154,7 +2627,25 @@ GroundTrack.WindowTitle = 'Map View';
 GroundTrack.OverrideDefaultProperties = 1;
 GroundTrack.AddObject(SC);
 GroundTrack.AddObject(GS);
-GroundTrack.AddObject(gs2sc);
+//GroundTrack.AddObject(gs2sc1);
+//GroundTrack.AddObject(gs2sc2);
+//GroundTrack.AddObject(gs2sc3);
+GroundTrack.AddObject(Vect1);
+GroundTrack.AddObject(Vect2);
+GroundTrack.AddObject(Vect3);
+GroundTrack.AddObject(Vect4);
+GroundTrack.AddObject(Vect5);
+GroundTrack.AddObject(Vect6);
+GroundTrack.AddObject(Vect7);
+GroundTrack.AddObject(Vect8);
+GroundTrack.AddObject(Vect9);
+GroundTrack.AddObject(Vect10);
+GroundTrack.AddObject(Vect11);
+GroundTrack.AddObject(Vect12);
+GroundTrack.AddObject(Vect13);
+GroundTrack.AddObject(Vect14);
+GroundTrack.AddObject(Vect15);
+GroundTrack.AddObject(Vect16);
 //GroundTrack.ShowStatusText = 0;
 //Setup Viewpoint and activate
 Viewpoint TwoDview;
@@ -1163,7 +2654,80 @@ TwoDview.ViewpointName = 'GroundTrack View';
 GroundTrack.AddViewpoint(TwoDview);
 GroundTrack.ActivateViewpoint('GroundTrack View');
 
-]]></FreeFormScript>
+
+//Setup ViewWindow Ground Station Map
+GSMap.WindowTitle = 'Ground Station Map';
+GSMap.OverrideDefaultProperties = 1;
+GSMap.AddObject (GS);
+GSMap.ShowStatusText = 0;
+//Setup Viewpoint and activate
+Viewpoint MapView;
+MapView.ViewpointType = "map";
+MapView.ViewpointName = 'Ground Station Locations';
+GSMap.AddViewpoint(MapView);
+GSMap.ActivateViewpoint('Ground Station Locations');
+
+
+
+//Setup List of Satellites + Ground Stations
+ConsoleWindow SatList;
+SatList.BackColor = ColorTools.White;
+SatList.CurrentTextColor = ColorTools.Black;
+SatList.Dimension = 25;
+SatList.DockMode = 0;
+SatList.WindowTitle = "Satellites";
+SatList.Show();
+
+Report @"List of Satellites:\n" to SatList;
+For i=0 to SC.Count-1;
+	Report SC[i].DisplayName to SatList;
+End;
+
+
+ConsoleWindow GSList;
+GSList.BackColor = ColorTools.White;
+GSList.CurrentTextColor = ColorTools.Black;
+GSList.Dimension = 25;
+GSList.DockMode = 0;
+GSList.WindowTitle = "Ground Stations";
+GSList.Show();
+
+Report "List of Ground Stations: " to GSList;
+For i=0 to GS.Count-1;
+	Report GS[i].DisplayName to GSList;
+End;
+
+//Satellite and GS details
+ConsoleWindow SatDetails;
+SatDetails.BackColor = ColorTools.White;
+SatDetails.CurrentTextColor = ColorTools.Black;
+SatDetails.Dimension = 7;
+SatDetails.DockMode = 0;
+SatDetails.WindowTitle = "Satellite Details";
+SatDetails.Show();
+Report "Satellite Details:" to SatDetails;
+For i=0 to SC.Count-1;
+	Report @"\n\n", SC[i].DisplayName to SatDetails;        
+	Report @"Altitude: ", SC[i].Height, "km" to SatDetails;
+	//The magnitude of the velocity vector in the inertial frame in the Spherical Lat/Long Element set. Note that this property is Earth-specific
+	Report @"Velocity: ", SC[i].LatLongVi, "km/s" to SatDetails;
+	Report @"Apogee: ", SC[i].Apogee, "km" to SatDetails;
+	Report @"Perigee: ", SC[i].Perigee, "km" to SatDetails;
+End;
+ConsoleWindow GSDetails;
+GSDetails.BackColor = ColorTools.White;
+GSDetails.CurrentTextColor = ColorTools.Black;
+GSDetails.Dimension = 7;
+GSDetails.DockMode = 0;
+GSDetails.WindowTitle = "Ground Station Objects";
+GSDetails.Show();
+Report "Ground Station Details:" to GSDetails;
+For i=0 to GS.Count-1;
+	Report @"\n\n", GS[i].DisplayName to GSDetails;
+	Report "Coordinates (Lat/Long): ", GS[i].Latitude, " / ", GS[i].Longitude to GSDetails;
+	//Report "Altitude: ", GS[0].Height, "km" to GSDetails;
+	//Report @"Min Horizon: " to GSDetails;
+End;]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true" comment="Arrange ViewWindows">
         <Label>Output Layout Manager</Label>
@@ -1173,25 +2737,80 @@ GroundTrack.ActivateViewpoint('GroundTrack View');
 
 //Extend visibility of output layout
 OutputLayout.ConfigureOutputPropertiesTab(0, 1);
-OutputLayout.ArrangeWindows(2);
-OutputLayout.SetWindowFrameVisibility({ObservedOrbit.ID, GroundTrack.ID}, 0);
-OutputLayout.SetWorkspaceFullScreenMode(1);
+//OutputLayout.ArrangeWindows(2);
+OutputLayout.SetWindowFrameVisibility({ObservedGroundStation.ID, ObservedOrbit.ID, GroundTrack.ID, GSMap.ID, SatDetails.ID, SatList.ID, GSDetails.ID, GSList.ID}, 0);
+OutputLayout.SetWorkspaceFullScreenMode(0);
 
 //Setup window layout
-//orbit view
-OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0.75, 1, 0.25);
-OutputLayout.SetWindowSize(ObservedOrbit.ID, 1, 0.3,1,0.3);
+
+
+Array WindowIDs;
+Variable ConstrainOutputWindows=0;
+
+// Unconstrains All Windows and Consoles
+WindowIDs = OutputLayout.GetWindowIDs(0); // 0 = All, 1 = Console, 2 = View, 3 = Plot, 4 = Report, 5 = Watch
+
+// Unconstrain all specified WindowIDs within array based on the user's selection
+OutputLayout.ConstrainToWorkspace(WindowIDs,ConstrainOutputWindows); // Uses all window IDs returned from the GetWindowIDs method.
+
 OutputLayout.ApplyUpdates();
-////ground view
-//OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.75, 1, 0.75);
-//OutputLayout.SetWindowSize(ObservedGroundStation.ID,1,0.3,1,0.3);
-////OutputLayout.BringWindowToFront(ObservedGroundStation.ID);
-//OutputLayout.ApplyUpdates();
+
+
+
+//orbit view
+OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0, 1, -1);
+OutputLayout.SetWindowSize(ObservedOrbit.ID, 1, 0.25,1,0.5);
+OutputLayout.ApplyUpdates();
 //map view
-OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0, 1, 0);
-OutputLayout.SetWindowSize(GroundTrack.ID, 1,1,1,1);
-OutputLayout.SendWindowToBack(GroundTrack.ID);
-OutputLayout.ApplyUpdates();]]></FreeFormScript>
+OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0.25, 1, -1);
+OutputLayout.SetWindowSize(GroundTrack.ID, 1,0.75,1,0.5);
+//OutputLayout.SendWindowToBack(GroundTrack.ID);
+OutputLayout.ApplyUpdates();
+//Sat Details view
+OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, -0.5);
+OutputLayout.SetWindowSize(SatDetails.ID, 1,0.4,1,0.5);
+//OutputLayout.SendWindowToBack(SatDetails.ID);
+OutputLayout.ApplyUpdates();
+
+//GS Details view
+OutputLayout.SetWindowPosition(GSDetails.ID, 1, 0.4, 1, -0.5);
+OutputLayout.SetWindowSize(GSDetails.ID, 1,0.4,1,0.5);
+OutputLayout.ApplyUpdates();
+
+
+//3D Ground Station view
+OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.8, 1, -0.5);
+OutputLayout.SetWindowSize(ObservedGroundStation.ID,1,0.2,1,0.5);
+OutputLayout.BringWindowToFront(ObservedGroundStation.ID);
+OutputLayout.ApplyUpdates();
+
+
+//Ground Station Map View
+OutputLayout.SetWindowPosition(GSMap.ID, 1, 0, 1, 0);
+OutputLayout.SetWindowSize(GSMap.ID, 1,1,1,0.5);
+OutputLayout.SendWindowToBack(GSMap.ID);
+OutputLayout.ApplyUpdates();
+
+//Sat List view
+OutputLayout.SetWindowPosition(SatList.ID, 1, 0, 1, 0.5);
+OutputLayout.SetWindowSize(SatList.ID, 1,0.5,1,0.5);
+OutputLayout.ApplyUpdates();
+
+//GS List view
+OutputLayout.SetWindowPosition(GSList.ID, 1, 0.5, 1, 0.5);
+OutputLayout.SetWindowSize(GSList.ID, 1,0.5,1,0.5);
+OutputLayout.ApplyUpdates();
+
+
+//OutputLayout.ArrangeWindows(0, {GSList.ID, SatList.ID, -1, SatDetails.ID, GSDetails.ID});
+
+//OutputLayout.ApplyUpdates();
+
+
+//OutputLayout.SetWindowSize(GSList.ID, 0, 300, 0, 300);
+//OutputLayout.SetWindowPosition(GSList.ID, 0, 0, 0, 0);
+//OutputLayout.ApplyUpdates();
+]]></FreeFormScript>
       </FreeForm>
       <FreeForm enabled="true">
         <Label>Step Spacecraft</Label>
@@ -1205,23 +2824,174 @@ For i=0 to SC.Count-1;
 	(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(0.1 seconds);
 End;
 
-While(SC[0].ElapsedTime() < TIMESPAN(6 hours));
+
+
+
+
+While (SC[0].ElapsedTime < TIMESPAN(6 days));
+
+	
 	For i=0 to SC.Count-1;
-		gs2sc[i].Active = 0;
-		If(GS.Elevation(SC[i])>0);
-			gs2sc[i].Active = 1;
-		End;
-	End;
 		
+		
+		If (SC[i].Contact(ThreeD) ==1);
+			gs2sc[i].BuildVector(9,ThreeD,SC[i]);
+			gs2sc[i].Color = ColorTools.Yellow;
+			gs2sc[i].Active = 1;
+		Else;
+			gs2sc[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[0]) == 1);
+			Vect1[i].BuildVector(9, GS[0], SC[i]);
+			Vect1[i].Active = 1;
+		Else;
+			Vect1[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[1]) == 1);
+			Vect2[i].BuildVector(9, GS[1], SC[i]);
+			Vect2[i].Active = 1;
+		Else;
+			Vect2[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[2]) == 1);
+			Vect3[i].BuildVector(9, GS[2], SC[i]);
+			Vect3[i].Active = 1;
+		Else;
+			Vect3[i].Active = 0;
+		End;
+	
+		If (SC[i].Contact(GS[3]) == 1);
+			Vect4[i].BuildVector(9, GS[3], SC[i]);
+			Vect4[i].Active = 1;
+		Else;
+			Vect4[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[4]) == 1);
+			Vect5[i].BuildVector(9, GS[4], SC[i]);
+			Vect5[i].Active = 1;
+		Else;
+			Vect5[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[5]) == 1);
+			Vect6[i].BuildVector(9, GS[5], SC[i]);
+			Vect6[i].Active = 1;
+		Else;
+			Vect6[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[6]) == 1);
+			Vect7[i].BuildVector(9, GS[6], SC[i]);
+			Vect7[i].Active = 1;
+		Else;
+			Vect7[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[7]) == 1);
+			Vect8[i].BuildVector(9, GS[7], SC[i]);
+			Vect8[i].Active = 1;
+		Else;
+			Vect8[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[8]) == 1);
+			Vect9[i].BuildVector(9, GS[8], SC[i]);
+			Vect9[i].Active = 1;
+		Else;
+			Vect9[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[9]) == 1);
+			Vect10[i].BuildVector(9, GS[9], SC[i]);
+			Vect10[i].Active = 1;
+		Else;
+			Vect10[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[10]) == 1);
+			Vect11[i].BuildVector(9, GS[10], SC[i]);
+			Vect11[i].Active = 1;
+		Else;
+			Vect11[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[11]) == 1);
+			Vect12[i].BuildVector(9, GS[11], SC[i]);
+			Vect12[i].Active = 1;
+		Else;
+			Vect12[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[12]) == 1);
+			Vect13[i].BuildVector(9, GS[12], SC[i]);
+			Vect13[i].Active = 1;
+		Else;
+			Vect13[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[13]) == 1);
+			Vect14[i].BuildVector(9, GS[13], SC[i]);
+			Vect14[i].Active = 1;
+		Else;
+			Vect14[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[14]) == 1);
+			Vect15[i].BuildVector(9, GS[14], SC[i]);
+			Vect15[i].Active = 1;
+		Else;
+			Vect15[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[15]) == 1);
+			Vect16[i].BuildVector(9, GS[15], SC[i]);
+			Vect16[i].Active = 1;
+		Else;
+			Vect16[i].Active = 0;
+		End;
+
+	End; 
+		
+	
 	Update GroundTrack;
 	Update ObservedOrbit;
+	Update GSMap;
+	Update ObservedGroundStation;
 	
 	Step SC;
-//	[0];
-//	For i=1 to SC.Count-1;
-//		Step SC[i] to (SC[i].Epoch==SC[0].Epoch);
+
+End;
+
+
+//While(SC[0].ElapsedTime() < TIMESPAN(6 hours));
+//	For i=0 to SC.Count-1;
+//		gs2sc1[i].Active = 0;
+//		gs2sc2[i].Active = 0;
+//		gs2sc3[i].Active = 0;
+//		If(GS[0].Elevation(SC[i])>0);
+//			gs2sc1[i].Active = 1;
+//		
+//		End;
+//		If(GS[1].Elevation(SC[i])>0);
+//			gs2sc2[i].Active = 1;
+//			
+//		End;
+//		If(GS[2].Elevation(SC[i])>0);
+//			gs2sc3[i].Active = 1;
+//		End;
 //	End;
-End;]]></FreeFormScript>
+//		
+//	Update GroundTrack;
+//	Update ObservedOrbit;
+//	Update GSMap;
+//	
+//	Step SC;
+//End;
+
+
+
+
+]]></FreeFormScript>
       </FreeForm>
     </ProjectCommands>
   </ProjectMissionSequence>
@@ -1254,15 +3024,184 @@ Report "" to Console;
 Report "For more information on creating UserInterface through FreeForm Script, see the Custom User Interfaces Guide in the Help." to Console;
 Report "" to Console;
 
+Variable i;
 // Create Ground Station Objects
+GroundStation Goldstone;
+GroundStation Madrid;
+GroundStation Canberra;
+GroundStation Wallops;
+GroundStation SouthPoint;
+GroundStation WhiteSands;
+GroundStation Santiago;
+GroundStation TrollSat;
+GroundStation Dongara;
+GroundStation Singapore;
+GroundStation Kiruna;
+GroundStation Svalbard;
+GroundStation NorthPole;
+GroundStation GilmoreCreek;
+GroundStation FairBanks;
+GroundStation Hartebeesthoek;
 
 // Create Ground Station
-GroundStation GS;
-GS.DisplayName = "Default Ground Station";
+List<GroundStation> GS;
+GS.Count= 16;
+GS[0]:=Goldstone;
+GS[0].DisplayName="Goldstone";
+GS[0].Latitude=35.42667;
+GS[0].Longitude=-116.89;
+
+GS[1]:=Madrid;
+GS[1].DisplayName="Madrid";
+GS[1].Latitude=40.429167;
+GS[1].Longitude= -4.249167;
+
+GS[2]:=Canberra;
+GS[2].DisplayName="Canberra";
+GS[2].Latitude=-35.401389;
+GS[2].Longitude=148.981667;
+
+GS[3]:=Wallops;
+GS[3].DisplayName="Wallops";
+GS[3].Latitude=37.924944;
+GS[3].Longitude=-75.476528;
+
+GS[4]:=SouthPoint;
+GS[4].DisplayName="South Point";
+GS[4].Latitude=19.014000;
+GS[4].Longitude=-155.663306;
+
+GS[5]:=WhiteSands;
+GS[5].DisplayName="White Sands";
+GS[5].Latitude=32.540750;
+GS[5].Longitude=-106.612083;
+
+GS[6]:=Santiago;
+GS[6].DisplayName="Santiago";
+GS[6].Latitude=-33.45694;
+GS[6].Longitude= -70.64827;
+
+GS[7]:=TrollSat;
+GS[7].DisplayName="TrollSat"; 
+GS[7].Latitude=-72.0166666;
+GS[7].Longitude=2.5333312;
+
+GS[8]:=Dongara;
+GS[8].DisplayName="Dongara";
+GS[8].Latitude=-29.045694;
+GS[8].Longitude=115.348694;
+
+GS[9]:=Singapore;
+GS[9].DisplayName="Singapore";
+GS[9].Latitude=1.396194;
+GS[9].Longitude=103.834306;
+
+GS[10]:=Kiruna;
+GS[10].DisplayName="Kiruna";
+GS[10].Latitude=67.889611;
+GS[10].Longitude=21.065694;
+
+GS[11]:=Svalbard;
+GS[11].DisplayName="Svalbard";
+GS[11].Latitude=78.229750;
+GS[11].Longitude=15.397750;
+
+GS[12]:=NorthPole;
+GS[12].DisplayName="North Pole";
+GS[12].Latitude=64.9737000;
+GS[12].Longitude=-147.5019000; 
+
+GS[13]:=GilmoreCreek;
+GS[13].DisplayName="Gilmore Creek";
+GS[13].Latitude=64.9737000;
+GS[13].Longitude=-147.5019000;
+
+GS[14]:=FairBanks;
+GS[14].DisplayName="FairBanks";
+GS[14].Latitude=64.9737000;
+GS[14].Longitude=-147.5019000;
+
+GS[15]:=Hartebeesthoek;
+GS[15].DisplayName="Hartebeesthoek";
+GS[15].Latitude=-25.885663124;
+GS[15].Longitude= 27.68416393;
+
+For i=0 to GS.Count-1;
+	GS[i].Height = 0;
+End;
+
+
+
+//3D Ground Station
+GroundStation ThreeD;
+ThreeD.Latitude = 0;
+ThreeD.Longitude = 0;
+ThreeD.Height = 0;
+// GroundStation ThreeDModel
+
+//setup spacecraft at gs location for ground station model
+Spacecraft gsmodel;
+
+gsmodel.Latitude = ThreeD.Latitude;
+gsmodel.Longitude = ThreeD.Longitude;
+
+//gsmodel.Latitude = GS[5].Latitude;
+//gsmodel.Longitude = GS[5].Longitude;
+//gsmodel.A = 6370;
+gsmodel.A = Earth.Radius;
+gsmodel.EulerAngles = {0, 180, 0};
+
+//ThreeDModel
+ThreeDModel dsn;
+dsn.ModelFilename = '.\Models\DSN 34\34M_17.3ds';
+gsmodel.SetThreeDModel(dsn);// set model for sc
+dsn.Scale = 100;
+
+//Find groups
+StringArray TreeGroups;
+dsn.ReportGroupTree(TreeGroups);
+TreeGroups.SortAscending();
+
+
+Report "The imported DSN model has various ungrouped parts to it, they are listed as follows:" to Console;
+Report "" to Console;
+For i = 0 to TreeGroups.Dimension - 1;
+	Report TreeGroups[i] to Console;
+End;
+
+//0 - /_root
+//1 - /azimuth
+//2 - /base
+//3 - /dish
+//4 - /dish_center
+//5 - /elevation
+//6 - /quad
+//7 - /truss_dish
+
+StringArray AntEl; //antenna elevation movement
+AntEl.PushBack(TreeGroups[3]);
+AntEl.PushBack(TreeGroups[4]);
+AntEl.PushBack(TreeGroups[5]);
+AntEl.PushBack(TreeGroups[6]);
+AntEl.PushBack(TreeGroups[7]);
+StringArray AntAz; //antenna azimuth movement
+AntAz.PushBack(TreeGroups[0]);
+AntAz.PushBack(TreeGroups[1]);
+AntAz.PushBack(TreeGroups[2]);
+//Move Groups
+dsn.AddGroup('DishAnt');
+dsn.MoveGroup('DishAnt',AntEl);
+dsn.AddGroup('DishSupport');
+dsn.MoveGroup('DishSupport',AntAz);
+
+//Set the position of the pivot point
+dsn.SetGroupPivotPosition('DishAnt',-0.067,0.000, 15.13);
+dsn.SetGroupPivotPosition('DishSupport',-0.067,0.000,0.000);
+
 
 // Create Formation Objects
 Formation SC;
-Variable i;
+
 
 //Celestrak Group Requested
 FileProperties tleFile;
@@ -1295,14 +3234,69 @@ End;
 
 //Default Visualization
 SC.ViewAsGroup = 1;
-//View Vector Setup
+
+Variable j;
+
 List<Vector> gs2sc;
 gs2sc.Count = SC.Count;
-For i=0 to gs2sc.Count-1;
-	gs2sc[i].BuildVector(9,GS,SC[i]);
-	gs2sc[i].Color = ColorTools.Yellow;
-	gs2sc[i].Active = 1;
-End;
+
+List<Vector> Vect1;
+List<Vector> Vect2;
+List<Vector> Vect3;
+List<Vector> Vect4;
+List<Vector> Vect5;
+List<Vector> Vect6;
+List<Vector> Vect7;
+List<Vector> Vect8;
+List<Vector> Vect9;
+List<Vector> Vect10;
+List<Vector> Vect11;
+List<Vector> Vect12;
+List<Vector> Vect13;
+List<Vector> Vect14;
+List<Vector> Vect15;
+List<Vector> Vect16;
+Vect1.Count= SC.Count; 
+Vect2.Count= SC.Count;
+Vect3.Count= SC.Count;
+Vect4.Count= SC.Count; 
+Vect5.Count= SC.Count;
+Vect6.Count= SC.Count;
+Vect7.Count= SC.Count;
+Vect8.Count= SC.Count;
+Vect9.Count= SC.Count;
+Vect10.Count= SC.Count;
+Vect11.Count= SC.Count; 
+Vect12.Count= SC.Count;
+Vect13.Count= SC.Count;
+Vect14.Count= SC.Count; 
+Vect15.Count= SC.Count;
+Vect16.Count= SC.Count;
+////Vector Setup
+//List<Vector> gs2sc1;
+//gs2sc1.Count = SC.Count;
+//For i=0 to gs2sc1.Count-1;
+//	gs2sc1[i].BuildVector(9,GS[0],SC[i]);
+//	gs2sc1[i].Color = ColorTools.Yellow;
+//	gs2sc1[i].Active = 1;
+//End;
+//
+//List<Vector> gs2sc2;
+//gs2sc2.Count = SC.Count;
+//For i=0 to gs2sc2.Count-1;
+//	gs2sc2[i].BuildVector(9,GS[1],SC[i]);
+//	gs2sc2[i].Color = ColorTools.Yellow;
+//	gs2sc2[i].Active = 1;
+//End;
+//
+//List<Vector> gs2sc3;
+//gs2sc3.Count = SC.Count;
+//For i=0 to gs2sc3.Count-1;
+//	gs2sc3[i].BuildVector(9,GS[2],SC[i]);
+//	gs2sc3[i].Color = ColorTools.Yellow;
+//	gs2sc3[i].Active = 1;
+//End;
+
 
 Socket DownloadTLEs;
 DownloadTLEs.SocketType = "client";
@@ -1411,9 +3405,6 @@ If(Flag==1);
 		End;
 		SC[i].SetPropagatorType("Norad");
 		(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(1 seconds);
-		If(SC[i].Height<300);
-			SC.RemoveAt(i);
-		End;
 	End;
 	If(SystemTime()-tleEpoch > TIMESPAN(24 hours));
 		Report "TLE is older than 24 hours. A new data set needs to be loaded." to Console;
@@ -1438,10 +3429,28 @@ For i=0 to SC.Count-1;
 	End;
 	
 End;
-Variable j;
+
 For i=0 to RemoveSC.Dimension-1;
 	SC.RemoveAt(RemoveSC[i]);
-	gs2sc.RemoveAt(RemoveSC[i]);
+//	gs2sc1.RemoveAt(RemoveSC[i]);
+//	gs2sc2.RemoveAt(RemoveSC[i]);
+//	gs2sc3.RemoveAt(RemoveSC[i]);
+	Vect1.RemoveAt(RemoveSC[i]);
+	Vect2.RemoveAt(RemoveSC[i]);
+	Vect3.RemoveAt(RemoveSC[i]);
+	Vect4.RemoveAt(RemoveSC[i]);
+	Vect5.RemoveAt(RemoveSC[i]);
+	Vect6.RemoveAt(RemoveSC[i]);
+	Vect7.RemoveAt(RemoveSC[i]);
+	Vect8.RemoveAt(RemoveSC[i]);
+	Vect9.RemoveAt(RemoveSC[i]);
+	Vect10.RemoveAt(RemoveSC[i]);
+	Vect11.RemoveAt(RemoveSC[i]);
+	Vect12.RemoveAt(RemoveSC[i]);
+	Vect13.RemoveAt(RemoveSC[i]);
+	Vect14.RemoveAt(RemoveSC[i]);
+	Vect15.RemoveAt(RemoveSC[i]);
+	Vect16.RemoveAt(RemoveSC[i]);
 	For j=i to RemoveSC.Dimension-1;
 		RemoveSC[j] = RemoveSC[j] - 1;
 	End;
@@ -1453,12 +3462,62 @@ Report "Currently observing "+ SC.Count.ToString()+" satellites." to Console;
 
 // Window Setup
 
+////Remove Elevation Mask
+For i=0 to GS.Count-1;
+	GS[i].DrawMethod = 0;
+End;
+ThreeD.DrawMethod = 0;
+
+
+//Setup ViewWindow ObservedGroundStation
+Alias gs = ObservedGroundStation;
+gs.WindowTitle = 'Ground Station';
+ObservedGroundStation.OverrideDefaultProperties = 1;
+ObservedGroundStation.ShowStatusText = 0;
+gs.AddObject(ThreeD);
+gs.AddObject(gs2sc);
+//gs.AddObject(Vect6);
+//gs.AddObject(GS[5]);
+//gs.AddObject(SC);
+gs.AddObject(gsmodel);
+//Setup Viewpoint and activate
+Viewpoint gsonly;
+
+//gsonly.ThreeDView.Source = GS[5].ObjectId;
+//gsonly.ThreeDView.Target = GS[5].ObjectId;
+gsonly.ThreeDView.Source = ThreeD.ObjectId;
+gsonly.ThreeDView.Target = ThreeD.ObjectId;
+gsonly.ThreeDView.RightAscension = 270;
+gsonly.ThreeDView.Declination = 20;
+gsonly.ThreeDView.Radius = 20;
+gsonly.ViewpointName    = 'GS[5] View';
+gs.AddViewpoint(gsonly);
+gs.ActivateViewpoint('GS[5] View');
+
+
+
+
 //Setup ViewWindow ObservedOrbit
 ObservedOrbit.WindowTitle = 'Observed Orbit';
 ObservedOrbit.OverrideDefaultProperties = 1;
 ObservedOrbit.AddObject(SC);
 ObservedOrbit.AddObject(GS);
-ObservedOrbit.AddObject(gs2sc);
+ObservedOrbit.AddObject(Vect1);
+ObservedOrbit.AddObject(Vect2);
+ObservedOrbit.AddObject(Vect3);
+ObservedOrbit.AddObject(Vect4);
+ObservedOrbit.AddObject(Vect5);
+ObservedOrbit.AddObject(Vect6);
+ObservedOrbit.AddObject(Vect7);
+ObservedOrbit.AddObject(Vect8);
+ObservedOrbit.AddObject(Vect9);
+ObservedOrbit.AddObject(Vect10);
+ObservedOrbit.AddObject(Vect11);
+ObservedOrbit.AddObject(Vect12);
+ObservedOrbit.AddObject(Vect13);
+ObservedOrbit.AddObject(Vect14);
+ObservedOrbit.AddObject(Vect15);
+ObservedOrbit.AddObject(Vect16);
 ObservedOrbit.ShowStatusText = 0;
 //Setup Viewpoint and activate
 Viewpoint orbitviewpoint;
@@ -1473,7 +3532,25 @@ GroundTrack.WindowTitle = 'Map View';
 GroundTrack.OverrideDefaultProperties = 1;
 GroundTrack.AddObject(SC);
 GroundTrack.AddObject(GS);
-GroundTrack.AddObject(gs2sc);
+//GroundTrack.AddObject(gs2sc1);
+//GroundTrack.AddObject(gs2sc2);
+//GroundTrack.AddObject(gs2sc3);
+GroundTrack.AddObject(Vect1);
+GroundTrack.AddObject(Vect2);
+GroundTrack.AddObject(Vect3);
+GroundTrack.AddObject(Vect4);
+GroundTrack.AddObject(Vect5);
+GroundTrack.AddObject(Vect6);
+GroundTrack.AddObject(Vect7);
+GroundTrack.AddObject(Vect8);
+GroundTrack.AddObject(Vect9);
+GroundTrack.AddObject(Vect10);
+GroundTrack.AddObject(Vect11);
+GroundTrack.AddObject(Vect12);
+GroundTrack.AddObject(Vect13);
+GroundTrack.AddObject(Vect14);
+GroundTrack.AddObject(Vect15);
+GroundTrack.AddObject(Vect16);
 //GroundTrack.ShowStatusText = 0;
 //Setup Viewpoint and activate
 Viewpoint TwoDview;
@@ -1483,29 +3560,157 @@ GroundTrack.AddViewpoint(TwoDview);
 GroundTrack.ActivateViewpoint('GroundTrack View');
 
 
+//Setup ViewWindow Ground Station Map
+GSMap.WindowTitle = 'Ground Station Map';
+GSMap.OverrideDefaultProperties = 1;
+GSMap.AddObject (GS);
+GSMap.ShowStatusText = 0;
+//Setup Viewpoint and activate
+Viewpoint MapView;
+MapView.ViewpointType = "map";
+MapView.ViewpointName = 'Ground Station Locations';
+GSMap.AddViewpoint(MapView);
+GSMap.ActivateViewpoint('Ground Station Locations');
+
+
+
+//Setup List of Satellites + Ground Stations
+ConsoleWindow SatList;
+SatList.BackColor = ColorTools.White;
+SatList.CurrentTextColor = ColorTools.Black;
+SatList.Dimension = 25;
+SatList.DockMode = 0;
+SatList.WindowTitle = "Satellites";
+SatList.Show();
+
+Report @"List of Satellites:\n" to SatList;
+For i=0 to SC.Count-1;
+	Report SC[i].DisplayName to SatList;
+End;
+
+
+ConsoleWindow GSList;
+GSList.BackColor = ColorTools.White;
+GSList.CurrentTextColor = ColorTools.Black;
+GSList.Dimension = 25;
+GSList.DockMode = 0;
+GSList.WindowTitle = "Ground Stations";
+GSList.Show();
+
+Report "List of Ground Stations: " to GSList;
+For i=0 to GS.Count-1;
+	Report GS[i].DisplayName to GSList;
+End;
+
+//Satellite and GS details
+ConsoleWindow SatDetails;
+SatDetails.BackColor = ColorTools.White;
+SatDetails.CurrentTextColor = ColorTools.Black;
+SatDetails.Dimension = 7;
+SatDetails.DockMode = 0;
+SatDetails.WindowTitle = "Satellite Details";
+SatDetails.Show();
+Report "Satellite Details:" to SatDetails;
+For i=0 to SC.Count-1;
+	Report @"\n\n", SC[i].DisplayName to SatDetails;        
+	Report @"Altitude: ", SC[i].Height, "km" to SatDetails;
+	//The magnitude of the velocity vector in the inertial frame in the Spherical Lat/Long Element set. Note that this property is Earth-specific
+	Report @"Velocity: ", SC[i].LatLongVi, "km/s" to SatDetails;
+	Report @"Apogee: ", SC[i].Apogee, "km" to SatDetails;
+	Report @"Perigee: ", SC[i].Perigee, "km" to SatDetails;
+End;
+ConsoleWindow GSDetails;
+GSDetails.BackColor = ColorTools.White;
+GSDetails.CurrentTextColor = ColorTools.Black;
+GSDetails.Dimension = 7;
+GSDetails.DockMode = 0;
+GSDetails.WindowTitle = "Ground Station Objects";
+GSDetails.Show();
+Report "Ground Station Details:" to GSDetails;
+For i=0 to GS.Count-1;
+	Report @"\n\n", GS[i].DisplayName to GSDetails;
+	Report "Coordinates (Lat/Long): ", GS[i].Latitude, " / ", GS[i].Longitude to GSDetails;
+	//Report "Altitude: ", GS[0].Height, "km" to GSDetails;
+	//Report @"Min Horizon: " to GSDetails;
+End;
 // Output Layout Manager
 
 //Extend visibility of output layout
 OutputLayout.ConfigureOutputPropertiesTab(0, 1);
-OutputLayout.ArrangeWindows(2);
-OutputLayout.SetWindowFrameVisibility({ObservedOrbit.ID, GroundTrack.ID}, 0);
-OutputLayout.SetWorkspaceFullScreenMode(1);
+//OutputLayout.ArrangeWindows(2);
+OutputLayout.SetWindowFrameVisibility({ObservedGroundStation.ID, ObservedOrbit.ID, GroundTrack.ID, GSMap.ID, SatDetails.ID, SatList.ID, GSDetails.ID, GSList.ID}, 0);
+OutputLayout.SetWorkspaceFullScreenMode(0);
 
 //Setup window layout
+
+
+Array WindowIDs;
+Variable ConstrainOutputWindows=0;
+
+// Unconstrains All Windows and Consoles
+WindowIDs = OutputLayout.GetWindowIDs(0); // 0 = All, 1 = Console, 2 = View, 3 = Plot, 4 = Report, 5 = Watch
+
+// Unconstrain all specified WindowIDs within array based on the user's selection
+OutputLayout.ConstrainToWorkspace(WindowIDs,ConstrainOutputWindows); // Uses all window IDs returned from the GetWindowIDs method.
+
+OutputLayout.ApplyUpdates();
+
+
+
 //orbit view
-OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0.75, 1, 0.25);
-OutputLayout.SetWindowSize(ObservedOrbit.ID, 1, 0.3,1,0.3);
+OutputLayout.SetWindowPosition(ObservedOrbit.ID, 1, 0, 1, -1);
+OutputLayout.SetWindowSize(ObservedOrbit.ID, 1, 0.25,1,0.5);
 OutputLayout.ApplyUpdates();
-////ground view
-//OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.75, 1, 0.75);
-//OutputLayout.SetWindowSize(ObservedGroundStation.ID,1,0.3,1,0.3);
-////OutputLayout.BringWindowToFront(ObservedGroundStation.ID);
-//OutputLayout.ApplyUpdates();
 //map view
-OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0, 1, 0);
-OutputLayout.SetWindowSize(GroundTrack.ID, 1,1,1,1);
-OutputLayout.SendWindowToBack(GroundTrack.ID);
+OutputLayout.SetWindowPosition(GroundTrack.ID, 1, 0.25, 1, -1);
+OutputLayout.SetWindowSize(GroundTrack.ID, 1,0.75,1,0.5);
+//OutputLayout.SendWindowToBack(GroundTrack.ID);
 OutputLayout.ApplyUpdates();
+//Sat Details view
+OutputLayout.SetWindowPosition(SatDetails.ID, 1, 0, 1, -0.5);
+OutputLayout.SetWindowSize(SatDetails.ID, 1,0.4,1,0.5);
+//OutputLayout.SendWindowToBack(SatDetails.ID);
+OutputLayout.ApplyUpdates();
+
+//GS Details view
+OutputLayout.SetWindowPosition(GSDetails.ID, 1, 0.4, 1, -0.5);
+OutputLayout.SetWindowSize(GSDetails.ID, 1,0.4,1,0.5);
+OutputLayout.ApplyUpdates();
+
+
+//3D Ground Station view
+OutputLayout.SetWindowPosition(ObservedGroundStation.ID, 1, 0.8, 1, -0.5);
+OutputLayout.SetWindowSize(ObservedGroundStation.ID,1,0.2,1,0.5);
+OutputLayout.BringWindowToFront(ObservedGroundStation.ID);
+OutputLayout.ApplyUpdates();
+
+
+//Ground Station Map View
+OutputLayout.SetWindowPosition(GSMap.ID, 1, 0, 1, 0);
+OutputLayout.SetWindowSize(GSMap.ID, 1,1,1,0.5);
+OutputLayout.SendWindowToBack(GSMap.ID);
+OutputLayout.ApplyUpdates();
+
+//Sat List view
+OutputLayout.SetWindowPosition(SatList.ID, 1, 0, 1, 0.5);
+OutputLayout.SetWindowSize(SatList.ID, 1,0.5,1,0.5);
+OutputLayout.ApplyUpdates();
+
+//GS List view
+OutputLayout.SetWindowPosition(GSList.ID, 1, 0.5, 1, 0.5);
+OutputLayout.SetWindowSize(GSList.ID, 1,0.5,1,0.5);
+OutputLayout.ApplyUpdates();
+
+
+//OutputLayout.ArrangeWindows(0, {GSList.ID, SatList.ID, -1, SatDetails.ID, GSDetails.ID});
+
+//OutputLayout.ApplyUpdates();
+
+
+//OutputLayout.SetWindowSize(GSList.ID, 0, 300, 0, 300);
+//OutputLayout.SetWindowPosition(GSList.ID, 0, 0, 0, 0);
+//OutputLayout.ApplyUpdates();
+
 // Step Spacecraft
 For i=0 to SC.Count-1;
 	Step SC[i] to (SC[i].Epoch == tleEpoch);
@@ -1514,22 +3719,173 @@ For i=0 to SC.Count-1;
 	(SC[i].Propagator AsType Norad).StepSize = TIMESPAN(0.1 seconds);
 End;
 
-While(SC[0].ElapsedTime() < TIMESPAN(6 hours));
+
+
+
+
+While (SC[0].ElapsedTime < TIMESPAN(6 days));
+
+	
 	For i=0 to SC.Count-1;
-		gs2sc[i].Active = 0;
-		If(GS.Elevation(SC[i])>0);
-			gs2sc[i].Active = 1;
-		End;
-	End;
 		
+		
+		If (SC[i].Contact(ThreeD) ==1);
+			gs2sc[i].BuildVector(9,ThreeD,SC[i]);
+			gs2sc[i].Color = ColorTools.Yellow;
+			gs2sc[i].Active = 1;
+		Else;
+			gs2sc[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[0]) == 1);
+			Vect1[i].BuildVector(9, GS[0], SC[i]);
+			Vect1[i].Active = 1;
+		Else;
+			Vect1[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[1]) == 1);
+			Vect2[i].BuildVector(9, GS[1], SC[i]);
+			Vect2[i].Active = 1;
+		Else;
+			Vect2[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[2]) == 1);
+			Vect3[i].BuildVector(9, GS[2], SC[i]);
+			Vect3[i].Active = 1;
+		Else;
+			Vect3[i].Active = 0;
+		End;
+	
+		If (SC[i].Contact(GS[3]) == 1);
+			Vect4[i].BuildVector(9, GS[3], SC[i]);
+			Vect4[i].Active = 1;
+		Else;
+			Vect4[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[4]) == 1);
+			Vect5[i].BuildVector(9, GS[4], SC[i]);
+			Vect5[i].Active = 1;
+		Else;
+			Vect5[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[5]) == 1);
+			Vect6[i].BuildVector(9, GS[5], SC[i]);
+			Vect6[i].Active = 1;
+		Else;
+			Vect6[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[6]) == 1);
+			Vect7[i].BuildVector(9, GS[6], SC[i]);
+			Vect7[i].Active = 1;
+		Else;
+			Vect7[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[7]) == 1);
+			Vect8[i].BuildVector(9, GS[7], SC[i]);
+			Vect8[i].Active = 1;
+		Else;
+			Vect8[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[8]) == 1);
+			Vect9[i].BuildVector(9, GS[8], SC[i]);
+			Vect9[i].Active = 1;
+		Else;
+			Vect9[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[9]) == 1);
+			Vect10[i].BuildVector(9, GS[9], SC[i]);
+			Vect10[i].Active = 1;
+		Else;
+			Vect10[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[10]) == 1);
+			Vect11[i].BuildVector(9, GS[10], SC[i]);
+			Vect11[i].Active = 1;
+		Else;
+			Vect11[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[11]) == 1);
+			Vect12[i].BuildVector(9, GS[11], SC[i]);
+			Vect12[i].Active = 1;
+		Else;
+			Vect12[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[12]) == 1);
+			Vect13[i].BuildVector(9, GS[12], SC[i]);
+			Vect13[i].Active = 1;
+		Else;
+			Vect13[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[13]) == 1);
+			Vect14[i].BuildVector(9, GS[13], SC[i]);
+			Vect14[i].Active = 1;
+		Else;
+			Vect14[i].Active = 0;
+		End;
+		
+		If (SC[i].Contact(GS[14]) == 1);
+			Vect15[i].BuildVector(9, GS[14], SC[i]);
+			Vect15[i].Active = 1;
+		Else;
+			Vect15[i].Active = 0;
+		End;
+		If (SC[i].Contact(GS[15]) == 1);
+			Vect16[i].BuildVector(9, GS[15], SC[i]);
+			Vect16[i].Active = 1;
+		Else;
+			Vect16[i].Active = 0;
+		End;
+
+	End; 
+		
+	
 	Update GroundTrack;
 	Update ObservedOrbit;
+	Update GSMap;
+	Update ObservedGroundStation;
 	
 	Step SC;
-//	[0];
-//	For i=1 to SC.Count-1;
-//		Step SC[i] to (SC[i].Epoch==SC[0].Epoch);
+
+End;
+
+
+//While(SC[0].ElapsedTime() < TIMESPAN(6 hours));
+//	For i=0 to SC.Count-1;
+//		gs2sc1[i].Active = 0;
+//		gs2sc2[i].Active = 0;
+//		gs2sc3[i].Active = 0;
+//		If(GS[0].Elevation(SC[i])>0);
+//			gs2sc1[i].Active = 1;
+//		
+//		End;
+//		If(GS[1].Elevation(SC[i])>0);
+//			gs2sc2[i].Active = 1;
+//			
+//		End;
+//		If(GS[2].Elevation(SC[i])>0);
+//			gs2sc3[i].Active = 1;
+//		End;
 //	End;
-End;]]></ProjectScript>
+//		
+//	Update GroundTrack;
+//	Update ObservedOrbit;
+//	Update GSMap;
+//	
+//	Step SC;
+//End;
+
+
+
+
+]]></ProjectScript>
   <ProjectNotes></ProjectNotes>
 </FreeFlyerProjectFile>
