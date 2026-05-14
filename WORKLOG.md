@@ -58,3 +58,25 @@ Chronological record of work sessions and significant changes.
 - Created `ARCHITECTURE.md`: full system design — data flow diagram, component breakdown, TX/RX link visualization spec, ground network support table, deployment target
 - Created `TODO.md`: phase-by-phase task list with completed items marked
 - Created `WORKLOG.md`: this file, backfilled from git history
+
+---
+
+## 2026-05-14
+
+**Phase 2 — Python real-time layer**
+
+Built the Python data layer end-to-end. All modules under `python/`.
+
+- `python/tle.py`: `TLE` dataclass with epoch decoder, `parse_tle_text()` accepting both 2-line and 3-line records, `validate_age()` with warn (>7d) / reject (>14d) thresholds
+- `python/celestrak.py`: `fetch_celestrak()` against `gp.php?GROUP=...&FORMAT=tle`, `load_offline()` reading `satnogs.txt`, `fetch_with_fallback()` that swaps to offline on any network error
+- `python/satnogs.py`: SatNOGS Network API client — `fetch_online_stations()` (status filter = 2/online) and `fetch_active_observations()` filtered to observations whose window contains the current epoch
+- `python/dsn.py`: parses NASA Eyes' DSN Now XML feed into `DSNDish` and `DSNTarget` records with explicit `uplink`/`downlink` flags
+- `python/nen.py`: stub for SCAN-NOW; structure is in place so the aggregator does not change when a stable feed lands
+- `python/contact_state.py`: aggregates DSN + SatNOGS (+ NEN when enabled) into `Contact(station, network, spacecraft, norad_id, link, timestamp)` with `link ∈ {TX, RX, BOTH, IDLE}`
+- `python/server.py`: line-delimited TCP server on `127.0.0.1:5005`; `TLES` returns a 3-line bundle terminated by `.`, `CONTACTS` returns a JSON array — protocol chosen for FreeFlyer's `Socket` reader compatibility
+- `python/config.py`: dataclass-backed `Config` with JSON loader; defines `GroundStation` for "local" stations
+- `python/main.py`: spawns the TLE refresher, contact refresher, and socket server as daemons
+
+**Tests:** `python/tests/test_smoke.py` — 6 offline tests covering TLE parsing of `satnogs.txt`, age-validator filtering, link classification, contact serialization, and a full socket round-trip on an ephemeral port. All passing.
+
+Updated `TODO.md` (Phase 2 items checked, NEN noted as stub) and `ARCHITECTURE.md` (TLE Ingestion / Contact Resolver / Socket Server sections rewritten to reflect the real implementation).

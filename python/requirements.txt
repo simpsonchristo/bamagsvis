@@ -1,0 +1,4 @@
+# bamagsvis Python real-time layer
+# Pure stdlib for HTTP and XML; sgp4 used by downstream consumers if they
+# want local propagation (FreeFlyer/Blender handle their own propagation).
+sgp4>=2.20

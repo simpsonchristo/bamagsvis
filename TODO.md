@@ -18,15 +18,15 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 
 ## Phase 2 — Python Real-Time Layer
 
-- [ ] Script to poll Celestrak for latest TLE catalog on a configurable interval
-- [ ] Script to query SatNOGS API for active station observations
-- [ ] SatNOGS station status filter: only include `online` stations
-- [ ] TLE age validator: flag elements older than 7 days, reject > 14 days
-- [ ] Contact state module: output list of `(station, satellite, TX|RX|both)` each epoch
-- [ ] Socket interface to feed live data into FreeFlyer or Blender
-- [ ] Offline fallback: use `satnogs.txt` snapshot when network is unavailable
-- [ ] DSN Now scraper / API integration for real-time DSN contact data
-- [ ] NEN contact query (if API is available or via SCAN-NOW feed)
+- [x] Script to poll Celestrak for latest TLE catalog on a configurable interval (`python/celestrak.py`)
+- [x] Script to query SatNOGS API for active station observations (`python/satnogs.py`)
+- [x] SatNOGS station status filter: only include `online` stations
+- [x] TLE age validator: flag elements older than 7 days, reject > 14 days (`python/tle.py`)
+- [x] Contact state module: output list of `(station, satellite, TX|RX|both)` each epoch (`python/contact_state.py`)
+- [x] Socket interface to feed live data into FreeFlyer or Blender (`python/server.py`)
+- [x] Offline fallback: use `satnogs.txt` snapshot when network is unavailable
+- [x] DSN Now scraper / API integration for real-time DSN contact data (`python/dsn.py`)
+- [ ] NEN contact query — stub in place (`python/nen.py`); awaiting a stable public SCAN-NOW machine-readable feed
 
 ## Phase 3 — Blender TV Display
 

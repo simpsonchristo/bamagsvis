@@ -35,16 +35,32 @@ bamagsvis/
 ├── satnogs.txt                             # Cached TLE snapshot from SatNOGS catalog
 ├── Models/
 │   └── DSN 34/                             # 34 m dish 3D model (Blender, 3DS, STL, textures)
+├── python/                                 # Real-time data layer
+│   ├── tle.py celestrak.py satnogs.py dsn.py nen.py
+│   ├── contact_state.py server.py main.py config.py
+│   └── tests/                              # Offline smoke tests (no network)
 ├── README.md
 ├── ARCHITECTURE.md
 ├── TODO.md
 └── WORKLOG.md
 ```
 
+## Running the Real-Time Data Layer
+
+```bash
+python3 -m python.main                    # defaults: localhost:5005, all networks except NEN
+python3 -m python.main --config cfg.json  # see python/config.py for fields
+python3 -m unittest python.tests.test_smoke -v   # offline test suite
+```
+
+The server speaks a line-delimited TCP protocol on `127.0.0.1:5005`:
+- `TLES\n` → 3-line TLE records, terminated by a single `.\n`
+- `CONTACTS\n` → JSON array of `{station, network, spacecraft, norad_id, link, timestamp}`
+
 ## Development Roadmap
 
 1. **FreeFlyer prototype** — rapid visibility prototype using built-in DSN/NEN stations *(complete)*
-2. **Python real-time layer** — live TLE updates, SatNOGS polling, observation state *(in progress)*
+2. **Python real-time layer** — live TLE updates, SatNOGS polling, DSN Now, contact aggregation, socket server *(complete; NEN feed pending)*
 3. **Blender final display** — polished 3D TV-ready render with TX/RX link visualization *(planned)*
 
 See [TODO.md](TODO.md) for the detailed task list and [ARCHITECTURE.md](ARCHITECTURE.md) for system design.

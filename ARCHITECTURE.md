@@ -43,12 +43,12 @@ External TLE Sources                Ground Station Network APIs
 
 ### 1. TLE Ingestion
 
-**Files:** `CelestrakSocketwithtlecheck.MissionPlan`, `satnogs.txt`
+**Files:** `python/celestrak.py`, `python/tle.py`, `CelestrakSocketwithtlecheck.MissionPlan`, `satnogs.txt`
 
-- Connects to Celestrak via socket to fetch current TLE catalog
-- Validates TLE age; rejects elements older than a configurable threshold
-- `satnogs.txt` serves as a fallback offline snapshot (~370 satellites)
-- Python layer (planned) will add SatNOGS polling for community ground stations
+- `celestrak.fetch_with_fallback()` pulls a configurable Celestrak group (default `active`) on the configured interval
+- `tle.validate_age()` warns at >7 days, rejects at >14 days (configurable)
+- `satnogs.txt` serves as the offline fallback (~370 satellites); used automatically on network failure
+- The legacy FreeFlyer mission plan (`CelestrakSocketwithtlecheck.MissionPlan`) remains for the in-FreeFlyer prototype path
 
 ### 2. Orbit Propagation — FreeFlyer
 
@@ -62,11 +62,21 @@ External TLE Sources                Ground Station Network APIs
 
 ### 3. Ground Station Contact Resolver
 
-**Files:** `trackingVisualization.MissionPlan`
+**Files:** `python/contact_state.py`, `python/dsn.py`, `python/satnogs.py`, `python/nen.py`, `trackingVisualization.MissionPlan`
 
-- Queries DSN Now / SatNOGS API for active contacts
-- Determines which station–satellite pairs are in active TX or RX
-- Produces a list of `(station, satellite, link_type)` tuples passed to the renderer
+- `dsn.fetch_dsn_now()` parses the public DSN Now XML feed and yields per-dish target uplink/downlink state
+- `satnogs.fetch_online_stations()` filters the SatNOGS station catalog to status `online`; `fetch_active_observations()` returns observations whose window contains the current epoch
+- `nen.fetch_nen_now()` is a stub awaiting a stable machine-readable SCAN-NOW feed
+- `contact_state.collect()` aggregates all enabled sources into a single list of `Contact(station, network, spacecraft, norad_id, link, timestamp)` where `link ∈ {TX, RX, BOTH, IDLE}`
+
+### 3a. Socket Server
+
+**Files:** `python/server.py`, `python/main.py`
+
+- Line-delimited TCP protocol on `127.0.0.1:5005` (configurable)
+- `TLES` returns the current 3-line TLE bundle terminated by a single `.` line — chosen to match FreeFlyer's `Socket` reader
+- `CONTACTS` returns a single JSON line: a list of `Contact` records suitable for both FreeFlyer and Blender consumers
+- Two background threads refresh TLEs (`tle_refresh_seconds`) and contact state (`contact_refresh_seconds`) independently
 
 ### 4. Visualization Layer
 
