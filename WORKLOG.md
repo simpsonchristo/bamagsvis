@@ -80,3 +80,28 @@ Built the Python data layer end-to-end. All modules under `python/`.
 **Tests:** `python/tests/test_smoke.py` — 6 offline tests covering TLE parsing of `satnogs.txt`, age-validator filtering, link classification, contact serialization, and a full socket round-trip on an ephemeral port. All passing.
 
 Updated `TODO.md` (Phase 2 items checked, NEN noted as stub) and `ARCHITECTURE.md` (TLE Ingestion / Contact Resolver / Socket Server sections rewritten to reflect the real implementation).
+
+---
+
+## 2026-05-14 (continued)
+
+**Phase 3 — Dash + Skyfield TV display**
+
+Built the Python-only visualization layer. All code under `viz/`.
+
+- `viz/propagator.py`: wraps Skyfield's `EarthSatellite` and `wgs84` API
+  - `build_satellites(tles)` converts `TLE` records into `EarthSatellite` objects; uses `builtin=True` timescale (no IERS download required)
+  - `propagate(sats, lat, lon, alt_m)` computes each satellite's geodetic subpoint plus topocentric elevation/azimuth/distance from the observer at the current epoch; returns `SatPosition` dataclasses with `overhead` and `visible` boolean properties
+  - Per-satellite exceptions are caught silently so a single bad TLE does not abort the refresh
+
+- `viz/app.py`: Plotly Dash web app
+  - Three background daemon threads: TLE refresh (1-hour cycle), DSN Now refresh (60-second cycle), and the Dash/Flask server itself
+  - `_build_figure()` constructs a `go.Scattergeo` orthographic globe centered on the observer with three satellite tiers (blue / yellow / green+label), red-star observer marker, orange-triangle DSN complex markers, and colored TX/RX lines when a DSN contact name matches a satellite in the propagated catalog
+  - Header shows UTC timestamp, satellite count, overhead count, visible count; footer lists all active DSN contacts with TX/RX/TX+RX annotation
+  - `dcc.Interval` at 30 seconds re-runs `propagate()` and redraws the figure without a page reload
+  - `--offline` flag skips TLE age validation and reads `satnogs.txt` directly (allows demo without internet access)
+  - `--port` flag (default 8050); designed for browser fullscreen (F11) on a TV
+
+Verified end-to-end with 247 satellites from the offline snapshot: 11 overhead, 8 visible from UA Tuscaloosa; all DSN markers rendered; TX/RX lines drawn when contacts match.
+
+Updated `README.md` (tech stack, repo layout, running instructions, roadmap), `ARCHITECTURE.md` (data flow diagram, Skyfield propagator section 2b, Dash visualization section 4b), and `TODO.md` (Phase 3 items checked; Blender split into Phase 4).

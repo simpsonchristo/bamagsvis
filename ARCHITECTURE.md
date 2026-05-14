@@ -14,27 +14,29 @@ External TLE Sources                Ground Station Network APIs
          │                                    │
          ▼                                    ▼
   TLE Ingestion Layer  ◄──────────────────────┘
-  (Python / FreeFlyer socket)
+  (python/celestrak.py + tle.py)
          │
-         ▼
-  Orbit Propagator (FreeFlyer SGP4/SDP4)
+         ├──► Socket Server (python/server.py)
+         │    Protocol: TLES / CONTACTS → FreeFlyer or Blender consumer
          │
-         ├──► Overhead set: all sats above local horizon
-         │
-         └──► Visibility set: sats above min elevation + in view
+         └──► Skyfield Propagator (viz/propagator.py)
                     │
-                    ▼
-             Ground Station Contact Resolver
-             (is a station currently tracking? TX/RX active?)
-                    │
-                    ▼
-             Scene State (satellite positions, link vectors, timestamps)
-                    │
-                    ▼
-             3D Renderer (Blender / FreeFlyer View)
-                    │
-                    ▼
-              TV / Display Output
+                    ├──► Subpoint (lat/lon) for every satellite
+                    ├──► Overhead set: elevation > 0° from observer
+                    └──► Visibility set: elevation > 5° from observer
+                                │
+                                ▼
+                     Ground Station Contact Resolver
+                     (is a DSN/SatNOGS station tracking? TX/RX active?)
+                                │
+                                ▼
+                     Plotly Dash Globe (viz/app.py)
+                     — orthographic projection, satellite tiers,
+                       DSN dish markers, TX/RX link lines
+                                │
+                                ▼
+                          TV / Display Output
+                         (browser fullscreen, port 8050)
 ```
 
 ---
@@ -50,7 +52,7 @@ External TLE Sources                Ground Station Network APIs
 - `satnogs.txt` serves as the offline fallback (~370 satellites); used automatically on network failure
 - The legacy FreeFlyer mission plan (`CelestrakSocketwithtlecheck.MissionPlan`) remains for the in-FreeFlyer prototype path
 
-### 2. Orbit Propagation — FreeFlyer
+### 2a. Orbit Propagation — FreeFlyer (prototype)
 
 **Files:** `trackingVisualization.MissionPlan`, `CelestrakSocketwithtlecheck.MissionPlan`
 
@@ -59,6 +61,17 @@ External TLE Sources                Ground Station Network APIs
 - Resolves visibility windows: elevation angle > threshold, line-of-sight not blocked
 - DSN and NEN stations are built into FreeFlyer's ground station library
 - SatNOGS stations require custom entries (lat/lon/alt from the SatNOGS API)
+
+### 2b. Orbit Propagation — Skyfield (production)
+
+**Files:** `viz/propagator.py`
+
+- `build_satellites(tles)` wraps each `TLE` record in a Skyfield `EarthSatellite`; uses `builtin=True` timescale so no network fetch is required on startup
+- `propagate(sats, lat, lon, alt_m)` computes, for each satellite at the current epoch:
+  - **Subpoint**: geodetic latitude/longitude and altitude via `wgs84.subpoint_of()`
+  - **Topocentric**: elevation, azimuth, and slant range from the observer via `EarthSatellite.at(t) - observer`
+- Returns `SatPosition` dataclasses with `overhead` (elevation ≥ 0°) and `visible` (elevation ≥ 5°) boolean properties
+- Malformed or decayed TLEs are silently skipped; all exceptions are caught per satellite
 
 ### 3. Ground Station Contact Resolver
 
@@ -80,16 +93,33 @@ External TLE Sources                Ground Station Network APIs
 
 ### 4. Visualization Layer
 
-**Files:** `trackingVisualization.MissionPlan`, `animationExample.MissionPlan`, `Models/DSN 34/`
-
-Two rendering backends exist (one per project phase):
+Three rendering backends span the project phases:
 
 #### 4a. FreeFlyer View (prototype)
+
+**Files:** `trackingVisualization.MissionPlan`, `animationExample.MissionPlan`
+
 - Built-in 3D globe with satellite tracks and ground station icons
 - Ground station view vectors added (`Added Vectors to GSView` commit)
-- Fast to iterate; used to validate logic before the Blender build
+- Fast to iterate; used to validate orbit logic before production builds
 
-#### 4b. Blender (final TV display)
+#### 4b. Plotly Dash Globe (Phase 3 — production)
+
+**Files:** `viz/app.py`
+
+- Dash web app served on `http://0.0.0.0:8050`; browser in fullscreen replaces a dedicated renderer
+- `go.Scattergeo` orthographic projection centered on the observer (UA Tuscaloosa by default)
+- Satellites plotted in three color-coded tiers: blue (below horizon), yellow (overhead), green + label (visible > 5°)
+- Observer ground station rendered as a red star; three DSN complexes (Goldstone, Madrid, Canberra) as orange triangles
+- When a DSN contact from `dsn.fetch_dsn_now()` matches a satellite name in the propagated catalog, a colored TX/RX line is drawn from the dish lat/lon to the satellite's current subpoint
+- `dcc.Interval` triggers position re-propagation every 30 seconds; TLE catalog refreshes every hour; DSN contacts refresh every 60 seconds
+- `--offline` flag loads `satnogs.txt` without age validation — allows demo operation with no internet
+- `--port` flag to change the listen port
+
+#### 4c. Blender (planned)
+
+**Files:** `Models/DSN 34/`
+
 - Full 3D scene: textured Earth sphere, satellite point-cloud, animated dish model
 - TX vector rendered as an upward beam from the dish to the satellite position
 - RX vector rendered as a return beam (different color/style)

@@ -28,21 +28,34 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 - [x] DSN Now scraper / API integration for real-time DSN contact data (`python/dsn.py`)
 - [ ] NEN contact query — stub in place (`python/nen.py`); awaiting a stable public SCAN-NOW machine-readable feed
 
-## Phase 3 — Blender TV Display
+## Phase 3 — Dash + Skyfield TV Display
+
+- [x] Skyfield propagator: load EarthSatellites, compute subpoints + topocentric geometry (`viz/propagator.py`)
+- [x] Overhead set: satellites with elevation ≥ 0° from observer
+- [x] Visibility set: satellites with elevation ≥ 5° from observer (labeled on globe)
+- [x] Orthographic globe centered on observer, dark space theme (`viz/app.py`)
+- [x] Three satellite tiers: blue (below horizon), yellow (overhead), green + name label (visible)
+- [x] Observer ground station marker (red star)
+- [x] DSN complex markers: Goldstone, Madrid, Canberra (orange triangles)
+- [x] TX/RX link lines from DSN dish to satellite subpoint when contact name matches catalog
+- [x] Header stats: UTC time, total tracked, overhead count, visible count
+- [x] Footer: live DSN contact list with TX/RX/TX+RX annotation
+- [x] 30-second auto-refresh via `dcc.Interval`; TLE refresh hourly; DSN refresh each 60 s
+- [x] `--offline` flag for demo operation without internet
+- [ ] Configurable minimum elevation angle (currently hard-coded 5°)
+- [ ] Next AOS/LOS prediction for visible satellites
+- [ ] Test output on target TV resolution (4K/1080p) and verify text readability at distance
+
+## Phase 4 — Blender Final Display
 
 - [ ] Import DSN 34 model into final scene; apply AO textures
 - [ ] Build Earth sphere with up-to-date texture (cloud layer optional)
 - [ ] Satellite point cloud: position empties at propagated ECI coordinates each frame
-- [ ] Overhead ring: highlight satellites within X° of zenith
-- [ ] Visibility cone: shade region visible from the configured ground station
 - [ ] TX beam: animated curve from dish to tracked satellite (uplink color)
 - [ ] RX beam: animated curve from satellite back to dish (downlink color)
-- [ ] HUD overlay: satellite name, elevation, azimuth, next AOS/LOS times
 - [ ] Kiosk mode: fullscreen, no window chrome, continuous loop, auto-restart on crash
-- [ ] Multi-station mode: render multiple active contacts simultaneously
-- [ ] Test output on target TV resolution (4K/1080p) and aspect ratio
 
-## Phase 4 — Polish & Operations
+## Phase 5 — Polish & Operations
 
 - [ ] Automated TLE refresh cron/service (system service or Python scheduler)
 - [ ] Config file for: ground station location, min elevation, update interval, display resolution
