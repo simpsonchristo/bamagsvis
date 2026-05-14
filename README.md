@@ -1,15 +1,70 @@
-# University of Alabama Ground Station Visuals
-FreeFlyer, Python, and Blender used to visualize real-time station tracking of satellites around the world and at University of Alabama. 
-## Introduction
-FreeFlyer is a flight dynamics software created by [a.i. solutions, Inc.](https://ai-solutions.com/). Using the Engineer tier of the software (the one distributed to students), a prototype of the real-time visual display of satellite tracking and observations will be created. FreeFlyer can be compared to STK but is much more versatile at scripting relying less on GUIs and more on the user to integrate native applications with FreeFlyer. FreeFlyer is used in the Flight Dynamics Facility at Goddard Spaceflight Center that supports the [Conjunction Assessment Risk Analysis (CARA)](https://satellitesafety.gsfc.nasa.gov/cara.html). CARA performs probability of collision and risk analysis for all spacecraft w/o a human onboard.
+# bamagsvis — UA Ground Station Satellite Visualizer
 
-## Plan of Attack
-1. FreeFlyer first to build a prototype. Easiest to get something working fast!
-2. Incorporate Python tools used to determine real-time observation.
-3. Finalize visual using Blender. Python tools previously built will be used as modules for real-time feed.
+Real-time TV display showing which satellites are currently overhead and visible from a ground station, with TX/RX link visualization when a ground station is actively coupled.
 
-After the first prototype is built (24 hr grab of TLEs + check for visibility) we will need to update the visual in real-time. This means grabbing information from the Deep Space Network (DSN), Near Earth Network (NEN), and SatNOGS network on current observations. SatNOGS will uniquely require checks for whether a ground station is active and its location. DSN and NEN ground stations are built-into FreeFlyer making FreeFlyer the tool of choice for creating the prototype. 
+## What It Does
 
-[DSN and NEN Real-Time](https://scan-now.gsfc.nasa.gov/scan)
+- Renders a live 3D scene on a display (TV/monitor) showing satellites currently overhead
+- Highlights satellites visible above the horizon from a configured ground station
+- When a ground station is coupled, draws the uplink (TX) and downlink (RX) vectors between the station and the satellite it is tracking
+- Pulls live TLE data from Celestrak and SatNOGS to keep orbital elements current
+- Supports DSN, NEN, and SatNOGS ground networks out of the box
 
-[SatNOGS Network](https://network.satnogs.org/)
+## Tech Stack
+
+| Layer | Tool | Role |
+|-------|------|------|
+| Simulation | FreeFlyer (Engineer tier) | Orbit propagation, visibility windows, ground station contacts |
+| Processing | Python | Real-time TLE ingestion, observation state, SatNOGS polling |
+| Visualization | Blender | 3D scene rendering — globe, satellite tracks, TX/RX vectors |
+| 3D Assets | DSN 34 model (.blend / .3ds / .stl) | High-fidelity dish model for ground station representation |
+
+## External Data Sources
+
+- **Celestrak** — TLE catalog (polled via socket in `CelestrakSocketwithtlecheck.MissionPlan`)
+- **SatNOGS Network** — community ground station observations: https://network.satnogs.org/
+- **DSN / NEN Real-Time** — NASA tracking network status: https://scan-now.gsfc.nasa.gov/scan
+
+## Repository Layout
+
+```
+bamagsvis/
+├── trackingVisualization.MissionPlan       # Primary FreeFlyer scene: satellite tracking display
+├── CelestrakSocketwithtlecheck.MissionPlan # Live TLE fetch + validation via Celestrak socket
+├── animationExample.MissionPlan            # Reference animation patterns (DSN dish, vectors)
+├── satnogs.txt                             # Cached TLE snapshot from SatNOGS catalog
+├── Models/
+│   └── DSN 34/                             # 34 m dish 3D model (Blender, 3DS, STL, textures)
+├── python/                                 # Real-time data layer
+│   ├── tle.py celestrak.py satnogs.py dsn.py nen.py
+│   ├── contact_state.py server.py main.py config.py
+│   └── tests/                              # Offline smoke tests (no network)
+├── README.md
+├── ARCHITECTURE.md
+├── TODO.md
+└── WORKLOG.md
+```
+
+## Running the Real-Time Data Layer
+
+```bash
+python3 -m python.main                    # defaults: localhost:5005, all networks except NEN
+python3 -m python.main --config cfg.json  # see python/config.py for fields
+python3 -m unittest python.tests.test_smoke -v   # offline test suite
+```
+
+The server speaks a line-delimited TCP protocol on `127.0.0.1:5005`:
+- `TLES\n` → 3-line TLE records, terminated by a single `.\n`
+- `CONTACTS\n` → JSON array of `{station, network, spacecraft, norad_id, link, timestamp}`
+
+## Development Roadmap
+
+1. **FreeFlyer prototype** — rapid visibility prototype using built-in DSN/NEN stations *(complete)*
+2. **Python real-time layer** — live TLE updates, SatNOGS polling, DSN Now, contact aggregation, socket server *(complete; NEN feed pending)*
+3. **Blender final display** — polished 3D TV-ready render with TX/RX link visualization *(planned)*
+
+See [TODO.md](TODO.md) for the detailed task list and [ARCHITECTURE.md](ARCHITECTURE.md) for system design.
+
+## Background
+
+FreeFlyer is flight dynamics software from [a.i. solutions, Inc.](https://ai-solutions.com/) used operationally at NASA Goddard's Flight Dynamics Facility for the [Conjunction Assessment Risk Analysis (CARA)](https://satellitesafety.gsfc.nasa.gov/cara.html) program. The Engineer (student) tier is used here for rapid prototyping before the final Blender visualization is built.
