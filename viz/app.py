@@ -232,8 +232,95 @@ def _build_figure(positions: list[SatPosition], dishes: list[DSNDish]) -> go.Fig
     return fig
 
 
+# ── Sky chart (az/el polar plot from observer) ────────────────────────────────
+def _build_sky_chart(positions: list[SatPosition]) -> go.Figure:
+    """Polar plot of the local sky as seen from the observer.
+
+    theta = azimuth (0° = North, clockwise through E/S/W).
+    r     = 90 - elevation (zenith at center, horizon at outer ring).
+    """
+    overhead = [p for p in positions if p.overhead]
+    vis   = [p for p in overhead if p.visible]
+    above = [p for p in overhead if not p.visible]
+
+    traces: list[go.Scatterpolar] = []
+
+    if above:
+        traces.append(go.Scatterpolar(
+            theta=[p.azimuth_deg for p in above],
+            r=[90 - p.elevation_deg for p in above],
+            mode="markers",
+            marker=dict(size=7, color=COLOR_OVR, opacity=0.75,
+                        line=dict(width=0)),
+            hovertext=[f"{p.name}<br>El {p.elevation_deg:.1f}°  Az {p.azimuth_deg:.1f}°"
+                       for p in above],
+            hoverinfo="text",
+            name="Overhead 0–5°",
+        ))
+
+    if vis:
+        traces.append(go.Scatterpolar(
+            theta=[p.azimuth_deg for p in vis],
+            r=[90 - p.elevation_deg for p in vis],
+            mode="markers+text",
+            marker=dict(size=12, color=COLOR_VIS,
+                        line=dict(color="white", width=1)),
+            text=[p.name for p in vis],
+            textposition="top center",
+            textfont=dict(color=COLOR_VIS, size=9),
+            hovertext=[f"{p.name}<br>El {p.elevation_deg:.1f}°  Az {p.azimuth_deg:.1f}°"
+                       f"<br>{p.distance_km:.0f} km" for p in vis],
+            hoverinfo="text",
+            name="Visible >5°",
+        ))
+
+    fig = go.Figure(data=traces)
+    fig.update_layout(
+        paper_bgcolor=BG_PAGE,
+        plot_bgcolor=BG_PAGE,
+        margin=dict(l=30, r=30, t=30, b=30),
+        showlegend=False,
+        polar=dict(
+            bgcolor=BG_GLOBE,
+            radialaxis=dict(
+                range=[0, 90],
+                tickvals=[0, 30, 60, 90],
+                ticktext=["90°", "60°", "30°", "0°"],   # elevation rings
+                tickfont=dict(color="#7ab4ff", size=10),
+                gridcolor="rgba(120,180,255,0.2)",
+                linecolor="rgba(120,180,255,0.4)",
+                angle=90,
+                tickangle=90,
+            ),
+            angularaxis=dict(
+                direction="clockwise",
+                rotation=90,                 # 0° (azimuth) at top → North up
+                tickvals=[0, 45, 90, 135, 180, 225, 270, 315],
+                ticktext=["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
+                tickfont=dict(color="#7ab4ff", size=13),
+                gridcolor="rgba(120,180,255,0.15)",
+                linecolor="rgba(120,180,255,0.4)",
+            ),
+        ),
+    )
+    return fig
+
+
 # ── Dash app ──────────────────────────────────────────────────────────────────
 app = dash.Dash(__name__, title="UA Satellite Tracker")
+
+TAB_STYLE = {
+    "backgroundColor": BG_PAGE, "color": "#7ab4ff80",
+    "border": "1px solid rgba(120,180,255,0.15)",
+    "padding": "6px 18px", "fontFamily": "monospace",
+}
+TAB_SELECTED = {
+    "backgroundColor": BG_GLOBE, "color": "#7ab4ff",
+    "border": "1px solid rgba(120,180,255,0.5)",
+    "borderBottom": f"2px solid {COLOR_VIS}",
+    "padding": "6px 18px", "fontFamily": "monospace", "fontWeight": "bold",
+}
+
 app.layout = html.Div(
     style={"backgroundColor": BG_PAGE, "height": "100vh",
            "display": "flex", "flexDirection": "column", "fontFamily": "monospace"},
@@ -251,11 +338,47 @@ app.layout = html.Div(
             ],
         ),
 
-        # ── globe ─────────────────────────────────────────────────────────
-        dcc.Graph(
-            id="globe",
-            style={"flex": "1", "minHeight": 0},
-            config={"displayModeBar": False, "scrollZoom": False},
+        # ── tabs ───────────────────────────────────────────────────────────
+        dcc.Tabs(
+            id="tabs", value="sky",
+            style={"backgroundColor": BG_PAGE, "borderBottom": "none"},
+            children=[
+                dcc.Tab(
+                    label="Sky View", value="sky",
+                    style=TAB_STYLE, selected_style=TAB_SELECTED,
+                    children=[
+                        html.Div(
+                            style={"display": "flex", "flexDirection": "row",
+                                   "flex": "1", "minHeight": 0, "height": "calc(100vh - 130px)"},
+                            children=[
+                                dcc.Graph(
+                                    id="globe",
+                                    style={"flex": "3", "minHeight": 0, "height": "100%"},
+                                    config={"displayModeBar": False, "scrollZoom": False},
+                                ),
+                                dcc.Graph(
+                                    id="sky-chart",
+                                    style={"flex": "2", "minHeight": 0, "height": "100%",
+                                           "borderLeft": "1px solid rgba(120,180,255,0.15)"},
+                                    config={"displayModeBar": False, "scrollZoom": False},
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+                dcc.Tab(
+                    label="Passes & Links", value="passes",
+                    style=TAB_STYLE, selected_style=TAB_SELECTED,
+                    children=[
+                        html.Div(
+                            id="passes-panel",
+                            style={"padding": "24px", "color": "#aaa",
+                                   "fontSize": "1rem", "height": "calc(100vh - 130px)"},
+                            children="Passes & link budget — coming next.",
+                        ),
+                    ],
+                ),
+            ],
         ),
 
         # ── footer: DSN contacts ─────────────────────────────────────────
@@ -266,14 +389,17 @@ app.layout = html.Div(
                    "minHeight": "28px"},
         ),
 
-        # ── auto-refresh every 30 s ───────────────────────────────────────
+        # ── auto-refresh figures every 30 s ───────────────────────────────
         dcc.Interval(id="interval", interval=30_000, n_intervals=0),
+        # ── auto-cycle tabs every 60 s ────────────────────────────────────
+        dcc.Interval(id="tab-cycle", interval=60_000, n_intervals=0),
     ],
 )
 
 
 @app.callback(
     Output("globe", "figure"),
+    Output("sky-chart", "figure"),
     Output("header-stats", "children"),
     Output("dsn-panel", "children"),
     Input("interval", "n_intervals"),
@@ -290,7 +416,6 @@ def refresh(_):
 
     stats = f"{now_str}  |  {len(positions)} tracked  |  {n_overhead} overhead  |  {n_visible} visible (>5°)"
 
-    # DSN footer
     dsn_items = []
     for dish in dishes:
         for tgt in dish.targets:
@@ -299,8 +424,18 @@ def refresh(_):
             dsn_items.append(f"[{dish.station}/{dish.name}] {tgt.spacecraft} — {link}")
     dsn_text = "  ·  ".join(dsn_items) if dsn_items else "DSN — no active contacts"
 
-    fig = _build_figure(positions, dishes)
-    return fig, stats, dsn_text
+    globe_fig = _build_figure(positions, dishes)
+    sky_fig   = _build_sky_chart(positions)
+    return globe_fig, sky_fig, stats, dsn_text
+
+
+@app.callback(
+    Output("tabs", "value"),
+    Input("tab-cycle", "n_intervals"),
+)
+def cycle_tabs(n):
+    # Two-tab rotation: Sky View → Passes & Links → repeat
+    return "sky" if (n or 0) % 2 == 0 else "passes"
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

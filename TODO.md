@@ -46,6 +46,13 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 - [ ] Next AOS/LOS prediction for visible satellites
 - [ ] Test output on target TV resolution (4K/1080p) and verify text readability at distance
 
+## Phase 3.5 — Operator Aids (Dash extensions)
+
+- [ ] **Sky chart from the ground station** — az/el polar plot showing satellites currently above the horizon, oriented N/E/S/W; aid to visual observation at night and antenna pointing. Color/size by elevation; label visible satellites.
+- [ ] **Ground station visualization** — render the local antenna as a prominent on-globe asset with a current pointing indicator; when actively tracking, show dish azimuth/elevation widget next to the sky chart.
+- [ ] **Link budget / link health panel** — for each visible satellite show slant range, free-space path loss (FSPL = 20·log₁₀(4πd/λ)), Doppler shift, and a simple link-margin estimate. Frequencies come from SatNOGS `/api/transmitters/` keyed by NORAD ID.
+- [ ] **SatNOGS recent observations panel** — call `network.satnogs.org/api/observations/?ground_station=<id>` for one or more configured stations; show last N observations with spacecraft, frequency, time, vetting status (good/bad/failed), and a link to the waterfall. Doubles as a proxy for "is the station healthy / receiving signals at all."
+
 ## Phase 4 — Blender Final Display
 
 - [ ] Import DSN 34 model into final scene; apply AO textures
