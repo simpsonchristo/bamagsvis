@@ -8,6 +8,7 @@ uplink/downlink state, which maps directly to TX/RX visualization.
 from __future__ import annotations
 
 import logging
+import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -15,7 +16,9 @@ from dataclasses import dataclass, field
 
 log = logging.getLogger(__name__)
 
-DSN_NOW_URL = "https://eyes.nasa.gov/dsn/data/dsn.xml"
+# NASA Eyes' DSN Now dashboard uses a cache-busting ?r=<epoch> query on every
+# request. Without it, an intermediate CDN can return a stale copy for minutes.
+DSN_NOW_URL = "https://eyes.nasa.gov/dsn/data/dsn.xml?r={ts}"
 
 
 @dataclass
@@ -36,7 +39,12 @@ class DSNDish:
 
 def fetch_dsn_now(timeout: float = 30.0) -> list[DSNDish]:
     """Fetch and parse the DSN Now XML feed."""
-    req = urllib.request.Request(DSN_NOW_URL, headers={"User-Agent": "bamagsvis/0.2"})
+    url = DSN_NOW_URL.format(ts=int(time.time()))
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "bamagsvis/0.2",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+    })
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read()

@@ -26,6 +26,7 @@ from dash.dependencies import Input, Output
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from python.celestrak import fetch_with_fallback, load_offline
 from python.dsn import DSNDish, fetch_dsn_now
+from python.gcat import SatMeta, fetch_with_cache as fetch_gcat
 from python.tle import TLE, validate_age
 from viz.propagator import SatPosition, build_satellites, propagate
 
@@ -47,8 +48,9 @@ DSN_COMPLEXES = [
 # ── Shared state (updated by background threads) ─────────────────────────────
 _lock = threading.Lock()
 _tles: list[TLE] = []
-_sats = []          # list[EarthSatellite]
+_sats = []                              # list[EarthSatellite]
 _dsn_dishes: list[DSNDish] = []
+_gcat: dict[int, SatMeta] = {}          # NORAD id → GCAT metadata (owner/state)
 
 # ── TV color palette ─────────────────────────────────────────────────────────
 BG_PAGE   = "#060b14"
@@ -95,15 +97,54 @@ def _dsn_refresh_loop(stop: threading.Event) -> None:
         stop.wait(60)
 
 
+def _gcat_refresh_loop(stop: threading.Event) -> None:
+    """Refresh McDowell GCAT metadata once per day (uses on-disk cache)."""
+    global _gcat
+    while not stop.is_set():
+        try:
+            meta = fetch_gcat()
+            with _lock:
+                _gcat = meta
+            log.info("GCAT refresh: %d records", len(meta))
+        except Exception as exc:
+            log.warning("GCAT refresh failed: %s", exc)
+        stop.wait(24 * 3600)
+
+
+# ── Hover-text helper ─────────────────────────────────────────────────────────
+_STATE_LABELS = {
+    "A": "active", "AR": "active/reserve", "AL": "active/limited",
+    "R": "reentered", "D": "decayed", "DK": "docked",
+    "L": "landed", "AT": "attached",
+}
+
+
+def _meta_line(p: SatPosition, gcat: dict[int, SatMeta]) -> str:
+    """One-line metadata suffix for hover text; empty string if no match."""
+    m = gcat.get(p.norad_id)
+    if m is None:
+        return ""
+    bits = []
+    if m.owner:
+        bits.append(m.owner)
+    if m.state:
+        bits.append(_STATE_LABELS.get(m.state, m.state))
+    return f"<br>{' · '.join(bits)}" if bits else ""
+
+
 # ── Plot builder ──────────────────────────────────────────────────────────────
-def _build_figure(positions: list[SatPosition], dishes: list[DSNDish]) -> go.Figure:
+def _build_figure(positions: list[SatPosition], dishes: list[DSNDish],
+                  gcat: dict[int, SatMeta] | None = None) -> go.Figure:
+    gcat = gcat or {}
     # Bucket satellites by visibility tier
     all_lats, all_lons, all_names = [], [], []
     ovr_lats, ovr_lons, ovr_names = [], [], []
     vis_lats, vis_lons, vis_names = [], [], []
 
     for p in positions:
-        hover = f"{p.name}<br>El: {p.elevation_deg:.1f}° Az: {p.azimuth_deg:.1f}°<br>Alt: {p.alt_km:.0f} km"
+        hover = (f"{p.name}<br>El: {p.elevation_deg:.1f}° Az: {p.azimuth_deg:.1f}°"
+                 f"<br>Alt: {p.alt_km:.0f} km"
+                 f"{_meta_line(p, gcat)}")
         if p.visible:
             vis_lats.append(p.lat); vis_lons.append(p.lon); vis_names.append(hover)
         elif p.overhead:
@@ -233,12 +274,14 @@ def _build_figure(positions: list[SatPosition], dishes: list[DSNDish]) -> go.Fig
 
 
 # ── Sky chart (az/el polar plot from observer) ────────────────────────────────
-def _build_sky_chart(positions: list[SatPosition]) -> go.Figure:
+def _build_sky_chart(positions: list[SatPosition],
+                     gcat: dict[int, SatMeta] | None = None) -> go.Figure:
     """Polar plot of the local sky as seen from the observer.
 
     theta = azimuth (0° = North, clockwise through E/S/W).
     r     = 90 - elevation (zenith at center, horizon at outer ring).
     """
+    gcat = gcat or {}
     overhead = [p for p in positions if p.overhead]
     vis   = [p for p in overhead if p.visible]
     above = [p for p in overhead if not p.visible]
@@ -253,6 +296,7 @@ def _build_sky_chart(positions: list[SatPosition]) -> go.Figure:
             marker=dict(size=7, color=COLOR_OVR, opacity=0.75,
                         line=dict(width=0)),
             hovertext=[f"{p.name}<br>El {p.elevation_deg:.1f}°  Az {p.azimuth_deg:.1f}°"
+                       f"{_meta_line(p, gcat)}"
                        for p in above],
             hoverinfo="text",
             name="Overhead 0–5°",
@@ -269,7 +313,9 @@ def _build_sky_chart(positions: list[SatPosition]) -> go.Figure:
             textposition="top center",
             textfont=dict(color=COLOR_VIS, size=9),
             hovertext=[f"{p.name}<br>El {p.elevation_deg:.1f}°  Az {p.azimuth_deg:.1f}°"
-                       f"<br>{p.distance_km:.0f} km" for p in vis],
+                       f"<br>{p.distance_km:.0f} km"
+                       f"{_meta_line(p, gcat)}"
+                       for p in vis],
             hoverinfo="text",
             name="Visible >5°",
         ))
@@ -408,13 +454,16 @@ def refresh(_):
     with _lock:
         sats = list(_sats)
         dishes = list(_dsn_dishes)
+        gcat = dict(_gcat)
 
     positions = propagate(sats, OBSERVER_LAT, OBSERVER_LON, OBSERVER_ALT_M)
     n_overhead = sum(1 for p in positions if p.overhead)
     n_visible  = sum(1 for p in positions if p.visible)
     now_str    = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    stats = f"{now_str}  |  {len(positions)} tracked  |  {n_overhead} overhead  |  {n_visible} visible (>5°)"
+    stats = (f"{now_str}  |  {len(positions)} tracked  |  {n_overhead} overhead"
+             f"  |  {n_visible} visible (>5°)"
+             + (f"  |  {len(gcat)} GCAT meta" if gcat else ""))
 
     dsn_items = []
     for dish in dishes:
@@ -424,8 +473,8 @@ def refresh(_):
             dsn_items.append(f"[{dish.station}/{dish.name}] {tgt.spacecraft} — {link}")
     dsn_text = "  ·  ".join(dsn_items) if dsn_items else "DSN — no active contacts"
 
-    globe_fig = _build_figure(positions, dishes)
-    sky_fig   = _build_sky_chart(positions)
+    globe_fig = _build_figure(positions, dishes, gcat)
+    sky_fig   = _build_sky_chart(positions, gcat)
     return globe_fig, sky_fig, stats, dsn_text
 
 
@@ -452,6 +501,7 @@ def main() -> None:
     stop = threading.Event()
     threading.Thread(target=_tle_refresh_loop,  args=(args.offline, stop), daemon=True).start()
     threading.Thread(target=_dsn_refresh_loop,  args=(stop,),              daemon=True).start()
+    threading.Thread(target=_gcat_refresh_loop, args=(stop,),              daemon=True).start()
 
     # Give the TLE thread a moment to populate before the first request
     time.sleep(2)

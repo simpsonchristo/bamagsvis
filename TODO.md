@@ -26,6 +26,9 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 - [x] Socket interface to feed live data into FreeFlyer or Blender (`python/server.py`)
 - [x] Offline fallback: use `satnogs.txt` snapshot when network is unavailable
 - [x] DSN Now scraper / API integration for real-time DSN contact data (`python/dsn.py`)
+- [x] DSN Now: cache-bust query parameter + no-cache headers so CDN never serves stale contact state
+- [x] McDowell GCAT metadata client (`python/gcat.py`) — daily-cached `currentcat.tsv`; NORAD-keyed owner/state/orbit dict; hover-text enrichment in Dash
+- [ ] Space-Track.org primary TLE source (`python/spacetrack.py`) — session login, `/gp` query for active catalog, credentials via env vars; Celestrak becomes fallback
 - [ ] NEN contact query — stub in place (`python/nen.py`); awaiting a stable public SCAN-NOW machine-readable feed
 
 ## Phase 3 — Dash + Skyfield TV Display
@@ -48,7 +51,8 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 
 ## Phase 3.5 — Operator Aids (Dash extensions)
 
-- [ ] **Sky chart from the ground station** — az/el polar plot showing satellites currently above the horizon, oriented N/E/S/W; aid to visual observation at night and antenna pointing. Color/size by elevation; label visible satellites.
+- [x] **Sky chart from the ground station** — az/el polar plot showing satellites currently above the horizon, oriented N/E/S/W; color-coded 0–5° vs visible (>5°); side-by-side with globe in Sky View tab.
+- [x] **GCAT hover-text enrichment** — owner + operational state (active/decayed) shown on hover on both globe and sky chart when GCAT has a match by NORAD id.
 - [ ] **Ground station visualization** — render the local antenna as a prominent on-globe asset with a current pointing indicator; when actively tracking, show dish azimuth/elevation widget next to the sky chart.
 - [ ] **Link budget / link health panel** — for each visible satellite show slant range, free-space path loss (FSPL = 20·log₁₀(4πd/λ)), Doppler shift, and a simple link-margin estimate. Frequencies come from SatNOGS `/api/transmitters/` keyed by NORAD ID.
 - [ ] **SatNOGS recent observations panel** — call `network.satnogs.org/api/observations/?ground_station=<id>` for one or more configured stations; show last N observations with spacecraft, frequency, time, vetting status (good/bad/failed), and a link to the waterfall. Doubles as a proxy for "is the station healthy / receiving signals at all."
