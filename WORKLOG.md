@@ -80,3 +80,48 @@ Built the Python data layer end-to-end. All modules under `python/`.
 **Tests:** `python/tests/test_smoke.py` — 6 offline tests covering TLE parsing of `satnogs.txt`, age-validator filtering, link classification, contact serialization, and a full socket round-trip on an ephemeral port. All passing.
 
 Updated `TODO.md` (Phase 2 items checked, NEN noted as stub) and `ARCHITECTURE.md` (TLE Ingestion / Contact Resolver / Socket Server sections rewritten to reflect the real implementation).
+
+---
+
+## 2026-09-06
+
+**Phase 3 — browser display, ported from the Claude Design canvas**
+
+The visualization built in Claude Design became the display of record, so the
+canvas was ported into the repo as a real page and wired to the Phase 2 data
+layer. Blender stays available for a rendered-video path but is no longer the
+plan for the live TV.
+
+- `design/`: the canvas kept as the design source — `*.dc.html` (editable
+  source), `*.standalone.html` (self-contained export that runs in a browser),
+  and the Nocturne design system (`styles.css`, `readme.md`)
+- `web/`: the port — plain ES modules, no build step
+  - `js/orbits.js`: ECI↔scene frames, GMST (IAU 1982), TLE decoding, Kepler
+    propagation of mean elements with secular J2 drift, look angles, pass
+    search
+  - `js/scene.js`: three.js globe, starfield, station pins, satellite dots with
+    orbit rings and trails, pulsing TX/RX beams
+  - `js/data.js`: bridge client with the design's demo constellation as the
+    offline fallback, plus contact matching by NORAD id and station name
+  - `js/ui.js`: overlay DOM, reconciled in place rather than rebuilt (the
+    canvas's twice-a-second rebuild swallowed clicks)
+  - `js/app.js`: selection, time warp (1x/10x/60x/300x off the wall clock),
+    refresh timers, frame loop
+- `python/web_bridge.py`: HTTP bridge serving `web/` plus `/api/stations`,
+  `/api/tles` (watchlist + whatever the networks are actively working), and
+  `/api/contacts`, all off the same `ServerState` the TCP server reads
+- `python/main.py`: starts the bridge alongside the TCP server; `--no-web`
+  skips it. `python/config.py` gained `enable_web`, `web_host`, `web_port`,
+  `web_root`, `web_watchlist`, `web_max_satellites`
+
+Fixed in the port: the canvas mirrored longitude (stations landed on the wrong
+side of the globe) and ran its scene from `t = 0` while its clock read wall
+time; both now derive from GMST.
+
+**Tests:** `web/js/orbits.test.js` — 14 Node tests (GMST against the J2000
+reference, TLE decode, orbit closure, perigee/apogee, frame mapping, station
+right ascension, GEO longitude hold, look angles, pass search).
+`python/tests/test_smoke.py` gained 9 bridge tests. All 15 Python and 14 JS
+tests pass. Verified end to end in Chromium against the bridge: live TLEs from
+the `satnogs.txt` snapshot, station and satellite panels, and an RX beam during
+a NOAA-19 pass.

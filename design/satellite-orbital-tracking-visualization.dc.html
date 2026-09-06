@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nocturne-1469f9d5-dff3-4d33-bf5a-ebd2c7774534/styles.css">
+  <script src="_ds/nocturne-1469f9d5-dff3-4d33-bf5a-ebd2c7774534/_ds_bundle.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0c14; }
+    @keyframes om-pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+    @keyframes om-blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+  </style>
+</helmet>
+<div style="position:fixed;inset:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);overflow:hidden;user-select:none">
+  <canvas ref="{{ canvasRef }}" onClick="{{ onCanvasClick }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair"></canvas>
+
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center, transparent 55%, rgba(10,10,16,0.55) 100%)"></div>
+
+  <div class="nav" style="position:absolute;top:0;left:0;right:0;background:linear-gradient(to bottom, rgba(12,13,20,0.92), transparent);border:none;pointer-events:none">
+    <div style="display:flex;align-items:center;gap:10px;pointer-events:auto">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 8px var(--color-accent);animation:om-pulse 2.2s ease-in-out infinite"></span>
+      <span class="nav-brand" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase">BAMA Ground Station Visualizer</span>
+      <span class="tag tag-outline">LIVE</span>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:14px;pointer-events:auto">
+      <span style="font-size:12px;opacity:0.65;letter-spacing:0.04em;font-variant-numeric:tabular-nums">{{ clockLabel }} UTC</span>
+      <div class="seg">
+        <sc-for list="{{ speedOptions }}" as="opt" hint-placeholder-count="4">
+          <label class="seg-opt">
+            <input type="radio" name="speed" value="{{ opt.value }}" checked="{{ opt.checked }}" onChange="{{ opt.onSelect }}" style="display:none">
+            {{ opt.label }}
+          </label>
+        </sc-for>
+      </div>
+      <button class="btn btn-ghost" onClick="{{ resetView }}">Reset view</button>
+    </div>
+  </div>
+
+  <div style="position:absolute;top:76px;left:16px;bottom:150px;width:220px;display:flex;flex-direction:column;gap:8px;pointer-events:auto;overflow:auto">
+    <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.55;padding-left:4px">Ground Stations</div>
+    <sc-for list="{{ stations }}" as="st" hint-placeholder-count="6">
+      <button onClick="{{ st.onSelect }}" style="{{ st.buttonStyle }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <span style="font-size:13px;font-weight:500">{{ st.name }}</span>
+          <span class="{{ st.tagClass }}">{{ st.network }}</span>
+        </div>
+        <div style="font-size:11px;opacity:0.6;margin-top:3px">{{ st.statusText }}</div>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="position:absolute;top:76px;right:16px;bottom:150px;width:220px;display:flex;flex-direction:column;gap:8px;pointer-events:auto;overflow:auto">
+    <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.55;padding-left:4px;text-align:right">Satellites</div>
+    <sc-for list="{{ satellites }}" as="sat" hint-placeholder-count="7">
+      <button onClick="{{ sat.onSelect }}" style="{{ sat.buttonStyle }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <span style="font-size:13px;font-weight:500">{{ sat.name }}</span>
+          <span style="font-size:10px;opacity:0.5;font-variant-numeric:tabular-nums">{{ sat.altLabel }}</span>
+        </div>
+        <div style="font-size:11px;opacity:0.6;margin-top:3px">NORAD {{ sat.norad }}</div>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="position:absolute;left:16px;bottom:16px;display:flex;gap:16px;align-items:center;pointer-events:none;background:rgba(14,15,23,0.55);backdrop-filter:blur(6px);border:1px solid var(--color-divider);border-radius:var(--radius-md);padding:8px 14px">
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;opacity:0.85"><span style="width:16px;height:2px;background:var(--color-accent);box-shadow:0 0 6px var(--color-accent)"></span>Selected orbit trail</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;opacity:0.85"><span style="width:8px;height:8px;border-radius:50%;background:#d9a15c"></span>TX uplink</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;opacity:0.85"><span style="width:8px;height:8px;border-radius:50%;background:#7cbf8e"></span>RX downlink</div>
+  </div>
+
+  <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ false }}">
+    <div class="card elev-lg" style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:460px;max-width:calc(100vw - 480px);background:rgba(18,19,28,0.9);backdrop-filter:blur(10px);pointer-events:auto;border:1px solid var(--color-divider)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between">
+        <div>
+          <div class="card-kicker">{{ panelKicker }}</div>
+          <div class="card-title">{{ panelTitle }}</div>
+        </div>
+        <button class="btn btn-icon btn-ghost" onClick="{{ clearSelection }}" aria-label="Close">&#10005;</button>
+      </div>
+
+      <sc-if value="{{ isStationPanel }}" hint-placeholder-val="{{ false }}">
+        <div class="card-meta">
+          <span class="{{ stationPanel.tagClass }}">{{ stationPanel.network }}</span>
+          <span>{{ stationPanel.coords }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+          <sc-for list="{{ stationPanel.contacts }}" as="c" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:6px 0;border-top:1px solid var(--color-divider)">
+              <span>{{ c.name }}</span>
+              <span style="opacity:0.6">{{ c.elevLabel }}</span>
+              <span class="{{ c.tagClass }}">{{ c.linkLabel }}</span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ stationPanel.noContacts }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12px;opacity:0.65;border-top:1px solid var(--color-divider);padding-top:6px">{{ stationPanel.nextContactLabel }}</div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSatellitePanel }}" hint-placeholder-val="{{ false }}">
+        <p class="card-body" style="margin:0">NORAD {{ satellitePanel.norad }} &middot; {{ satellitePanel.altLabel }} altitude &middot; {{ satellitePanel.inclLabel }} inclination</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;font-size:12px">
+          <div style="border-top:1px solid var(--color-divider);padding-top:6px">
+            <div style="opacity:0.5;font-size:10px;letter-spacing:0.06em;text-transform:uppercase">Elevation / Az &middot; {{ satellitePanel.refStationName }}</div>
+            <div style="margin-top:2px;font-variant-numeric:tabular-nums">{{ satellitePanel.elevLabel }} / {{ satellitePanel.azLabel }}</div>
+          </div>
+          <div style="border-top:1px solid var(--color-divider);padding-top:6px">
+            <div style="opacity:0.5;font-size:10px;letter-spacing:0.06em;text-transform:uppercase">Link state</div>
+            <div style="margin-top:2px"><span class="{{ satellitePanel.tagClass }}">{{ satellitePanel.linkLabel }}</span></div>
+          </div>
+        </div>
+        <div style="font-size:12px;opacity:0.65;margin-top:2px">{{ satellitePanel.nextPassLabel }}</div>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const EARTH_RADIUS_KM = 6371;
+const MU = 398600.4418;
+const SIDEREAL_DAY = 86164.0905;
+const MIN_ELEV_DEG = 5;
+const SCALE = 1.7 / EARTH_RADIUS_KM;
+
+const STATIONS = [
+  { id: 'ua', name: 'UA Station (Tuscaloosa)', network: 'SatNOGS', lat: 33.21, lon: -87.55 },
+  { id: 'goldstone', name: 'Goldstone', network: 'DSN', lat: 35.43, lon: -116.89 },
+  { id: 'madrid', name: 'Madrid', network: 'DSN', lat: 40.43, lon: -4.25 },
+  { id: 'canberra', name: 'Canberra', network: 'DSN', lat: -35.40, lon: 148.98 },
+  { id: 'wallops', name: 'Wallops', network: 'NEN', lat: 37.94, lon: -75.47 },
+  { id: 'mcmurdo', name: 'McMurdo', network: 'NEN', lat: -77.85, lon: 166.67 },
+];
+
+const SATELLITES = [
+  { id: 'iss', name: 'ISS (ZARYA)', norad: 25544, altKm: 408, inclDeg: 51.6, raanDeg: 120, phaseDeg: 0 },
+  { id: 'noaa19', name: 'NOAA-19', norad: 33591, altKm: 870, inclDeg: 99.0, raanDeg: 10, phaseDeg: 60 },
+  { id: 'terra', name: 'TERRA', norad: 25994, altKm: 705, inclDeg: 98.2, raanDeg: 200, phaseDeg: 140 },
+  { id: 'landsat9', name: 'LANDSAT-9', norad: 49260, altKm: 705, inclDeg: 98.2, raanDeg: 260, phaseDeg: 220 },
+  { id: 'goes16', name: 'GOES-16', norad: 41866, altKm: 35786, inclDeg: 0.3, raanDeg: 0, phaseDeg: 300 },
+  { id: 'sentinel2a', name: 'SENTINEL-2A', norad: 40697, altKm: 786, inclDeg: 98.6, raanDeg: 340, phaseDeg: 20 },
+  { id: 'starlink3021', name: 'STARLINK-3021', norad: 53252, altKm: 550, inclDeg: 53.0, raanDeg: 80, phaseDeg: 90 },
+];
+
+function deg2rad(d) { return d * Math.PI / 180; }
+function periodSeconds(altKm) {
+  const a = EARTH_RADIUS_KM + altKm;
+  return 2 * Math.PI * Math.sqrt((a * a * a) / MU);
+}
+function rotateY(v, theta) {
+  const c = Math.cos(theta), s = Math.sin(theta);
+  return { x: v.x * c + v.z * s, y: v.y, z: -v.x * s + v.z * c };
+}
+function orbitalPositionKm(sat, u) {
+  const a = EARTH_RADIUS_KM + sat.altKm;
+  const incl = deg2rad(sat.inclDeg);
+  const raan = deg2rad(sat.raanDeg);
+  const px = a * Math.cos(u), pz = a * Math.sin(u);
+  const y1 = -pz * Math.sin(incl);
+  const z1 = pz * Math.cos(incl);
+  const p = { x: px, y: y1, z: z1 };
+  return rotateY(p, raan);
+}
+function stationEcefKm(st) {
+  const lat = deg2rad(st.lat), lon = deg2rad(st.lon);
+  const r = EARTH_RADIUS_KM;
+  return { x: r * Math.cos(lat) * Math.cos(lon), y: r * Math.sin(lat), z: r * Math.cos(lat) * Math.sin(lon) };
+}
+function sub(a, b) { return { x: a.x - b.x, y: a.y - b.y, z: a.z - b.z }; }
+function dot(a, b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+function cross(a, b) { return { x: a.y * b.z - a.z * b.y, y: a.z * b.x - a.x * b.z, z: a.x * b.y - a.y * b.x }; }
+function norm(a) { const l = Math.sqrt(dot(a, a)) || 1e-9; return { x: a.x / l, y: a.y / l, z: a.z / l }; }
+
+function elevationAzimuth(stationPos, satPos) {
+  const up = norm(stationPos);
+  const d = sub(satPos, stationPos);
+  const dn = norm(d);
+  const elevRad = Math.asin(Math.max(-1, Math.min(1, dot(dn, up))));
+  let east = cross({ x: 0, y: 1, z: 0 }, up);
+  if (Math.sqrt(dot(east, east)) < 1e-6) east = { x: 1, y: 0, z: 0 };
+  east = norm(east);
+  const north = norm(cross(up, east));
+  const dHoriz = sub(d, { x: up.x * dot(d, up), y: up.y * dot(d, up), z: up.z * dot(d, up) });
+  let azRad = Math.atan2(dot(dHoriz, east), dot(dHoriz, north));
+  if (azRad < 0) azRad += Math.PI * 2;
+  return { elevDeg: elevRad * 180 / Math.PI, azDeg: azRad * 180 / Math.PI };
+}
+
+function makeGlowTexture(hex) {
+  const c = document.createElement('canvas'); c.width = 128; c.height = 128;
+  const ctx = c.getContext('2d');
+  const g = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, hex + 'ff'); g.addColorStop(0.4, hex + '55'); g.addColorStop(1, hex + '00');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 128, 128);
+  return new THREE.CanvasTexture(c);
+}
+
+class Component extends DCLogic {
+  state = { selType: null, selId: null, speed: 1, tick: 0 };
+  canvasRef = React.createRef();
+
+  componentDidMount() {
+    this.sim = { simSeconds: 0 };
+    this.pickables = [];
+    this.satObjs = {};
+    this.stationObjs = {};
+    this.trailBuffers = {};
+    this.lastFrameTime = performance.now();
+    this._initThree();
+    this._hudTimer = setInterval(() => this.forceUpdate(), 500);
+    this._raf = requestAnimationFrame(this._animate);
+    window.addEventListener('resize', this._onResize);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._hudTimer);
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('resize', this._onResize);
+    if (this.renderer) this.renderer.dispose();
+  }
+
+  _onResize = () => {
+    const canvas = this.canvasRef.current;
+    if (!canvas || !this.renderer) return;
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    this.renderer.setSize(w, h, false);
+    this.camera.aspect = w / h;
+    this.camera.updateProjectionMatrix();
+  };
+
+  _initThree() {
+    const canvas = this.canvasRef.current;
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0b0c14);
+
+    const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+    camera.position.set(3.4, 2.0, 3.6);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 2.4;
+    controls.maxDistance = 9;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.4;
+
+    scene.add(new THREE.AmbientLight(0x8890b0, 0.55));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+    sun.position.set(5, 2, 3);
+    scene.add(sun);
+
+    // starfield
+    const starGeo = new THREE.BufferGeometry();
+    const starCount = 1600, starPos = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const r = 30 + Math.random() * 20;
+      const th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
+      starPos[i * 3] = r * Math.sin(ph) * Math.cos(th);
+      starPos[i * 3 + 1] = r * Math.cos(ph);
+      starPos[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th);
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaab0d0, size: 0.05, transparent: true, opacity: 0.7 })));
+
+    const earthGroup = new THREE.Group();
+    scene.add(earthGroup);
+    const earthR = 1.7;
+    const loader = new THREE.TextureLoader();
+    const earthMat = new THREE.MeshPhongMaterial({ color: 0x88a, shininess: 6, specular: 0x223344 });
+    loader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg', (tex) => { earthMat.map = tex; earthMat.color.set(0xffffff); earthMat.needsUpdate = true; });
+    const earthMesh = new THREE.Mesh(new THREE.SphereGeometry(earthR, 64, 64), earthMat);
+    earthGroup.add(earthMesh);
+
+    const glowMat = new THREE.ShaderMaterial({
+      uniforms: { glowColor: { value: new THREE.Color(0x9184d9) } },
+      vertexShader: 'varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'varying vec3 vN; uniform vec3 glowColor; void main(){ float i = pow(0.65 - dot(vN, vec3(0,0,1)), 2.2); gl_FragColor = vec4(glowColor, clamp(i,0.0,1.0) * 0.55); }',
+      side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false,
+    });
+    scene.add(new THREE.Mesh(new THREE.SphereGeometry(earthR * 1.045, 48, 48), glowMat));
+
+    const neutralGlow = makeGlowTexture('#8890b0');
+    const accentGlow = makeGlowTexture('#9184d9');
+
+    STATIONS.forEach((st) => {
+      const local = stationEcefKm(st);
+      const pos = { x: local.x * SCALE, y: local.y * SCALE, z: local.z * SCALE };
+      const group = new THREE.Group();
+      group.position.set(pos.x, pos.y, pos.z);
+      group.lookAt(pos.x * 2, pos.y * 2, pos.z * 2);
+      const pin = new THREE.Mesh(new THREE.ConeGeometry(0.028, 0.09, 10), new THREE.MeshBasicMaterial({ color: 0x9aa2c8 }));
+      pin.rotation.x = Math.PI / 2;
+      pin.position.z = 0.045;
+      group.add(pin);
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: neutralGlow, transparent: true, depthWrite: false, opacity: 0.85 }));
+      sprite.scale.set(0.16, 0.16, 1);
+      group.add(sprite);
+      group.userData = { type: 'station', id: st.id };
+      pin.userData = group.userData; sprite.userData = group.userData;
+      earthGroup.add(group);
+      this.pickables.push(pin, sprite);
+      this.stationObjs[st.id] = { group, pin, sprite };
+    });
+
+    SATELLITES.forEach((sat) => {
+      const period = periodSeconds(sat.altKm);
+      sat._period = period;
+      sat._meanMotion = (Math.PI * 2) / period;
+
+      const ringPts = [];
+      for (let i = 0; i <= 128; i++) {
+        const u = (i / 128) * Math.PI * 2;
+        const p = orbitalPositionKm(sat, u);
+        ringPts.push(new THREE.Vector3(p.x * SCALE, p.y * SCALE, p.z * SCALE));
+      }
+      const ringGeo = new THREE.BufferGeometry().setFromPoints(ringPts);
+      const ringMat = new THREE.LineBasicMaterial({ color: 0x555b78, transparent: true, opacity: 0.28 });
+      const ring = new THREE.Line(ringGeo, ringMat);
+      scene.add(ring);
+
+      const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.032, 16, 16), new THREE.MeshBasicMaterial({ color: 0xd6d8ea }));
+      mesh.userData = { type: 'satellite', id: sat.id };
+      scene.add(mesh);
+      this.pickables.push(mesh);
+
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: neutralGlow, transparent: true, depthWrite: false, opacity: 0.8 }));
+      sprite.scale.set(0.15, 0.15, 1);
+      sprite.userData = mesh.userData;
+      scene.add(sprite);
+      this.pickables.push(sprite);
+
+      const trailGeo = new THREE.BufferGeometry();
+      const trailLen = 50;
+      trailGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(trailLen * 3), 3));
+      const colors = new Float32Array(trailLen * 3);
+      trailGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      const trailMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9 });
+      const trail = new THREE.Line(trailGeo, trailMat);
+      trail.visible = false;
+      scene.add(trail);
+
+      this.satObjs[sat.id] = { mesh, sprite, ring, ringMat, trail, trailGeo, trailBuf: [] };
+    });
+
+    const txGeo = new THREE.BufferGeometry(); txGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+    const rxGeo = new THREE.BufferGeometry(); rxGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+    const txLine = new THREE.Line(txGeo, new THREE.LineBasicMaterial({ color: 0xd9a15c, transparent: true, opacity: 0 }));
+    const rxLine = new THREE.Line(rxGeo, new THREE.LineBasicMaterial({ color: 0x7cbf8e, transparent: true, opacity: 0 }));
+    scene.add(txLine); scene.add(rxLine);
+
+    this.renderer = renderer; this.scene = scene; this.camera = camera; this.controls = controls;
+    this.earthGroup = earthGroup; this.txLine = txLine; this.rxLine = rxLine;
+    this.accentGlow = accentGlow; this.neutralGlow = neutralGlow;
+    this.raycaster = new THREE.Raycaster();
+  }
+
+  _currentContact(stationId) {
+    const st = STATIONS.find((s) => s.id === stationId);
+    if (!st) return null;
+    const stationPos = rotateY(stationEcefKm(st), this._earthTheta());
+    let best = null;
+    SATELLITES.forEach((sat) => {
+      const u = deg2rad(sat.phaseDeg) + sat._meanMotion * this.sim.simSeconds;
+      const satPos = orbitalPositionKm(sat, u);
+      const { elevDeg } = elevationAzimuth(stationPos, satPos);
+      if (elevDeg >= MIN_ELEV_DEG && (!best || elevDeg > best.elevDeg)) best = { sat, elevDeg };
+    });
+    if (!best) return null;
+    const link = st.network === 'SatNOGS' ? 'RX' : (best.elevDeg > 40 ? 'BOTH' : 'RX');
+    return { sat: best.sat, elevDeg: best.elevDeg, link };
+  }
+
+  _earthTheta() { return (Math.PI * 2 / SIDEREAL_DAY) * this.sim.simSeconds; }
+
+  _animate = (now) => {
+    const dtReal = Math.min((now - this.lastFrameTime) / 1000, 0.25);
+    this.lastFrameTime = now;
+    this.sim.simSeconds += dtReal * this.state.speed;
+    const theta = this._earthTheta();
+    this.earthGroup.rotation.y = theta;
+
+    const stationPositions = {};
+    STATIONS.forEach((st) => { stationPositions[st.id] = rotateY(stationEcefKm(st), theta); });
+
+    SATELLITES.forEach((sat) => {
+      const u = deg2rad(sat.phaseDeg) + sat._meanMotion * this.sim.simSeconds;
+      const p = orbitalPositionKm(sat, u);
+      const world = { x: p.x * SCALE, y: p.y * SCALE, z: p.z * SCALE };
+      const obj = this.satObjs[sat.id];
+      obj.mesh.position.set(world.x, world.y, world.z);
+      obj.sprite.position.set(world.x, world.y, world.z);
+
+      const isSel = this.state.selType === 'satellite' && this.state.selId === sat.id;
+      obj.mesh.material.color.set(isSel ? 0x9184d9 : 0xd6d8ea);
+      obj.ringMat.color.set(isSel ? 0x9184d9 : 0x555b78);
+      obj.ringMat.opacity = isSel ? 0.85 : 0.22;
+      obj.sprite.material.map = isSel ? this.accentGlow : this.neutralGlow;
+      obj.sprite.scale.set(isSel ? 0.22 : 0.15, isSel ? 0.22 : 0.15, 1);
+
+      obj.trailBuf.push(world);
+      const trailLen = 50;
+      if (obj.trailBuf.length > trailLen) obj.trailBuf.shift();
+      obj.trail.visible = isSel && obj.trailBuf.length > 1;
+      if (obj.trail.visible) {
+        const posAttr = obj.trailGeo.attributes.position;
+        const colAttr = obj.trailGeo.attributes.color;
+        const n = obj.trailBuf.length;
+        for (let i = 0; i < trailLen; i++) {
+          const src = i < n ? obj.trailBuf[i] : obj.trailBuf[0];
+          posAttr.array[i * 3] = src.x; posAttr.array[i * 3 + 1] = src.y; posAttr.array[i * 3 + 2] = src.z;
+          const a = i < n ? i / (n - 1 || 1) : 0;
+          colAttr.array[i * 3] = 0.57 * a + 0.1; colAttr.array[i * 3 + 1] = 0.51 * a + 0.1; colAttr.array[i * 3 + 2] = 0.85 * a + 0.12;
+        }
+        posAttr.needsUpdate = true; colAttr.needsUpdate = true;
+        obj.trailGeo.setDrawRange(0, n);
+      }
+    });
+
+    Object.keys(this.stationObjs).forEach((id) => {
+      const isSel = this.state.selType === 'station' && this.state.selId === id;
+      const obj = this.stationObjs[id];
+      obj.pin.material.color.set(isSel ? 0x9184d9 : 0x9aa2c8);
+      obj.sprite.material.map = isSel ? this.accentGlow : this.neutralGlow;
+      obj.sprite.scale.set(isSel ? 0.24 : 0.16, isSel ? 0.24 : 0.16, 1);
+    });
+
+    if (this.state.selType === 'station') {
+      const contact = this._currentContact(this.state.selId);
+      const stPos = stationPositions[this.state.selId];
+      const stW = new THREE.Vector3(stPos.x * SCALE, stPos.y * SCALE, stPos.z * SCALE);
+      if (contact) {
+        const u = deg2rad(contact.sat.phaseDeg) + contact.sat._meanMotion * this.sim.simSeconds;
+        const sp = orbitalPositionKm(contact.sat, u);
+        const satW = new THREE.Vector3(sp.x * SCALE, sp.y * SCALE, sp.z * SCALE);
+        const pulse = 0.55 + 0.35 * Math.sin(now / 260);
+        const showTx = contact.link === 'TX' || contact.link === 'BOTH';
+        const showRx = contact.link === 'RX' || contact.link === 'BOTH';
+        this.txLine.geometry.setFromPoints([stW, satW]);
+        this.rxLine.geometry.setFromPoints([stW, satW]);
+        this.txLine.material.opacity = showTx ? pulse : 0;
+        this.rxLine.material.opacity = showRx ? pulse * 0.8 : 0;
+      } else {
+        this.txLine.material.opacity = 0; this.rxLine.material.opacity = 0;
+      }
+    } else {
+      this.txLine.material.opacity = 0; this.rxLine.material.opacity = 0;
+    }
+
+    this.controls.autoRotate = !this.state.selType;
+    this.controls.update();
+    this.renderer.render(this.scene, this.camera);
+    this._raf = requestAnimationFrame(this._animate);
+  };
+
+  onCanvasClick = (e) => {
+    const canvas = this.canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const mouse = new THREE.Vector2(
+      ((e.clientX - rect.left) / rect.width) * 2 - 1,
+      -((e.clientY - rect.top) / rect.height) * 2 + 1
+    );
+    this.raycaster.setFromCamera(mouse, this.camera);
+    const hits = this.raycaster.intersectObjects(this.pickables, false);
+    if (hits.length) {
+      const { type, id } = hits[0].object.userData;
+      this.selectEntity(type, id);
+    } else {
+      this.clearSelection();
+    }
+  };
+
+  selectEntity = (type, id) => {
+    this.setState((s) => (s.selType === type && s.selId === id ? { selType: null, selId: null } : { selType: type, selId: id }));
+  };
+
+  clearSelection = () => this.setState({ selType: null, selId: null });
+
+  setSpeed = (v) => this.setState({ speed: v });
+
+  resetView = () => {
+    this.camera.position.set(3.4, 2.0, 3.6);
+    this.controls.target.set(0, 0, 0);
+  };
+
+  _findNextPass(stationId, satId, fromSeconds) {
+    const st = STATIONS.find((s) => s.id === stationId);
+    const sat = SATELLITES.find((s) => s.id === satId);
+    if (!st || !sat) return null;
+    const step = sat._period / 300;
+    const maxSeconds = sat._period * 4;
+    let prevElev = null;
+    for (let dt = 0; dt <= maxSeconds; dt += step) {
+      const t = fromSeconds + dt;
+      const theta = (Math.PI * 2 / SIDEREAL_DAY) * t;
+      const stationPos = rotateY(stationEcefKm(st), theta);
+      const u = deg2rad(sat.phaseDeg) + sat._meanMotion * t;
+      const satPos = orbitalPositionKm(sat, u);
+      const { elevDeg } = elevationAzimuth(stationPos, satPos);
+      if (prevElev !== null && prevElev < MIN_ELEV_DEG && elevDeg >= MIN_ELEV_DEG) return dt;
+      prevElev = elevDeg;
+    }
+    return null;
+  }
+
+  _fmtCountdown(seconds) {
+    if (seconds == null) return 'no pass in next few orbits';
+    const m = Math.floor(seconds / 60), s = Math.floor(seconds % 60);
+    return `in ${m}m ${s.toString().padStart(2, '0')}s`;
+  }
+
+  renderVals() {
+    const simSeconds = this.sim ? this.sim.simSeconds : 0;
+    const theta = (Math.PI * 2 / SIDEREAL_DAY) * simSeconds;
+    const stationPositions = {};
+    STATIONS.forEach((st) => { stationPositions[st.id] = rotateY(stationEcefKm(st), theta); });
+
+    const utc = new Date();
+    const clockLabel = utc.toISOString().substr(11, 8);
+
+    const speedOptions = [
+      { value: 1, label: 'REAL-TIME' },
+      { value: 10, label: '10x' },
+      { value: 60, label: '60x' },
+      { value: 300, label: '300x' },
+    ].map((o) => ({ ...o, checked: this.state.speed === o.value, onSelect: () => this.setSpeed(o.value) }));
+
+    const stations = STATIONS.map((st) => {
+      const stPos = stationPositions[st.id];
+      const visible = SATELLITES.filter((sat) => {
+        const u = deg2rad(sat.phaseDeg) + sat._meanMotion * simSeconds;
+        const satPos = orbitalPositionKm(sat, u);
+        return elevationAzimuth(stPos, satPos).elevDeg >= MIN_ELEV_DEG;
+      });
+      const isSelected = this.state.selType === 'station' && this.state.selId === st.id;
+      const tagClass = st.network === 'DSN' ? 'tag tag-accent' : st.network === 'NEN' ? 'tag tag-accent-2' : 'tag tag-neutral';
+      return {
+        id: st.id, name: st.name, network: st.network, tagClass,
+        statusText: visible.length ? `${visible.length} overhead now` : 'none overhead',
+        buttonStyle: `text-align:left;padding:10px 12px;border-radius:var(--radius-md);border:1px solid ${isSelected ? 'var(--color-accent)' : 'var(--color-divider)'};background:${isSelected ? 'color-mix(in srgb, var(--color-accent) 14%, var(--color-surface))' : 'var(--color-surface)'};color:var(--color-text);cursor:pointer;font-family:var(--font-body)`,
+        onSelect: () => this.selectEntity('station', st.id),
+      };
+    });
+
+    const satellites = SATELLITES.map((sat) => {
+      const isSelected = this.state.selType === 'satellite' && this.state.selId === sat.id;
+      return {
+        id: sat.id, name: sat.name, norad: sat.norad,
+        altLabel: `${sat.altKm.toLocaleString()} km`,
+        buttonStyle: `text-align:left;padding:10px 12px;border-radius:var(--radius-md);border:1px solid ${isSelected ? 'var(--color-accent)' : 'var(--color-divider)'};background:${isSelected ? 'color-mix(in srgb, var(--color-accent) 14%, var(--color-surface))' : 'var(--color-surface)'};color:var(--color-text);cursor:pointer;font-family:var(--font-body)`,
+        onSelect: () => this.selectEntity('satellite', sat.id),
+      };
+    });
+
+    let stationPanel = null, satellitePanel = null;
+    if (this.state.selType === 'station') {
+      const st = STATIONS.find((s) => s.id === this.state.selId);
+      const stPos = stationPositions[st.id];
+      const contacts = SATELLITES.map((sat) => {
+        const u = deg2rad(sat.phaseDeg) + sat._meanMotion * simSeconds;
+        const satPos = orbitalPositionKm(sat, u);
+        const { elevDeg } = elevationAzimuth(stPos, satPos);
+        return { sat, elevDeg };
+      }).filter((c) => c.elevDeg >= MIN_ELEV_DEG).sort((a, b) => b.elevDeg - a.elevDeg);
+      const contactRows = contacts.map((c) => {
+        const link = st.network === 'SatNOGS' ? 'RX' : (c.elevDeg > 40 ? 'BOTH' : 'RX');
+        return {
+          name: c.sat.name, elevLabel: `${c.elevDeg.toFixed(1)}°`,
+          linkLabel: link, tagClass: link === 'BOTH' ? 'tag tag-accent' : link === 'TX' ? 'tag tag-outline' : 'tag tag-neutral',
+        };
+      });
+      let nextContactLabel = 'No passes in the next few orbits';
+      if (!contactRows.length) {
+        let soonest = null;
+        SATELLITES.forEach((sat) => {
+          const dt = this._findNextPass(st.id, sat.id, simSeconds);
+          if (dt != null && (soonest == null || dt < soonest.dt)) soonest = { dt, sat };
+        });
+        if (soonest) nextContactLabel = `Next contact: ${soonest.sat.name} ${this._fmtCountdown(soonest.dt)}`;
+      }
+      stationPanel = {
+        network: st.network, tagClass: st.network === 'DSN' ? 'tag tag-accent' : st.network === 'NEN' ? 'tag tag-accent-2' : 'tag tag-neutral',
+        coords: `${st.lat.toFixed(2)}°, ${st.lon.toFixed(2)}°`,
+        contacts: contactRows, noContacts: !contactRows.length, nextContactLabel,
+      };
+    } else if (this.state.selType === 'satellite') {
+      const sat = SATELLITES.find((s) => s.id === this.state.selId);
+      const refStationId = 'ua';
+      const refStation = STATIONS.find((s) => s.id === refStationId);
+      const stPos = stationPositions[refStationId];
+      const u = deg2rad(sat.phaseDeg) + sat._meanMotion * simSeconds;
+      const satPos = orbitalPositionKm(sat, u);
+      const { elevDeg, azDeg } = elevationAzimuth(stPos, satPos);
+      const isUp = elevDeg >= MIN_ELEV_DEG;
+      const link = isUp ? (refStation.network === 'SatNOGS' ? 'RX' : (elevDeg > 40 ? 'BOTH' : 'RX')) : 'IDLE';
+      let nextPassLabel = '';
+      if (!isUp) {
+        const dt = this._findNextPass(refStationId, sat.id, simSeconds);
+        nextPassLabel = `Next pass over ${refStation.name} ${this._fmtCountdown(dt)}`;
+      } else {
+        nextPassLabel = `Currently overhead ${refStation.name}`;
+      }
+      satellitePanel = {
+        norad: sat.norad, altLabel: `${sat.altKm.toLocaleString()} km`, inclLabel: `${sat.inclDeg.toFixed(1)}°`,
+        refStationName: refStation.name,
+        elevLabel: isUp ? `${elevDeg.toFixed(1)}°` : `${elevDeg.toFixed(1)}° (below horizon)`,
+        azLabel: `${azDeg.toFixed(0)}°`,
+        linkLabel: link, tagClass: link === 'BOTH' ? 'tag tag-accent' : link === 'RX' ? 'tag tag-neutral' : 'tag tag-outline',
+        nextPassLabel,
+      };
+    }
+
+    const selStation = this.state.selType === 'station' ? STATIONS.find((s) => s.id === this.state.selId) : null;
+    const selSat = this.state.selType === 'satellite' ? SATELLITES.find((s) => s.id === this.state.selId) : null;
+
+    return {
+      canvasRef: this.canvasRef, onCanvasClick: this.onCanvasClick, clearSelection: this.clearSelection, resetView: this.resetView,
+      clockLabel, speedOptions, stations, satellites,
+      hasSelection: !!this.state.selType,
+      isStationPanel: this.state.selType === 'station', isSatellitePanel: this.state.selType === 'satellite',
+      panelKicker: this.state.selType === 'station' ? 'GROUND STATION' : this.state.selType === 'satellite' ? 'SPACECRAFT' : '',
+      panelTitle: selStation ? selStation.name : selSat ? selSat.name : '',
+      stationPanel, satellitePanel,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

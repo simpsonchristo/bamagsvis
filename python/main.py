@@ -3,10 +3,11 @@
 Spawns:
   - a TLE refresher (Celestrak, with offline fallback)
   - a contact state refresher (DSN, SatNOGS, NEN)
+  - an HTTP bridge serving web/ and the JSON feeds the browser display reads
   - a TCP server feeding both to FreeFlyer/Blender consumers
 
 Usage:
-  python -m python.main [--config path/to/config.json]
+  python -m python.main [--config path/to/config.json] [--no-web]
 """
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ import logging
 import threading
 import time
 
-from . import celestrak, contact_state
+from . import celestrak, contact_state, web_bridge
 from .config import Config
 from .server import ServerState, serve_forever
 from .tle import validate_age
@@ -54,6 +55,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="bamagsvis real-time data layer")
     parser.add_argument("--config", help="path to config.json")
     parser.add_argument("--log-level", default="INFO")
+    parser.add_argument(
+        "--no-web",
+        action="store_true",
+        help="skip the HTTP bridge and browser display; TCP feed only",
+    )
     args = parser.parse_args(argv)
     logging.basicConfig(
         level=args.log_level,
@@ -69,12 +75,18 @@ def main(argv: list[str] | None = None) -> int:
     tle_thread.start()
     contact_thread.start()
 
+    httpd = None
+    if cfg.enable_web and not args.no_web:
+        httpd, _ = web_bridge.start_in_thread(cfg, state)
+
     try:
         serve_forever(state, host=cfg.socket_host, port=cfg.socket_port)
     except KeyboardInterrupt:
         pass
     finally:
         stop.set()
+        if httpd is not None:
+            httpd.shutdown()
         time.sleep(0.1)
     return 0
 
