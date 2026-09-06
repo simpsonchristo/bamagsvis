@@ -1,0 +1,10 @@
+{
+  "name": "bamagsvis-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Browser display for the UA ground station visualizer. No build step: the browser loads these ES modules directly. The manifest exists so `node --test` can run the orbit-math tests as modules.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"js/*.test.js\""
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BAMA Ground Station Visualizer</title>
+  <link rel="stylesheet" href="styles/nocturne.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="globe"></canvas>
+    <div class="vignette"></div>
+
+    <header class="nav topbar">
+      <div class="topbar-brand">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="nav-brand">BAMA Ground Station Visualizer</span>
+        <span id="feed-tag" class="tag tag-outline">DEMO</span>
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-controls">
+        <span id="clock" class="clock">--:--:-- UTC</span>
+        <div id="speed-group" class="seg" role="group" aria-label="Time rate">
+          <label class="seg-opt"><input type="radio" name="speed" value="1" checked>REAL-TIME</label>
+          <label class="seg-opt"><input type="radio" name="speed" value="10">10x</label>
+          <label class="seg-opt"><input type="radio" name="speed" value="60">60x</label>
+          <label class="seg-opt"><input type="radio" name="speed" value="300">300x</label>
+        </div>
+        <button id="reset-view" class="btn btn-ghost" type="button">Reset view</button>
+      </div>
+    </header>
+
+    <aside class="rail rail-left">
+      <div class="rail-label">Ground Stations</div>
+      <div id="station-list" class="rail-items"></div>
+    </aside>
+
+    <aside class="rail rail-right">
+      <div class="rail-label">Satellites</div>
+      <div id="satellite-list" class="rail-items"></div>
+    </aside>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-line"></span>Selected orbit trail</div>
+      <div class="legend-item"><span class="legend-dot legend-dot-tx"></span>TX uplink</div>
+      <div class="legend-item"><span class="legend-dot legend-dot-rx"></span>RX downlink</div>
+    </div>
+
+    <div id="detail" class="card elev-lg" hidden></div>
+  </div>
+
+  <!--
+    three.js r128 with the classic OrbitControls example, loaded from web/vendor/
+    when it is there (kiosks with no internet) and from the CDN when it is not.
+    See web/README.md for the two files to drop in.
+  -->
+  <script>
+    (function () {
+      var LIBS = [
+        { vendor: 'vendor/three.min.js', cdn: 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js' },
+        { vendor: 'vendor/OrbitControls.js', cdn: 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js' }
+      ];
+
+      function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = src;
+          s.onload = resolve;
+          s.onerror = function () { reject(new Error('failed to load ' + src)); };
+          document.head.appendChild(s);
+        });
+      }
+
+      function fail(message) {
+        var box = document.createElement('div');
+        box.className = 'card elev-lg';
+        box.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);'
+          + 'max-width:420px;text-align:left';
+        var title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = 'Visualizer could not start';
+        var body = document.createElement('p');
+        body.className = 'card-body';
+        body.textContent = message;
+        box.appendChild(title);
+        box.appendChild(body);
+        document.getElementById('app').appendChild(box);
+      }
+
+      LIBS.reduce(function (chain, lib) {
+        return chain.then(function () {
+          return loadScript(lib.vendor).catch(function () { return loadScript(lib.cdn); });
+        });
+      }, Promise.resolve())
+        .then(function () { return import('./js/app.js'); })
+        .catch(function (err) {
+          fail(err.message + '. Serve this directory over HTTP (python3 -m python.main, '
+            + 'or python3 -m http.server from web/) — ES modules do not load from file:// URLs.');
+        });
+    }());
+  </script>
+</body>
+</html>

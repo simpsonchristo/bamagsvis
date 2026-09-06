@@ -1,0 +1,295 @@
+/* Layout for the visualizer overlay. Colors, radii and type all come from
+   nocturne.css tokens — nothing here invents a value the system already has. */
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow: hidden;
+  user-select: none;
+}
+
+#globe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 10, 16, 0.55) 100%);
+}
+
+/* — top bar — */
+
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, rgba(12, 13, 20, 0.92), transparent);
+  border: none;
+  pointer-events: none;
+}
+
+.topbar > * { pointer-events: auto; }
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-brand .nav-brand {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-right: 0;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.topbar-spacer { flex: 1; }
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.clock {
+  font-size: 12px;
+  opacity: 0.65;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* — side rails — */
+
+.rail {
+  position: absolute;
+  top: 76px;
+  bottom: 150px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.rail-left { left: 16px; }
+.rail-right { right: 16px; }
+
+.rail-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  padding-left: 4px;
+}
+
+.rail-right .rail-label { text-align: right; }
+
+.rail-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.rail-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.rail-item:hover { background: color-mix(in srgb, var(--color-text) 7%, var(--color-surface)); }
+.rail-item:active { background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface)); }
+
+.rail-item.is-selected {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
+}
+
+.rail-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rail-item-name {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rail-item-alt {
+  font-size: 10px;
+  opacity: 0.5;
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+
+.rail-item-sub {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 3px;
+}
+
+/* — legend — */
+
+.legend {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+  pointer-events: none;
+  background: rgba(14, 15, 23, 0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.legend-line {
+  width: 16px;
+  height: 2px;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot-tx { background: #d9a15c; }
+.legend-dot-rx { background: #7cbf8e; }
+
+/* — detail card — */
+
+#detail {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 460px;
+  max-width: calc(100vw - 480px);
+  background: rgba(18, 19, 28, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-divider);
+}
+
+.detail-contacts {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 12px;
+  padding: 6px 0;
+  border-top: 1px solid var(--color-divider);
+}
+
+.contact-elev {
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  font-size: 12px;
+}
+
+.detail-metric { border-top: 1px solid var(--color-divider); padding-top: 6px; }
+
+.detail-metric-label {
+  opacity: 0.5;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.detail-metric-value {
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-note {
+  font-size: 12px;
+  opacity: 0.65;
+  border-top: 1px solid var(--color-divider);
+  padding-top: 6px;
+}
+
+/* — narrow displays: rails shrink, the card takes the full width — */
+
+@media (max-width: 900px) {
+  .rail { width: 168px; }
+  #detail { width: auto; left: 16px; right: 16px; transform: none; max-width: none; }
+  .legend { display: none; }
+}

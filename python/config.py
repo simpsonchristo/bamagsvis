@@ -31,11 +31,17 @@ class Config:
     tle_reject_age_days: float = 14.0
     socket_host: str = "127.0.0.1"
     socket_port: int = 5005
+    web_host: str = "127.0.0.1"
+    web_port: int = 8080
+    web_root: str = ""  # empty: the repo's own web/ directory
+    web_watchlist: list[int] = field(default_factory=list)  # NORAD ids; empty: bridge default
+    web_max_satellites: int = 60
     offline_tle_path: str = "satnogs.txt"
     enable_celestrak: bool = True
     enable_satnogs: bool = True
     enable_dsn: bool = True
     enable_nen: bool = False
+    enable_web: bool = True
     stations: list[GroundStation] = field(default_factory=list)
 
     @classmethod

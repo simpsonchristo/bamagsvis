@@ -4,3 +4,10 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
+
+# Vendored third-party libraries for offline kiosks (see web/vendor/README.md)
+web/vendor/*.js
+web/vendor/LICENSE
+# Locally cached Earth texture (see web/README.md)
+web/assets/
+node_modules/

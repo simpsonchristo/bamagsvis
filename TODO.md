@@ -28,19 +28,30 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 - [x] DSN Now scraper / API integration for real-time DSN contact data (`python/dsn.py`)
 - [ ] NEN contact query — stub in place (`python/nen.py`); awaiting a stable public SCAN-NOW machine-readable feed
 
-## Phase 3 — Blender TV Display
+## Phase 3 — Browser TV Display
 
-- [ ] Import DSN 34 model into final scene; apply AO textures
-- [ ] Build Earth sphere with up-to-date texture (cloud layer optional)
-- [ ] Satellite point cloud: position empties at propagated ECI coordinates each frame
-- [ ] Overhead ring: highlight satellites within X° of zenith
-- [ ] Visibility cone: shade region visible from the configured ground station
-- [ ] TX beam: animated curve from dish to tracked satellite (uplink color)
-- [ ] RX beam: animated curve from satellite back to dish (downlink color)
-- [ ] HUD overlay: satellite name, elevation, azimuth, next AOS/LOS times
-- [ ] Kiosk mode: fullscreen, no window chrome, continuous loop, auto-restart on crash
-- [ ] Multi-station mode: render multiple active contacts simultaneously
+The display of record is the browser page in `web/`, ported from the Claude
+Design canvas in `design/`. Blender is deferred to Phase 5.
+
+- [x] Port the Claude Design canvas to plain ES modules (`web/`)
+- [x] Earth sphere with texture, starfield, atmosphere glow
+- [x] Satellite dots at propagated positions, orbit rings, trail on the selection
+- [x] Station pins with per-network badges (DSN / NEN / SatNOGS)
+- [x] TX beam: pulsing line from station to tracked satellite (uplink color)
+- [x] RX beam: return beam in the downlink color
+- [x] HUD: satellite name, NORAD id, altitude, elevation/azimuth, next AOS countdown
+- [x] Station panel: what is overhead now, with per-contact link state
+- [x] Time warp (1x / 10x / 60x / 300x) off the wall clock, UTC readout
+- [x] HTTP bridge feeding the page live TLEs, stations and contacts (`python/web_bridge.py`)
+- [x] Offline fallback to the demo constellation with a LIVE/DEMO badge
+- [x] Orbit-math tests (`web/js/orbits.test.js`) and bridge tests
+- [ ] Swap the Keplerian propagator for real SGP4 (satellite.js) — see `web/README.md`
+- [ ] Visibility cone: shade the region visible from the selected station
+- [ ] Multi-station mode: draw every active contact at once, not just the selection
+- [ ] Camera: frame the selected station instead of only stopping the auto-rotate
+- [ ] Kiosk mode: fullscreen browser, no chrome, auto-restart on crash, watchdog on `/api/health`
 - [ ] Test output on target TV resolution (4K/1080p) and aspect ratio
+- [ ] Vendor three.js and the Earth texture on the display machine (`web/vendor/`, `web/assets/`)
 
 ## Phase 4 — Polish & Operations
 
@@ -50,3 +61,12 @@ Items are ordered by phase. Complete items are marked ~~struck~~.
 - [ ] Error recovery: graceful handling of Celestrak/SatNOGS API downtime
 - [ ] Documentation: installation and setup guide for new machines
 - [ ] Package as a deployable container or install script
+- [ ] Serve the display over the LAN (bind `web_host`) if it should be viewable off the kiosk machine
+
+## Phase 5 — Blender (deferred)
+
+Kept for pre-rendered sequences; not the live TV path any more.
+
+- [ ] Import DSN 34 model into a scene; apply AO textures
+- [ ] Satellite empties driven from the TCP feed's propagated coordinates
+- [ ] Dish animation driven by the tracked satellite's azimuth/elevation

@@ -30,12 +30,23 @@ External TLE Sources                Ground Station Network APIs
                     ▼
              Scene State (satellite positions, link vectors, timestamps)
                     │
-                    ▼
-             3D Renderer (Blender / FreeFlyer View)
+                    ├──► HTTP bridge (python/web_bridge.py)
+                    │         │
+                    │         ▼
+                    │    Browser display (web/, three.js)  ◄── primary
                     │
-                    ▼
-              TV / Display Output
+                    └──► TCP feed (python/server.py)
+                              │
+                              ▼
+                         FreeFlyer View / Blender
+                              │
+                              ▼
+                        TV / Display Output
 ```
+
+The browser display propagates its own positions from the TLEs the bridge
+hands it, so it does not depend on FreeFlyer being open; FreeFlyer and Blender
+read the same state over the TCP feed when they are used.
 
 ---
 
@@ -78,22 +89,41 @@ External TLE Sources                Ground Station Network APIs
 - `CONTACTS` returns a single JSON line: a list of `Contact` records suitable for both FreeFlyer and Blender consumers
 - Two background threads refresh TLEs (`tle_refresh_seconds`) and contact state (`contact_refresh_seconds`) independently
 
+### 3b. HTTP Bridge
+
+**Files:** `python/web_bridge.py`, `python/main.py`
+
+- Serves `web/` and a small JSON API off the same `ServerState` the TCP server reads, on `127.0.0.1:8080` (configurable; `--no-web` or `enable_web: false` skips it)
+- `GET /api/stations` — config stations first (they are the local ones), then the DSN/NEN/SatNOGS reference set; each carries `minElevationDeg`, which the display uses as its visibility cutoff
+- `GET /api/tles` — the `web_watchlist` NORAD ids plus any satellite the networks are currently working, capped at `web_max_satellites`
+- `GET /api/contacts` — the current `Contact` list, verbatim
+- `GET /api/health` — feed sizes, for a kiosk watchdog
+
 ### 4. Visualization Layer
 
 **Files:** `trackingVisualization.MissionPlan`, `animationExample.MissionPlan`, `Models/DSN 34/`
 
-Two rendering backends exist (one per project phase):
+Three rendering paths exist; the browser display is the one that drives the TV.
 
-#### 4a. FreeFlyer View (prototype)
+#### 4a. Browser display (primary)
+
+**Files:** `web/`, design source in `design/`
+
+- three.js globe: textured Earth on a starfield, station pins, satellite dots with orbit rings and a fading trail on the selected satellite
+- TX (amber) and RX (green) beams pulse between a selected station and its highest satellite; `IDLE` draws nothing
+- `web/js/orbits.js` propagates mean elements with secular J2 drift and computes look angles and pass times in the page — the scene never waits on the data layer for a frame
+- Frames: ECI with +Z north, mapped at draw time into three.js's +Y-up world; the globe spins on GMST, so stations sit under the map where they belong
+- Layout and design system come from the Claude Design canvas in `design/`; `web/styles/nocturne.css` is that system vendored verbatim
+- Degrades in three steps: bridge → last good state → built-in demo constellation, with the header badge showing which
+
+#### 4b. FreeFlyer View (prototype)
 - Built-in 3D globe with satellite tracks and ground station icons
 - Ground station view vectors added (`Added Vectors to GSView` commit)
-- Fast to iterate; used to validate logic before the Blender build
+- Fast to iterate; used to validate logic before the display was built
 
-#### 4b. Blender (final TV display)
+#### 4c. Blender (deferred)
 - Full 3D scene: textured Earth sphere, satellite point-cloud, animated dish model
-- TX vector rendered as an upward beam from the dish to the satellite position
-- RX vector rendered as a return beam (different color/style)
-- Designed for unattended TV output — no UI chrome, continuous loop
+- Kept for pre-rendered sequences using the DSN 34 dish; no longer the plan for the live TV
 
 ### 5. 3D Assets
 
@@ -116,8 +146,10 @@ When a ground station contact is active:
 - **TX (uplink):** A vector or beam drawn from the ground station dish to the satellite, styled to indicate transmission (e.g., orange/yellow, animated pulse)
 - **RX (downlink):** A vector drawn from the satellite back to the ground station, styled to indicate reception (e.g., green, animated)
 - Both vectors are computed from real-time position data; they update each render frame
+- In the browser display these are two `THREE.Line` segments between the station and satellite positions, their opacity pulsing each frame; `link` decides which of the pair is drawn
+- Link state comes from the contact feed when a station/satellite pair can be matched to it, and from geometry otherwise (SatNOGS receives only; other networks transmit above 40° elevation). Below the station's minimum elevation nothing is drawn, whatever the feed reports
 - In the FreeFlyer prototype this is implemented as a `Vector` object in the GSView scene
-- In the Blender final build this will use a Geometry Nodes or driver-animated curve between the dish bone and the satellite empty
+- In Blender it would use a Geometry Nodes or driver-animated curve between the dish bone and the satellite empty
 
 ---
 
@@ -127,13 +159,18 @@ When a ground station contact is active:
 |---------|-------------------|----------|
 | DSN | Built into FreeFlyer station library | Goldstone, Madrid, Canberra |
 | NEN | Built into FreeFlyer station library | Multiple NASA stations |
-| SatNOGS | REST API polling (Python, planned) | 1000+ community stations |
+| SatNOGS | REST API polling (`python/satnogs.py`) | 1000+ community stations |
+
+The browser display's station list comes from `/api/stations`: the `stations`
+entries in your config first (network `LOCAL`, and the first of them is the
+reference station for satellite look angles), then the reference complexes in
+`web_bridge.DEFAULT_STATIONS`.
 
 ---
 
 ## Deployment Target
 
-- Single machine running FreeFlyer or Blender in a kiosk/fullscreen mode
+- Single machine running `python3 -m python.main` and a browser in kiosk mode on `http://127.0.0.1:8080/`
 - Display output to HDMI TV
-- No user interaction required during operation; the scene loops continuously
-- Internet connection required for live TLE and contact data; offline fallback uses `satnogs.txt`
+- No user interaction required during operation; the globe auto-rotates until something is selected
+- Internet connection required for live TLE and contact data; offline fallback uses `satnogs.txt`, and `web/vendor/` plus `web/assets/` remove the page's own CDN dependencies (see `web/README.md`)
